@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yule Cai - Academic Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.8;
+            color: #2c3e50;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Animated background particles */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(102, 126, 234, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(118, 75, 162, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 20%, rgba(102, 126, 234, 0.08) 0%, transparent 50%);
+            animation: floatBackground 20s ease-in-out infinite;
+            z-index: -1;
+        }
+
+        @keyframes floatBackground {
+            0%, 100% {
+                transform: translateY(0) scale(1);
+            }
+            50% {
+                transform: translateY(-20px) scale(1.05);
+            }
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 60px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            animation: fadeInUp 0.8s ease-in;
+            position: relative;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding-bottom: 30px;
+            border-bottom: 2px solid #e8eef5;
+        }
+
+        .signature {
+            font-family: 'Caveat', 'Brush Script MT', cursive;
+            font-size: 3em;
+            color: #2c3e50;
+            margin-bottom: 30px;
+            font-weight: 600;
+            transform: rotate(-3deg);
+            display: inline-block;
+            line-height: 1;
+            position: relative;
+            animation: signatureGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes signatureGlow {
+            0%, 100% {
+                filter: drop-shadow(0 0 8px rgba(102, 126, 234, 0.3));
+            }
+            50% {
+                filter: drop-shadow(0 0 15px rgba(102, 126, 234, 0.5));
+            }
+        }
+
+        .signature::before {
+            content: '✨';
+            position: absolute;
+            left: -40px;
+            top: -10px;
+            font-size: 0.6em;
+            animation: sparkle 2s ease-in-out infinite;
+        }
+
+        .signature::after {
+            content: '✨';
+            position: absolute;
+            right: -40px;
+            top: -10px;
+            font-size: 0.6em;
+            animation: sparkle 2s ease-in-out infinite 1s;
+        }
+
+        @keyframes sparkle {
+            0%, 100% {
+                opacity: 0.3;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.2);
+            }
+        }
+
+        .profile-image {
+            width: 230px;
+            height: 230px;
+            margin: 0 auto 25px;
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+            animation: profileFloat 3s ease-in-out infinite;
+            background: #f5f5f5;
+        }
+
+        @keyframes profileFloat {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .profile-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 15%;
+            transform: scale(0.95);
+        }
+
+        h1 {
+            font-size: 2.5em;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #1a1a2e;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            font-size: 1.2em;
+            color: #7f8c8d;
+            font-weight: 400;
+        }
+
+        h2 {
+            font-size: 1.6em;
+            font-weight: 600;
+            margin-top: 50px;
+            margin-bottom: 25px;
+            color: #2c3e50;
+            position: relative;
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 2px;
+            animation: expandLine 2s ease-in-out infinite;
+        }
+
+        @keyframes expandLine {
+            0%, 100% {
+                width: 60px;
+            }
+            50% {
+                width: 80px;
+            }
+        }
+
+        h2::before {
+            content: '';
+            position: absolute;
+            left: -15px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 8px;
+            height: 8px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        p {
+            margin-bottom: 20px;
+            font-size: 1.05em;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        a {
+            color: #667eea;
+            text-decoration: none;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transition: width 0.3s ease;
+        }
+
+        a:hover::after {
+            width: 100%;
+        }
+
+        a:hover {
+            color: #764ba2;
+        }
+
+        .bio {
+            margin-bottom: 40px;
+        }
+
+        .contact-section {
+            text-align: center;
+            margin: 40px 0;
+            padding: 25px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: rotateGradient 10s linear infinite;
+        }
+
+        @keyframes rotateGradient {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .contact-section a {
+            color: white;
+            font-size: 1.1em;
+            font-weight: 500;
+            padding: 12px 30px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 25px;
+            display: inline-block;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            position: relative;
+            z-index: 1;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4);
+            }
+            50% {
+                box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
+            }
+        }
+
+        .contact-section a::after {
+            display: none;
+        }
+
+        .contact-section a:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            color: white;
+        }
+
+        .interests-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .interest-card {
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            cursor: pointer;
+        }
+
+        .interest-card:hover {
+            transform: translateY(-10px) rotate(2deg);
+            border-color: #667eea;
+            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.3);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .interest-card:hover .interest-icon {
+            animation: bounce 0.6s ease;
+            transform: scale(1.3);
+        }
+
+        .interest-card:hover .interest-title,
+        .interest-card:hover .interest-desc {
+            color: white;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0) scale(1.3); }
+            50% { transform: translateY(-10px) scale(1.5); }
+        }
+
+        .interest-icon {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .interest-title {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 8px;
+        }
+
+        .interest-desc {
+            font-size: 0.9em;
+            color: #7f8c8d;
+        }
+
+        .highlight {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .highlight::before {
+            content: '⚡';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 2em;
+            opacity: 0.2;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .highlight::after {
+            content: '🚀';
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            font-size: 2em;
+            opacity: 0.2;
+            animation: float 3s ease-in-out infinite 1.5s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .highlight strong {
+            font-size: 1.1em;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .publication-item {
+            margin-bottom: 35px;
+            padding: 25px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            border-left: 4px solid #667eea;
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateX(-20px);
+            animation: slideIn 0.5s ease forwards;
+        }
+
+        .publication-item:nth-child(1) { animation-delay: 0.1s; }
+        .publication-item:nth-child(2) { animation-delay: 0.2s; }
+        .publication-item:nth-child(3) { animation-delay: 0.3s; }
+        .publication-item:nth-child(4) { animation-delay: 0.4s; }
+        .publication-item:nth-child(5) { animation-delay: 0.5s; }
+
+        @keyframes slideIn {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .publication-item:hover {
+            transform: translateX(10px) scale(1.02);
+            box-shadow: 0 12px 30px rgba(102, 126, 234, 0.2);
+            border-left-color: #764ba2;
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+        }
+
+        .publication-title {
+            font-size: 1.1em;
+            font-weight: 600;
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+
+        .publication-title a {
+            color: #2c3e50;
+        }
+
+        .publication-title a:hover {
+            color: #667eea;
+        }
+
+        .publication-authors {
+            font-size: 0.95em;
+            color: #7f8c8d;
+            margin-bottom: 8px;
+        }
+
+        .publication-venue {
+            font-size: 0.9em;
+            color: #95a5a6;
+            font-style: italic;
+        }
+
+        .experience-item {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            border-left: 4px solid #667eea;
+            transition: all 0.3s ease;
+        }
+
+        .experience-item:hover {
+            transform: translateX(5px);
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.15);
+            border-left-width: 6px;
+        }
+
+        .experience-item strong {
+            color: #2c3e50;
+            font-size: 1.1em;
+        }
+
+        ul {
+            margin-left: 20px;
+            margin-top: 15px;
+            line-height: 1.9;
+        }
+
+        ul li {
+            margin-bottom: 8px;
+            color: #555;
+        }
+
+        .artwork-showcase {
+            margin: 30px 0;
+            padding: 25px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 12px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .artwork-showcase::before {
+            content: '🎨';
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 3em;
+            opacity: 0.1;
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .artwork-showcase img {
+            max-width: 100%;
+            max-height: 400px;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            margin-top: 15px;
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+
+        .artwork-showcase img:hover {
+            transform: scale(1.05) rotate(1deg);
+            box-shadow: 0 20px 50px rgba(102, 126, 234, 0.3);
+        }
+
+        .artwork-caption {
+            margin-top: 15px;
+            font-style: italic;
+            color: #7f8c8d;
+        }
+
+        footer {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 2px solid #e8eef5;
+            text-align: center;
+            color: #95a5a6;
+            font-size: 0.9em;
+        }
+
+        /* Back to top button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            text-decoration: none;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.6);
+        }
+
+        .back-to-top::after {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 30px;
+                border-radius: 15px;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            h2 {
+                font-size: 1.4em;
+            }
+
+            .signature {
+                font-size: 2.5em;
+            }
+
+            .profile-image {
+                width: 190px;
+                height: 190px;
+            }
+
+            .interests-section {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 20px 10px;
+            }
+
+            .container {
+                padding: 30px 20px;
+            }
+
+            h1 {
+                font-size: 1.8em;
+            }
+
+            .signature {
+                font-size: 2.2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="signature">Hi, I'm Yule!</div>
+            <div class="profile-image">
+                <img src="5aad058a5b872ca0a0b5cc2ee6375049.jpg" alt="Yule Cai">
+            </div>
+            <h1>Yule Cai</h1>
+            <div class="subtitle">B.Sc. in Information Technology | Research & Editing Professional</div>
+        </div>
+
+        <div class="bio">
+            <p>
+                I am an undergraduate student in Information Technology at the <a href="https://www.uum.edu.my" target="_blank">Universiti Utara Malaysia</a>. 
+                I currently work as a part-time Youth Editor at the Hong Kong Institute of Humanities and Social Sciences, 
+                where I edit academic journal articles to ensure clarity and accuracy, and collaborate with researchers to enhance manuscript quality before publication.
+            </p>
+
+            <p>
+                My research interests include the applications of artificial intelligence across various fields, the integration of deep learning with environmental science, 
+                and the impact of AI adoption on firms' innovation performance. I am dedicated to exploring how technology can advance both academic research and practical applications.
+            </p>
+
+            <p>
+                I am a diligent, detail-oriented, and proactive learner with a strong desire to expand my subject-matter expertise. 
+                I am optimistic, resilient, and highly adaptable, with a curiosity about diverse topics.
+            </p>
+        </div>
+
+        <div class="contact-section">
+            <a href="mailto:caiyule0911@163.com">📧 Contact Me: caiyule0911@163.com</a>
+        </div>
+
+        <h2>📚 Selected Publications</h2>
+
+        <p>
+            Below are my academic publications and contributions, spanning artificial intelligence, talent assessment, environmental science, and more.
+        </p>
+
+        <div class="publication-item">
+            <div class="publication-title">
+                <a href="https://www.tandfonline.com/doi/full/10.1080/03055698.2025.2531969" target="_blank">
+                    Artificial Intelligence in Writing Assessment: A comparative analysis based on GPT-4 and human raters
+                </a>
+            </div>
+            <div class="publication-authors">
+                Yule Cai, et al.
+            </div>
+            <div class="publication-venue">
+                Taylor & Francis, 2025
+            </div>
+        </div>
+
+        <div class="publication-item">
+            <div class="publication-title">
+                <a href="https://doi.org/10.1117/12.3068755" target="_blank">
+                    Spatial distribution prediction of environmental microbial communities based on deep learning combined with MAXENT model
+                </a>
+            </div>
+            <div class="publication-authors">
+                Yule Cai (Contributing Author)
+            </div>
+            <div class="publication-venue">
+                Proceedings of SPIE, Vol. 13692, 2025
+            </div>
+        </div>
+
+        <div class="publication-item">
+            <div class="publication-title">
+                Spatial Distribution Prediction of Environmental Microbial Communities Based on Deep Learning Combined with MAXENT Model
+            </div>
+            <div class="publication-authors">
+                Yule Cai (Contributing Author - model development, data preprocessing, and visualization)
+            </div>
+            <div class="publication-venue">
+                Proceedings of the 4th International Conference on Electronics Technology and Artificial Intelligence (ETAI 2025)
+            </div>
+        </div>
+
+        <div class="publication-item">
+            <div class="publication-title">
+                <a href="https://ojs.wisvora.com/index.php/itphss/article/view/343" target="_blank">
+                    The Impact of Artificial Intelligence Adoption On Firms' Innovation Performance in the Digital Era: Based on Dynamic Capabilities Theory
+                </a>
+            </div>
+            <div class="publication-authors">
+                Yule Cai
+            </div>
+            <div class="publication-venue">
+                International Journal of Information Technology, Project and Human Resource Management in the Social Sciences
+            </div>
+        </div>
+
+        <div class="publication-item">
+            <div class="publication-title">
+                <a href="https://ojs.wisvora.com/index.php/itphss/article/view/342" target="_blank">
+                    Exploring the MBTI and the Career Field: How HR Chooses the Best Talent Based on Personality
+                </a>
+            </div>
+            <div class="publication-authors">
+                Yule Cai
+            </div>
+            <div class="publication-venue">
+                International Journal of Information Technology, Project and Human Resource Management in the Social Sciences
+            </div>
+        </div>
+
+        <h2>💼 Work Experience</h2>
+
+        <div class="experience-item">
+            <strong>Youth Editor (Part-Time)</strong><br>
+            Hong Kong Institute of Humanities and Social Sciences<br>
+            <em>December 2024 - Present</em>
+            <ul>
+                <li>Edited 22 academic journal articles to ensure clarity and accuracy</li>
+                <li>Collaborated with researchers to enhance manuscript quality before publication</li>
+            </ul>
+        </div>
+
+        <h2>🏆 Certifications & Achievements</h2>
+
+        <div class="experience-item">
+            <strong>Data Science Summer School 2025</strong><br>
+            Hertie School Data Science Lab<br>
+            <em>August 04 - August 08, 2025</em>
+            <p style="margin-top: 10px; color: #555;">Actively participated in the Data Science Summer School directed by Prof. Simon Munzert</p>
+        </div>
+
+        <h2>🎓 Education</h2>
+
+        <div class="experience-item">
+            <strong>B.Sc. in Information Technology</strong><br>
+            Universiti Utara Malaysia<br>
+            <em>Current</em>
+        </div>
+
+        <div class="highlight">
+            <strong>💡 Skills & Expertise</strong>
+            Proficient in Microsoft Word, Excel, and PowerPoint | Python fundamentals | 
+            Leadership, problem-solving, communication, and teamwork | High stress tolerance and strong sense of responsibility
+        </div>
+
+        <h2>🎨 Interests & Hobbies</h2>
+        
+        <div class="interests-section">
+            <div class="interest-card">
+                <div class="interest-icon">🎨</div>
+                <div class="interest-title">Drawing</div>
+                <div class="interest-desc">I enjoy drawing to relax and express creativity</div>
+            </div>
+            <div class="interest-card">
+                <div class="interest-icon">🏀</div>
+                <div class="interest-title">Basketball</div>
+                <div class="interest-desc">Playing basketball keeps me active and energized</div>
+            </div>
+            <div class="interest-card">
+                <div class="interest-icon">🏃</div>
+                <div class="interest-title">Running</div>
+                <div class="interest-desc">Completed 2 community 5K runs</div>
+            </div>
+        </div>
+
+        <div class="artwork-showcase">
+            <h3 style="color: #2c3e50; margin-bottom: 10px;">✨ My Artwork</h3>
+            <p style="color: #7f8c8d;">Though I'm a beginner in drawing, I love using art to unwind and clear my mind.</p>
+            <img src="cc9c50062de85fa9b832802192013202.jpg" alt="My Drawing">
+            <p class="artwork-caption">A still life sketch - Finding peace through art</p>
+        </div>
+
+        <footer>
+            <p>© 2025 Yule Cai. Last updated: January 2025</p>
+            <p style="margin-top: 10px; font-size: 0.85em;">Built with passion for research, art, and innovation</p>
+        </footer>
+    </div>
+
+    <a href="#" class="back-to-top" title="Back to top">↑</a>
+
+</body>
+</html>
