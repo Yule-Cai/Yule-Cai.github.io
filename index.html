@@ -528,6 +528,22 @@
             overflow: hidden;
         }
 
+
+        .artwork-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 24px;
+            align-items: start;
+            margin-top: 20px;
+        }
+
+        .artwork-card {
+            background: rgba(255, 255, 255, 0.75);
+            padding: 16px;
+            border-radius: 12px;
+            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.08);
+        }
+
         .artwork-showcase::before {
             content: '🎨';
             position: absolute;
@@ -981,8 +997,18 @@
         <div class="artwork-showcase">
             <h3 style="color: #2c3e50; margin-bottom: 10px;">✨ My Artwork</h3>
             <p style="color: #7f8c8d;">Though I'm a beginner in drawing, I love using art to unwind and clear my mind.</p>
-            <img src="artwork-still-life.jpg" alt="Still life pencil sketch by Yule Cai">
-            <p class="artwork-caption">Still life pencil sketch — Finding peace through art</p>
+
+            <div class="artwork-grid">
+                <div class="artwork-card">
+                    <img src="cc9c50062de85fa9b832802192013202.jpg" alt="Original still life sketch by Yule Cai">
+                    <p class="artwork-caption">Original still life sketch — Finding peace through art</p>
+                </div>
+
+                <div class="artwork-card">
+                    <img src="artwork-still-life.jpg" alt="New still life pencil sketch by Yule Cai">
+                    <p class="artwork-caption">New still life pencil sketch — Recent artwork</p>
+                </div>
+            </div>
         </div>
 
         <footer>
