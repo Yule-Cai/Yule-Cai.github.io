@@ -18,27 +18,18 @@
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
             line-height: 1.8;
             color: #2c3e50;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            background:
+                linear-gradient(rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0.35)),
+                url('images/homepage-bg.jpg') center center / cover no-repeat fixed;
             min-height: 100vh;
             padding: 40px 20px;
             position: relative;
             overflow-x: hidden;
         }
 
-        /* Animated background particles */
+        /* Original animated particles are disabled so the photo background stays clean. */
         body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                radial-gradient(circle at 20% 50%, rgba(102, 126, 234, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(118, 75, 162, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 40% 20%, rgba(102, 126, 234, 0.08) 0%, transparent 50%);
-            animation: floatBackground 20s ease-in-out infinite;
-            z-index: -1;
+            display: none;
         }
 
         @keyframes floatBackground {
@@ -53,10 +44,12 @@
         .container {
             max-width: 900px;
             margin: 0 auto;
-            background: #ffffff;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
             padding: 60px;
             border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
             animation: fadeInUp 0.8s ease-in;
             position: relative;
         }
@@ -711,6 +704,7 @@
         @media (max-width: 480px) {
             body {
                 padding: 20px 10px;
+                background-attachment: scroll;
             }
 
             .container {
@@ -764,9 +758,19 @@
 
         <h2>🛠️ Projects</h2>
 
-        <p>Here are some of my key technical projects on GitHub, spanning robotics, computer vision, and autonomous navigation.</p>
+        <p>Here are some of my key technical projects on GitHub, spanning robotics, computer vision, autonomous navigation, and LLM-guided task recovery.</p>
 
         <div class="projects-section">
+            <div class="project-card">
+                <div class="project-card-title">
+                    <a href="https://github.com/Yule-Cai/llm_task_recovery" target="_blank">LLM Task Recovery</a>
+                </div>
+                <div class="project-card-desc">
+                    A research framework for LLM-guided runtime recovery in reinforcement learning agents, using a local LLM planner and task arbiter to handle anomalies such as obstruction, displacement, and goal invalidation in grid-world tasks.
+                </div>
+                <a class="project-card-link" href="https://github.com/Yule-Cai/llm_task_recovery" target="_blank">🐙 View on GitHub</a>
+            </div>
+
             <div class="project-card">
                 <div class="project-card-title">
                     <a href="https://github.com/Yule-Cai/Kinematic-Aware-IHO" target="_blank">Kinematic-Aware IHO</a>
@@ -980,7 +984,7 @@
         </div>
 
         <footer>
-            <p>© 2026 Yule Cai. Last updated: April 2026</p>
+            <p>© 2026 Yule Cai. Last updated: May 2026</p>
             <p style="margin-top: 10px; font-size: 0.85em;">Built with passion for research, art, and innovation</p>
         </footer>
     </div>
