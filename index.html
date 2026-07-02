@@ -1,13 +1,14 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yule Cai - Academic Portfolio</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap" rel="stylesheet">
-    <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Yule Cai - Academic Portfolio</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<style>
         * {
             margin: 0;
             padding: 0;
@@ -445,6 +446,7 @@
         .publication-item:nth-child(7) { animation-delay: 0.7s; }
         .publication-item:nth-child(8) { animation-delay: 0.8s; }
         .publication-item:nth-child(9) { animation-delay: 0.9s; }
+        .publication-item:nth-child(10) { animation-delay: 1.0s; }
 
         @keyframes slideIn {
             to {
@@ -485,6 +487,54 @@
             font-size: 0.9em;
             color: #95a5a6;
             font-style: italic;
+        }
+
+
+        .journal-metrics {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 12px;
+            font-style: normal;
+        }
+
+        .metric-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 4px 11px;
+            border-radius: 999px;
+            font-size: 0.78em;
+            font-weight: 700;
+            color: #5b5f97;
+            background: rgba(102, 126, 234, 0.12);
+            border: 1px solid rgba(102, 126, 234, 0.22);
+            letter-spacing: 0.01em;
+        }
+
+        .metric-badge.if-badge {
+            color: #ffffff;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-color: transparent;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+        }
+
+        .metric-badge.no-if {
+            color: #7f8c8d;
+            background: rgba(149, 165, 166, 0.12);
+            border-color: rgba(149, 165, 166, 0.25);
+        }
+
+        .metrics-note {
+            margin-top: -8px;
+            margin-bottom: 26px;
+            padding: 14px 18px;
+            border-radius: 12px;
+            background: rgba(102, 126, 234, 0.08);
+            color: #68727d;
+            font-size: 0.92em;
+            line-height: 1.65;
+            border-left: 4px solid #667eea;
         }
 
         .experience-item {
@@ -738,300 +788,690 @@
                 font-size: 2.2em;
             }
         }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <div class="header">
-            <div class="signature">Hi, I'm Yule!</div>
-            <div class="profile-image">
-                <img src="profile.png" alt="Yule Cai">
-            </div>
-            <h1>Yule Cai</h1>
-            <div class="subtitle">B.Sc. in Information Technology | Research & Editing Professional</div>
-        </div>
+    
 
-        <div class="bio">
-            <p>
+        /* Language switcher */
+        body[data-lang="en"] [data-lang-panel="zh"],
+        body[data-lang="zh"] [data-lang-panel="en"] {
+            display: none;
+        }
+
+        .language-toggle {
+            position: fixed;
+            top: 24px;
+            right: 28px;
+            z-index: 2000;
+        }
+
+        .lang-toggle-btn {
+            border: 0;
+            outline: none;
+            cursor: pointer;
+            padding: 10px 18px;
+            border-radius: 999px;
+            font-size: 0.95em;
+            font-weight: 700;
+            color: #ffffff;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            box-shadow: 0 8px 24px rgba(102, 126, 234, 0.35);
+            transition: all 0.3s ease;
+            letter-spacing: 0.02em;
+        }
+
+        .lang-toggle-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(102, 126, 234, 0.5);
+        }
+
+        .lang-toggle-btn:focus-visible {
+            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.25), 0 12px 30px rgba(102, 126, 234, 0.5);
+        }
+
+        body[data-lang="zh"] .container {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', Arial, sans-serif;
+        }
+
+        body[data-lang="zh"] p,
+        body[data-lang="zh"] li,
+        body[data-lang="zh"] .project-card-desc,
+        body[data-lang="zh"] .interest-desc,
+        body[data-lang="zh"] .publication-authors,
+        body[data-lang="zh"] .publication-venue {
+            line-height: 1.9;
+        }
+
+        @media (max-width: 768px) {
+            .language-toggle {
+                top: 14px;
+                right: 14px;
+            }
+
+            .lang-toggle-btn {
+                padding: 8px 14px;
+                font-size: 0.86em;
+            }
+        }
+</style>
+</head>
+<body data-lang="en">
+<div aria-label="Language switcher" class="language-toggle">
+<button aria-label="切换到中文" aria-pressed="false" class="lang-toggle-btn" id="languageToggle" type="button">中文</button>
+</div>
+
+<div aria-hidden="false" class="container" data-lang-panel="en">
+<div class="header">
+<div class="signature">Hi, I'm Yule!</div>
+<div class="profile-image">
+<img alt="Yule Cai" src="profile.png"/>
+</div>
+<h1>Yule Cai</h1>
+<div class="subtitle">B.Sc. in Information Technology | Research &amp; Editing Professional</div>
+</div>
+<div class="bio">
+<p>
                 I am an undergraduate student in Information Technology at the <a href="https://www.uum.edu.my" target="_blank">Universiti Utara Malaysia</a>. 
                 I currently work as a part-time Youth Editor at the Hong Kong Institute of Humanities and Social Sciences, 
                 where I edit academic journal articles to ensure clarity and accuracy, and collaborate with researchers to enhance manuscript quality before publication.
             </p>
-
-            <p>
+<p>
                 My research interests include the applications of artificial intelligence across various fields, the integration of deep learning with environmental science, 
                 and the impact of AI adoption on firms' innovation performance. I am dedicated to exploring how technology can advance both academic research and practical applications.
             </p>
-
-            <p>
+<p>
                 I am a diligent, detail-oriented, and proactive learner with a strong desire to expand my subject-matter expertise. 
                 I am optimistic, resilient, and highly adaptable, with a curiosity about diverse topics.
             </p>
-        </div>
-
-        <div class="contact-section">
-            <a href="mailto:caiyule0911@163.com">📧 Email</a>
-            <a href="https://scholar.google.com/citations?user=YOUR_ID" target="_blank">🎓 Google Scholar</a>
-            <a href="https://github.com/Yule-Cai" target="_blank">🐙 GitHub</a>
-        </div>
-
-        <h2>🛠️ Projects</h2>
-
-        <p>Here are some of my key technical projects on GitHub, spanning robotics, computer vision, autonomous navigation, and LLM-guided task recovery.</p>
-
-        <div class="projects-section">
-            <div class="project-card">
-                <div class="project-card-title">
-                    <a href="https://github.com/Yule-Cai/llm_task_recovery" target="_blank">LLM Task Recovery</a>
-                </div>
-                <div class="project-card-desc">
+</div>
+<div class="contact-section">
+<a href="mailto:caiyule0911@163.com">📧 Email</a>
+<a href="https://scholar.google.com/citations?user=YOUR_ID" target="_blank">🎓 Google Scholar</a>
+<a href="https://github.com/Yule-Cai" target="_blank">🐙 GitHub</a>
+</div>
+<h2>🛠️ Projects</h2>
+<p>Here are some of my key technical projects on GitHub, spanning robotics, computer vision, autonomous navigation, and LLM-guided task recovery.</p>
+<div class="projects-section">
+<div class="project-card">
+<div class="project-card-title">
+<a href="https://github.com/Yule-Cai/llm_task_recovery" target="_blank">LLM Task Recovery</a>
+</div>
+<div class="project-card-desc">
                     A research framework for LLM-guided runtime recovery in reinforcement learning agents, using a local LLM planner and task arbiter to handle anomalies such as obstruction, displacement, and goal invalidation in grid-world tasks.
                 </div>
-                <a class="project-card-link" href="https://github.com/Yule-Cai/llm_task_recovery" target="_blank">🐙 View on GitHub</a>
-            </div>
-
-            <div class="project-card">
-                <div class="project-card-title">
-                    <a href="https://github.com/Yule-Cai/Kinematic-Aware-IHO" target="_blank">Kinematic-Aware IHO</a>
-                </div>
-                <div class="project-card-desc">
+<a class="project-card-link" href="https://github.com/Yule-Cai/llm_task_recovery" target="_blank">🐙 View on GitHub</a>
+</div>
+<div class="project-card">
+<div class="project-card-title">
+<a href="https://github.com/Yule-Cai/Kinematic-Aware-IHO" target="_blank">Kinematic-Aware IHO</a>
+</div>
+<div class="project-card-desc">
                     A kinematic-aware approach to Iterative Hand Optimization (IHO), incorporating hand joint constraints and motion priors for more accurate and physically plausible hand pose estimation.
                 </div>
-                <a class="project-card-link" href="https://github.com/Yule-Cai/Kinematic-Aware-IHO" target="_blank">🐙 View on GitHub</a>
-            </div>
-
-            <div class="project-card">
-                <div class="project-card-title">
-                    <a href="https://github.com/Yule-Cai/shadow-hand-asl" target="_blank">Shadow Hand ASL</a>
-                </div>
-                <div class="project-card-desc">
+<a class="project-card-link" href="https://github.com/Yule-Cai/Kinematic-Aware-IHO" target="_blank">🐙 View on GitHub</a>
+</div>
+<div class="project-card">
+<div class="project-card-title">
+<a href="https://github.com/Yule-Cai/shadow-hand-asl" target="_blank">Shadow Hand ASL</a>
+</div>
+<div class="project-card-desc">
                     American Sign Language (ASL) recognition and reproduction using the Shadow Dexterous Hand robotic system, bridging computer vision and dexterous robotic manipulation.
                 </div>
-                <a class="project-card-link" href="https://github.com/Yule-Cai/shadow-hand-asl" target="_blank">🐙 View on GitHub</a>
-            </div>
-
-            <div class="project-card">
-                <div class="project-card-title">
-                    <a href="https://github.com/Yule-Cai/Decoupled-Dual-Brain-Nav" target="_blank">Decoupled Dual-Brain Nav</a>
-                </div>
-                <div class="project-card-desc">
+<a class="project-card-link" href="https://github.com/Yule-Cai/shadow-hand-asl" target="_blank">🐙 View on GitHub</a>
+</div>
+<div class="project-card">
+<div class="project-card-title">
+<a href="https://github.com/Yule-Cai/Decoupled-Dual-Brain-Nav" target="_blank">Decoupled Dual-Brain Nav</a>
+</div>
+<div class="project-card-desc">
                     A decoupled dual-brain architecture for autonomous robot navigation, separating high-level planning from low-level control to improve adaptability in complex environments.
                 </div>
-                <a class="project-card-link" href="https://github.com/Yule-Cai/Decoupled-Dual-Brain-Nav" target="_blank">🐙 View on GitHub</a>
-            </div>
-        </div>
-
-        <h2>📚 Selected Publications</h2>
-
-        <p>
+<a class="project-card-link" href="https://github.com/Yule-Cai/Decoupled-Dual-Brain-Nav" target="_blank">🐙 View on GitHub</a>
+</div>
+</div>
+<h2>📚 Selected Publications</h2>
+<p>
             Below are my academic publications and contributions, spanning artificial intelligence, talent assessment, environmental science, and more.
         </p>
-
-        <div class="publication-item">
-            <div class="publication-title">
-                <a href="https://link.springer.com/article/10.1007/s44443-026-00870-9" target="_blank">
+<p class="metrics-note">
+            Journal metrics are shown using the latest publicly available journal pages where possible. Official Journal Impact Factor values are updated annually with the Journal Citation Reports release, so these badges should be reviewed periodically.
+        </p>
+<div class="publication-item">
+<div class="publication-title">
+<a href="https://link.springer.com/article/10.1007/s11071-026-12695-2" target="_blank">
+                    Beyond correlation: a survey on causal inference for dynamics-aware perception and introspective decision-making in robotics
+                </a>
+</div>
+<div class="publication-authors">
+<strong>Y Cai</strong>, X Zhang, S Liu, J Lou, C Yuan
+            </div>
+<div class="publication-venue">
+                Nonlinear Dynamics, Vol. 114, Article 869, 2026
+                <div aria-label="Journal metrics" class="journal-metrics">
+<span class="metric-badge if-badge">IF 5.7</span>
+<span class="metric-badge">5-Year IF 5.2</span>
+<span class="metric-badge">2025 JCR</span>
+</div>
+</div>
+</div>
+<div class="publication-item">
+<div class="publication-title">
+<a href="https://link.springer.com/article/10.1007/s44443-026-00870-9" target="_blank">
                     Toward edge-intelligent consumer robots: a decoupled RL–LLM architecture for robust navigation under partial observability
                 </a>
+</div>
+<div class="publication-authors">
+<strong>Y Cai</strong>, W Tan, Y Wang, X Du, T Sun, Q Ai, S Bourouis, S Alalmaei, W Shao, C Yuan
             </div>
-            <div class="publication-authors">
-                <strong>Y Cai</strong>, W Tan, Y Wang, X Du, T Sun, Q Ai, S Bourouis, S Alalmaei, W Shao, C Yuan
-            </div>
-            <div class="publication-venue">
+<div class="publication-venue">
                 Journal of King Saud University Computer and Information Sciences, 2026
-            </div>
-        </div>
-
-        <div class="publication-item">
-            <div class="publication-title">
-                <a href="https://doi.org/10.3390/s26082416" target="_blank">
+                <div aria-label="Journal metrics" class="journal-metrics">
+<span class="metric-badge if-badge">IF 6.4</span>
+<span class="metric-badge">5-Year IF 6.0</span>
+<span class="metric-badge">2025 JCR</span>
+</div>
+</div>
+</div>
+<div class="publication-item">
+<div class="publication-title">
+<a href="https://doi.org/10.3390/s26082416" target="_blank">
                     KA-IHO: A Kinematic-Aware Improved Hippo Optimization Algorithm for Collision-Free Mobile Robot Path Planning in Complex Grid Environments
                 </a>
-            </div>
-            <div class="publication-authors">
+</div>
+<div class="publication-authors">
                 C Yuan, <strong>Y Cai</strong>, H Que, Y Pei, X Zhang, J Xie, Q Zhang, L Mu, F Qiao
             </div>
-            <div class="publication-venue">
+<div class="publication-venue">
                 Sensors, 2026
-            </div>
-        </div>
-
-        <div class="publication-item">
-            <div class="publication-title">
-                <a href="https://link.springer.com/article/10.1007/s44443-026-00708-4" target="_blank">
+                <div aria-label="Journal metrics" class="journal-metrics">
+<span class="metric-badge if-badge">IF 4.0</span>
+<span class="metric-badge">CiteScore 9.4</span>
+<span class="metric-badge">Latest public metric</span>
+</div>
+</div>
+</div>
+<div class="publication-item">
+<div class="publication-title">
+<a href="https://link.springer.com/article/10.1007/s44443-026-00708-4" target="_blank">
                     PaperOrchestrator: An LLM-Orchestrated Multi-Agent Pipeline for Automated End-to-End Scientific Paper Writing
                 </a>
-            </div>
-            <div class="publication-authors">
+</div>
+<div class="publication-authors">
                 C Yuan, T Wei, C Li, X Yi, S Liu, Z Zhang, <strong>Y Cai</strong>, X Du
             </div>
-            <div class="publication-venue">
+<div class="publication-venue">
                 Journal of King Saud University Computer and Information Sciences, 2026
-            </div>
-        </div>
-
-        <div class="publication-item">
-            <div class="publication-title">
-                <a href="https://hal.science/hal-05173844/" target="_blank">
+                <div aria-label="Journal metrics" class="journal-metrics">
+<span class="metric-badge if-badge">IF 6.4</span>
+<span class="metric-badge">5-Year IF 6.0</span>
+<span class="metric-badge">2025 JCR</span>
+</div>
+</div>
+</div>
+<div class="publication-item">
+<div class="publication-title">
+<a href="https://hal.science/hal-05173844/" target="_blank">
                     Enhancing Student Learning Outcomes through AI-Driven Educational Interventions: A Comprehensive Study of Classroom Behavior and Machine Learning Integration
                 </a>
-            </div>
-            <div class="publication-authors">
+</div>
+<div class="publication-authors">
                 CH Yuan, N Xiao, Y Pei, Y Bu, <strong>Y Cai</strong>
-            </div>
-            <div class="publication-venue">
+</div>
+<div class="publication-venue">
                 International Theory and Practice in Humanities and Social Sciences, Vol 2(2), pp 197-215, 2025
-            </div>
-        </div>
-
-        <div class="publication-item">
-            <div class="publication-title">
-                <a href="https://www.researchsquare.com/article/rs-7802765/latest" target="_blank">
+                <div aria-label="Journal metrics" class="journal-metrics">
+<span class="metric-badge no-if">IF not found / no public JIF</span>
+</div>
+</div>
+</div>
+<div class="publication-item">
+<div class="publication-title">
+<a href="https://www.researchsquare.com/article/rs-7802765/latest" target="_blank">
                     Application of SHAP-Based Explainable Machine Learning in Remaining Useful Life Prediction for Aircraft Engine Systems
                 </a>
-            </div>
-            <div class="publication-authors">
+</div>
+<div class="publication-authors">
                 C Yuan, <strong>Y Cai</strong>, Z Zhang
             </div>
-            <div class="publication-venue">
+<div class="publication-venue">
                 Preprint via Research Square, 2025
-            </div>
-        </div>
-
-        <div class="publication-item">
-            <div class="publication-title">
-                <a href="https://www.tandfonline.com/doi/abs/10.1080/03055698.2025.2531969" target="_blank">
+                <div aria-label="Journal metrics" class="journal-metrics">
+<span class="metric-badge no-if">Preprint platform — no journal IF</span>
+</div>
+</div>
+</div>
+<div class="publication-item">
+<div class="publication-title">
+<a href="https://www.tandfonline.com/doi/abs/10.1080/03055698.2025.2531969" target="_blank">
                     A study of artificial intelligence in writing assessment for secondary school students: a comparative analysis based on the GPT-4 and human raters
                 </a>
-            </div>
-            <div class="publication-authors">
+</div>
+<div class="publication-authors">
                 N Xiao, CH Yuan, YT Pei, W Xue, <strong>YL Cai</strong>
-            </div>
-            <div class="publication-venue">
+</div>
+<div class="publication-venue">
                 Educational Studies, pp 1-23, 2025
-            </div>
-        </div>
-
-        <div class="publication-item">
-            <div class="publication-title">
-                <a href="https://hal.science/hal-05074870/" target="_blank">
+                <div aria-label="Journal metrics" class="journal-metrics">
+<span class="metric-badge if-badge">IF 1.6</span>
+<span class="metric-badge">5-Year IF 2.7</span>
+<span class="metric-badge">2024 JCR</span>
+</div>
+</div>
+</div>
+<div class="publication-item">
+<div class="publication-title">
+<a href="https://hal.science/hal-05074870/" target="_blank">
                     The Impact of Artificial Intelligence Adoption on Firms' Innovation Performance in the Digital Era: Based on Dynamic Capabilities Theory
                 </a>
-            </div>
-            <div class="publication-authors">
+</div>
+<div class="publication-authors">
                 K Li, <strong>Y Cai</strong>, Y Pei, C Yuan
             </div>
-            <div class="publication-venue">
+<div class="publication-venue">
                 International Theory and Practice in Humanities and Social Sciences, Vol 2(3), 2025
-            </div>
-        </div>
-
-        <div class="publication-item">
-            <div class="publication-title">
-                <a href="https://hal.science/hal-05074670/" target="_blank">
+                <div aria-label="Journal metrics" class="journal-metrics">
+<span class="metric-badge no-if">IF not found / no public JIF</span>
+</div>
+</div>
+</div>
+<div class="publication-item">
+<div class="publication-title">
+<a href="https://hal.science/hal-05074670/" target="_blank">
                     Exploring the MBTI and the Career Field: How HR Chooses the Best Talent Based on Personality
                 </a>
+</div>
+<div class="publication-authors">
+<strong>Y Cai</strong>, Y Pei
             </div>
-            <div class="publication-authors">
-                <strong>Y Cai</strong>, Y Pei
-            </div>
-            <div class="publication-venue">
+<div class="publication-venue">
                 International Theory and Practice in Humanities and Social Sciences, Vol 2(3), 2025
-            </div>
-        </div>
-
-        <div class="publication-item">
-            <div class="publication-title">
-                <a href="https://www.spiedigitallibrary.org/conference-proceedings-of-spie/13692/136923X/Spatial-distribution-prediction-of-environmental-microbial-communities-based-on-deep/10.1117/12.3068755.short" target="_blank">
+                <div aria-label="Journal metrics" class="journal-metrics">
+<span class="metric-badge no-if">IF not found / no public JIF</span>
+</div>
+</div>
+</div>
+<div class="publication-item">
+<div class="publication-title">
+<a href="https://www.spiedigitallibrary.org/conference-proceedings-of-spie/13692/136923X/Spatial-distribution-prediction-of-environmental-microbial-communities-based-on-deep/10.1117/12.3068755.short" target="_blank">
                     Spatial Distribution Prediction of Environmental Microbial Communities Based on Deep Learning Combined with MAXENT Model
                 </a>
-            </div>
-            <div class="publication-authors">
+</div>
+<div class="publication-authors">
                 Q Yang, J Chen, C Yuan, L Na, W Chen, J Sun, <strong>Y Cai</strong>
-            </div>
-            <div class="publication-venue">
-                • 4th International Conference on Electronics Technology and Artificial Intelligence (ETAI 2025)<br>
+</div>
+<div class="publication-venue">
+                • 4th International Conference on Electronics Technology and Artificial Intelligence (ETAI 2025)<br/>
                 • Proceedings of SPIE, Vol. 13692, 2025
-            </div>
-        </div>
-
-        <h2>💼 Work Experience</h2>
-
-        <div class="experience-item">
-            <strong>Youth Editor (Part-Time)</strong><br>
-            Hong Kong Institute of Humanities and Social Sciences<br>
-            <em>December 2024 - Present</em>
-            <ul>
-                <li>Edited 22 academic journal articles to ensure clarity and accuracy</li>
-                <li>Collaborated with researchers to enhance manuscript quality before publication</li>
-            </ul>
-        </div>
-
-        <h2>🏆 Certifications & Achievements</h2>
-
-        <div class="experience-item">
-            <strong>Data Science Summer School 2025</strong><br>
-            Hertie School Data Science Lab<br>
-            <em>August 04 - August 08, 2025</em>
-            <p style="margin-top: 10px; color: #555;">Actively participated in the Data Science Summer School directed by Prof. Simon Munzert</p>
-        </div>
-
-        <h2>🎓 Education</h2>
-
-        <div class="experience-item">
-            <strong>B.Sc. in Information Technology</strong><br>
-            Universiti Utara Malaysia<br>
-            <em>Current</em>
-        </div>
-
-        <div class="highlight">
-            <strong>💡 Skills & Expertise</strong>
+                <div aria-label="Journal metrics" class="journal-metrics">
+<span class="metric-badge no-if">Conference proceedings — no JIF badge</span>
+<span class="metric-badge">SJR available</span>
+</div>
+</div>
+</div>
+<h2>💼 Work Experience</h2>
+<div class="experience-item">
+<strong>Youth Editor (Part-Time)</strong><br/>
+            Hong Kong Institute of Humanities and Social Sciences<br/>
+<em>December 2024 - Present</em>
+<ul>
+<li>Edited 22 academic journal articles to ensure clarity and accuracy</li>
+<li>Collaborated with researchers to enhance manuscript quality before publication</li>
+</ul>
+</div>
+<h2>🏆 Certifications &amp; Achievements</h2>
+<div class="experience-item">
+<strong>Data Science Summer School 2025</strong><br/>
+            Hertie School Data Science Lab<br/>
+<em>August 04 - August 08, 2025</em>
+<p style="margin-top: 10px; color: #555;">Actively participated in the Data Science Summer School directed by Prof. Simon Munzert</p>
+</div>
+<h2>🎓 Education</h2>
+<div class="experience-item">
+<strong>B.Sc. in Information Technology</strong><br/>
+            Universiti Utara Malaysia<br/>
+<em>Current</em>
+</div>
+<div class="highlight">
+<strong>💡 Skills &amp; Expertise</strong>
             Proficient in Microsoft Word, Excel, and PowerPoint | Python fundamentals | 
             Leadership, problem-solving, communication, and teamwork | High stress tolerance and strong sense of responsibility
         </div>
-
-        <h2>🎨 Interests & Hobbies</h2>
-        
-        <div class="interests-section">
-            <div class="interest-card">
-                <div class="interest-icon">🎨</div>
-                <div class="interest-title">Drawing</div>
-                <div class="interest-desc">I enjoy drawing to relax and express creativity</div>
+<h2>🎨 Interests &amp; Hobbies</h2>
+<div class="interests-section">
+<div class="interest-card">
+<div class="interest-icon">🎨</div>
+<div class="interest-title">Drawing</div>
+<div class="interest-desc">I enjoy drawing to relax and express creativity</div>
+</div>
+<div class="interest-card">
+<div class="interest-icon">🏀</div>
+<div class="interest-title">Basketball</div>
+<div class="interest-desc">Playing basketball keeps me active and energized</div>
+</div>
+<div class="interest-card">
+<div class="interest-icon">🏃</div>
+<div class="interest-title">Running</div>
+<div class="interest-desc">Completed 2 community 5K runs</div>
+</div>
+</div>
+<div class="artwork-showcase">
+<h3 style="color: #2c3e50; margin-bottom: 10px;">✨ My Artwork</h3>
+<p style="color: #7f8c8d;">Though I'm a beginner in drawing, I love using art to unwind and clear my mind.</p>
+<div class="artwork-grid">
+<div class="artwork-card">
+<img alt="Original still life sketch by Yule Cai" src="cc9c50062de85fa9b832802192013202.jpg"/>
+<p class="artwork-caption">Original still life sketch — Finding peace through art</p>
+</div>
+<div class="artwork-card">
+<img alt="New still life pencil sketch by Yule Cai" src="artwork-still-life.jpg"/>
+<p class="artwork-caption">New still life pencil sketch — Recent artwork</p>
+</div>
+</div>
+</div>
+<footer>
+<p>© 2026 Yule Cai. Last updated: July 2026</p>
+<p style="margin-top: 10px; font-size: 0.85em;">Built with passion for research, art, and innovation</p>
+</footer>
+</div><div aria-hidden="true" class="container" data-lang-panel="zh">
+<div class="header">
+<div class="signature">你好，我是 Yule！</div>
+<div class="profile-image">
+<img alt="Yule Cai" src="profile.png"/>
+</div>
+<h1>Yule Cai</h1>
+<div class="subtitle">信息技术本科生｜科研与学术编辑</div>
+</div>
+<div class="bio">
+<p>
+                我是 <a href="https://www.uum.edu.my" target="_blank">马来西亚北方大学（Universiti Utara Malaysia）</a> 信息技术专业本科生。
+                目前我在香港人文社会科学研究院担任兼职青年编辑，主要负责学术论文的语言润色、清晰度检查与稿件质量提升。
+            </p>
+<p>
+                我的研究兴趣包括人工智能在不同领域中的应用、深度学习与环境科学的结合，以及人工智能采用对企业创新绩效的影响。
+                我希望探索技术如何同时推动学术研究与真实应用落地。
+            </p>
+<p>
+                我是一个勤奋、细致且主动的学习者，希望持续拓展自己的专业能力。我保持乐观、抗压和适应性强，也对跨学科问题保持持续好奇。
+            </p>
+</div>
+<div class="contact-section">
+<a href="mailto:caiyule0911@163.com">📧 邮箱</a>
+<a href="https://scholar.google.com/citations?user=YOUR_ID" target="_blank">🎓 Google Scholar</a>
+<a href="https://github.com/Yule-Cai" target="_blank">🐙 GitHub</a>
+</div>
+<h2>🛠️ 项目</h2>
+<p>以下是我在 GitHub 上的部分代表性技术项目，涵盖机器人、计算机视觉、自主导航以及 LLM 引导的任务恢复。</p>
+<div class="projects-section">
+<div class="project-card">
+<div class="project-card-title">
+<a href="https://github.com/Yule-Cai/llm_task_recovery" target="_blank">LLM Task Recovery</a>
+</div>
+<div class="project-card-desc">一个面向强化学习智能体运行时恢复的研究框架，使用本地 LLM 规划器和任务仲裁器处理障碍、位移、目标失效等异常情况。</div>
+<a class="project-card-link" href="https://github.com/Yule-Cai/llm_task_recovery" target="_blank">🐙 查看 GitHub</a>
+</div>
+<div class="project-card">
+<div class="project-card-title">
+<a href="https://github.com/Yule-Cai/Kinematic-Aware-IHO" target="_blank">Kinematic-Aware IHO</a>
+</div>
+<div class="project-card-desc">一种运动学感知的改进河马优化算法，将手部关节约束和运动先验纳入优化过程，使手部姿态估计更加准确且符合物理约束。</div>
+<a class="project-card-link" href="https://github.com/Yule-Cai/Kinematic-Aware-IHO" target="_blank">🐙 查看 GitHub</a>
+</div>
+<div class="project-card">
+<div class="project-card-title">
+<a href="https://github.com/Yule-Cai/shadow-hand-asl" target="_blank">Shadow Hand ASL</a>
+</div>
+<div class="project-card-desc">基于 Shadow Dexterous Hand 的美国手语识别与复现项目，连接计算机视觉与灵巧机器人操作。</div>
+<a class="project-card-link" href="https://github.com/Yule-Cai/shadow-hand-asl" target="_blank">🐙 查看 GitHub</a>
+</div>
+<div class="project-card">
+<div class="project-card-title">
+<a href="https://github.com/Yule-Cai/Decoupled-Dual-Brain-Nav" target="_blank">Decoupled Dual-Brain Nav</a>
+</div>
+<div class="project-card-desc">一种解耦式双脑自主导航架构，将高层规划与低层控制分离，以提升复杂环境中的适应能力。</div>
+<a class="project-card-link" href="https://github.com/Yule-Cai/Decoupled-Dual-Brain-Nav" target="_blank">🐙 查看 GitHub</a>
+</div>
+</div>
+<h2>📚 代表性论文</h2>
+<p>以下是我的学术发表与研究贡献，涵盖人工智能、人才评估、环境科学等方向。</p>
+<p class="metrics-note">期刊指标根据可公开访问的期刊页面尽量展示最新信息。官方 Journal Impact Factor 通常随 Journal Citation Reports 每年更新，因此这些徽章建议定期复核。</p>
+<div class="publication-item">
+<div class="publication-title">
+<a href="https://link.springer.com/article/10.1007/s11071-026-12695-2" target="_blank">超越相关性：面向机器人动态感知与内省式决策的因果推断综述</a>
+</div>
+<div class="publication-authors">
+<strong>Y Cai</strong>, X Zhang, S Liu, J Lou, C Yuan
             </div>
-            <div class="interest-card">
-                <div class="interest-icon">🏀</div>
-                <div class="interest-title">Basketball</div>
-                <div class="interest-desc">Playing basketball keeps me active and energized</div>
+<div class="publication-venue">Nonlinear Dynamics，第 114 卷，文章号 869，2026<div aria-label="Journal metrics" class="journal-metrics">
+<span class="metric-badge if-badge">IF 5.7</span>
+<span class="metric-badge">5 年 IF 5.2</span>
+<span class="metric-badge">2025 JCR</span>
+</div>
+</div>
+</div>
+<div class="publication-item">
+<div class="publication-title">
+<a href="https://link.springer.com/article/10.1007/s44443-026-00870-9" target="_blank">迈向边缘智能消费机器人：部分可观测条件下鲁棒导航的解耦 RL–LLM 架构</a>
+</div>
+<div class="publication-authors">
+<strong>Y Cai</strong>, W Tan, Y Wang, X Du, T Sun, Q Ai, S Bourouis, S Alalmaei, W Shao, C Yuan
             </div>
-            <div class="interest-card">
-                <div class="interest-icon">🏃</div>
-                <div class="interest-title">Running</div>
-                <div class="interest-desc">Completed 2 community 5K runs</div>
+<div class="publication-venue">Journal of King Saud University Computer and Information Sciences，2026<div aria-label="Journal metrics" class="journal-metrics">
+<span class="metric-badge if-badge">IF 6.4</span>
+<span class="metric-badge">5 年 IF 6.0</span>
+<span class="metric-badge">2025 JCR</span>
+</div>
+</div>
+</div>
+<div class="publication-item">
+<div class="publication-title">
+<a href="https://doi.org/10.3390/s26082416" target="_blank">KA-IHO：面向复杂栅格环境中无碰撞移动机器人路径规划的运动学感知改进河马优化算法</a>
+</div>
+<div class="publication-authors">
+                C Yuan, <strong>Y Cai</strong>, H Que, Y Pei, X Zhang, J Xie, Q Zhang, L Mu, F Qiao
             </div>
-        </div>
-
-        <div class="artwork-showcase">
-            <h3 style="color: #2c3e50; margin-bottom: 10px;">✨ My Artwork</h3>
-            <p style="color: #7f8c8d;">Though I'm a beginner in drawing, I love using art to unwind and clear my mind.</p>
-
-            <div class="artwork-grid">
-                <div class="artwork-card">
-                    <img src="cc9c50062de85fa9b832802192013202.jpg" alt="Original still life sketch by Yule Cai">
-                    <p class="artwork-caption">Original still life sketch — Finding peace through art</p>
-                </div>
-
-                <div class="artwork-card">
-                    <img src="artwork-still-life.jpg" alt="New still life pencil sketch by Yule Cai">
-                    <p class="artwork-caption">New still life pencil sketch — Recent artwork</p>
-                </div>
+<div class="publication-venue">Sensors，2026<div aria-label="Journal metrics" class="journal-metrics">
+<span class="metric-badge if-badge">IF 4.0</span>
+<span class="metric-badge">CiteScore 9.4</span>
+<span class="metric-badge">最新公开指标</span>
+</div>
+</div>
+</div>
+<div class="publication-item">
+<div class="publication-title">
+<a href="https://link.springer.com/article/10.1007/s44443-026-00708-4" target="_blank">PaperOrchestrator：由 LLM 编排的端到端自动化科学论文写作多智能体流程</a>
+</div>
+<div class="publication-authors">
+                C Yuan, T Wei, C Li, X Yi, S Liu, Z Zhang, <strong>Y Cai</strong>, X Du
             </div>
-        </div>
-
-        <footer>
-            <p>© 2026 Yule Cai. Last updated: June 2026</p>
-            <p style="margin-top: 10px; font-size: 0.85em;">Built with passion for research, art, and innovation</p>
-        </footer>
+<div class="publication-venue">Journal of King Saud University Computer and Information Sciences，2026<div aria-label="Journal metrics" class="journal-metrics">
+<span class="metric-badge if-badge">IF 6.4</span>
+<span class="metric-badge">5 年 IF 6.0</span>
+<span class="metric-badge">2025 JCR</span>
+</div>
+</div>
+</div>
+<div class="publication-item">
+<div class="publication-title">
+<a href="https://hal.science/hal-05173844/" target="_blank">通过 AI 驱动的教育干预提升学生学习成果：课堂行为与机器学习融合的综合研究</a>
+</div>
+<div class="publication-authors">
+                CH Yuan, N Xiao, Y Pei, Y Bu, <strong>Y Cai</strong>
+</div>
+<div class="publication-venue">International Theory and Practice in Humanities and Social Sciences，第 2 卷第 2 期，197–215 页，2025<div aria-label="Journal metrics" class="journal-metrics">
+<span class="metric-badge no-if">未找到公开 JIF</span>
+</div>
+</div>
+</div>
+<div class="publication-item">
+<div class="publication-title">
+<a href="https://www.researchsquare.com/article/rs-7802765/latest" target="_blank">基于 SHAP 的可解释机器学习在航空发动机系统剩余寿命预测中的应用</a>
+</div>
+<div class="publication-authors">
+                C Yuan, <strong>Y Cai</strong>, Z Zhang
+            </div>
+<div class="publication-venue">Research Square 预印本，2025<div aria-label="Journal metrics" class="journal-metrics">
+<span class="metric-badge no-if">预印本平台，无期刊 IF</span>
+</div>
+</div>
+</div>
+<div class="publication-item">
+<div class="publication-title">
+<a href="https://www.tandfonline.com/doi/abs/10.1080/03055698.2025.2531969" target="_blank">人工智能用于中学生写作评价研究：基于 GPT-4 与人工评分者的比较分析</a>
+</div>
+<div class="publication-authors">
+                N Xiao, CH Yuan, YT Pei, W Xue, <strong>YL Cai</strong>
+</div>
+<div class="publication-venue">Educational Studies，1–23 页，2025<div aria-label="Journal metrics" class="journal-metrics">
+<span class="metric-badge if-badge">IF 1.6</span>
+<span class="metric-badge">5 年 IF 2.7</span>
+<span class="metric-badge">2024 JCR</span>
+</div>
+</div>
+</div>
+<div class="publication-item">
+<div class="publication-title">
+<a href="https://hal.science/hal-05074870/" target="_blank">数字时代人工智能采用对企业创新绩效的影响：基于动态能力理论</a>
+</div>
+<div class="publication-authors">
+                K Li, <strong>Y Cai</strong>, Y Pei, C Yuan
+            </div>
+<div class="publication-venue">International Theory and Practice in Humanities and Social Sciences，第 2 卷第 3 期，2025<div aria-label="Journal metrics" class="journal-metrics">
+<span class="metric-badge no-if">未找到公开 JIF</span>
+</div>
+</div>
+</div>
+<div class="publication-item">
+<div class="publication-title">
+<a href="https://hal.science/hal-05074670/" target="_blank">探索 MBTI 与职业领域：人力资源如何基于人格选择合适人才</a>
+</div>
+<div class="publication-authors">
+<strong>Y Cai</strong>, Y Pei
+            </div>
+<div class="publication-venue">International Theory and Practice in Humanities and Social Sciences，第 2 卷第 3 期，2025<div aria-label="Journal metrics" class="journal-metrics">
+<span class="metric-badge no-if">未找到公开 JIF</span>
+</div>
+</div>
+</div>
+<div class="publication-item">
+<div class="publication-title">
+<a href="https://www.spiedigitallibrary.org/conference-proceedings-of-spie/13692/136923X/Spatial-distribution-prediction-of-environmental-microbial-communities-based-on-deep/10.1117/12.3068755.short" target="_blank">基于深度学习结合 MAXENT 模型的环境微生物群落空间分布预测</a>
+</div>
+<div class="publication-authors">
+                Q Yang, J Chen, C Yuan, L Na, W Chen, J Sun, <strong>Y Cai</strong>
+</div>
+<div class="publication-venue">• 第四届电子技术与人工智能国际会议（ETAI 2025）<br/>• Proceedings of SPIE，第 13692 卷，2025<div aria-label="Journal metrics" class="journal-metrics">
+<span class="metric-badge no-if">会议论文集，无 JIF 徽章</span>
+<span class="metric-badge">可查看 SJR</span>
+</div>
+</div>
+</div>
+<h2>💼 工作经历</h2>
+<div class="experience-item">
+<strong>青年编辑（兼职）</strong><br/>
+            Hong Kong Institute of Humanities and Social Sciences<br/>
+<em>2024 年 12 月至今</em>
+<ul>
+<li>已编辑 22 篇学术期刊文章，提升文本清晰度与准确性</li>
+<li>与研究人员合作，在发表前提升稿件质量</li>
+</ul>
+</div>
+<h2>🏆 证书与经历</h2>
+<div class="experience-item">
+<strong>数据科学暑期学校 2025</strong><br/>
+            Hertie School Data Science Lab<br/>
+<em>2025 年 8 月 4 日至 8 月 8 日</em>
+<p style="margin-top: 10px; color: #555;">积极参加由 Simon Munzert 教授指导的数据科学暑期学校。</p>
+</div>
+<h2>🎓 教育背景</h2>
+<div class="experience-item">
+<strong>信息技术本科</strong><br/>
+            Universiti Utara Malaysia<br/>
+<em>在读</em>
+</div>
+<div class="highlight">
+<strong>💡 技能与专长</strong>
+            熟练使用 Microsoft Word、Excel 和 PowerPoint｜Python 基础｜
+            领导力、问题解决、沟通与团队协作｜较强抗压能力与责任感
     </div>
+<h2>🎨 兴趣爱好</h2>
+<div class="interests-section">
+<div class="interest-card">
+<div class="interest-icon">🎨</div>
+<div class="interest-title">绘画</div>
+<div class="interest-desc">我喜欢通过绘画放松，并表达创造力</div>
+</div>
+<div class="interest-card">
+<div class="interest-icon">🏀</div>
+<div class="interest-title">篮球</div>
+<div class="interest-desc">打篮球让我保持活力和精力</div>
+</div>
+<div class="interest-card">
+<div class="interest-icon">🏃</div>
+<div class="interest-title">跑步</div>
+<div class="interest-desc">已完成 2 次社区 5 公里跑</div>
+</div>
+</div>
+<div class="artwork-showcase">
+<h3 style="color: #2c3e50; margin-bottom: 10px;">✨ 我的绘画作品</h3>
+<p style="color: #7f8c8d;">虽然我还是绘画初学者，但我喜欢用艺术放松自己、整理思绪。</p>
+<div class="artwork-grid">
+<div class="artwork-card">
+<img alt="Original still life sketch by Yule Cai" src="cc9c50062de85fa9b832802192013202.jpg"/>
+<p class="artwork-caption">原创静物素描——在艺术中寻找平静</p>
+</div>
+<div class="artwork-card">
+<img alt="New still life pencil sketch by Yule Cai" src="artwork-still-life.jpg"/>
+<p class="artwork-caption">新的静物铅笔素描——近期作品</p>
+</div>
+</div>
+</div>
+<footer>
+<p>© 2026 Yule Cai。最后更新：2026 年 7 月</p>
+<p style="margin-top: 10px; font-size: 0.85em;">以对科研、艺术与创新的热情构建</p>
+</footer>
+</div>
+<a class="back-to-top" href="#" title="Back to top">↑</a>
+<script>
+        (function () {
+            const STORAGE_KEY = 'yule-site-language';
+            const toggle = document.getElementById('languageToggle');
 
-    <a href="#" class="back-to-top" title="Back to top">↑</a>
-</body>
+            function setLanguage(lang) {
+                const activeLang = lang === 'zh' ? 'zh' : 'en';
+                document.body.setAttribute('data-lang', activeLang);
+                document.documentElement.lang = activeLang === 'zh' ? 'zh-CN' : 'en';
+
+                document.querySelectorAll('[data-lang-panel]').forEach(function (panel) {
+                    const isActive = panel.getAttribute('data-lang-panel') === activeLang;
+                    panel.setAttribute('aria-hidden', String(!isActive));
+                });
+
+                if (toggle) {
+                    toggle.textContent = activeLang === 'zh' ? 'English' : '中文';
+                    toggle.setAttribute('aria-label', activeLang === 'zh' ? 'Switch to English' : '切换到中文');
+                    toggle.setAttribute('aria-pressed', String(activeLang === 'zh'));
+                }
+
+                try {
+                    localStorage.setItem(STORAGE_KEY, activeLang);
+                } catch (error) {
+                    // localStorage may be unavailable in some privacy modes; the page still works.
+                }
+            }
+
+            let savedLanguage = 'en';
+            try {
+                savedLanguage = localStorage.getItem(STORAGE_KEY) || 'en';
+            } catch (error) {
+                savedLanguage = 'en';
+            }
+
+            setLanguage(savedLanguage);
+
+            if (toggle) {
+                toggle.addEventListener('click', function () {
+                    const nextLang = document.body.getAttribute('data-lang') === 'zh' ? 'en' : 'zh';
+                    setLanguage(nextLang);
+                });
+            }
+        })();
+</script></body>
 </html>
