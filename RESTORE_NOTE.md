@@ -1,0 +1,1 @@
+Temporary marker for restoring the original portfolio design. This file can be removed after the site content-only update is complete.
