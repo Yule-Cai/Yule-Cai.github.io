@@ -1,4 +1,4 @@
-name: Reorder publications
+name: Update Springer reviewer section
 
 on:
   push:
@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Preserve original style and reorder publications
+      - name: Replace former editor role with Springer Nature peer review service
         run: |
           python - <<'PY'
           from pathlib import Path
@@ -22,62 +22,182 @@ jobs:
           path = Path('index.html')
           html = path.read_text(encoding='utf-8')
 
-          def pub(title, url, authors, venue, badge=''):
-              notes = ''
-              if badge:
-                  notes = '<div aria-label="Publication notes" class="journal-metrics"><span class="metric-badge">' + badge + '</span></div>'
-              return '<div class="publication-item">\n<div class="publication-title">\n<a href="' + url + '" target="_blank">' + title + '</a>\n</div>\n<div class="publication-authors">' + authors + '</div>\n<div class="publication-venue">' + venue + notes + '</div>\n</div>'
+          css = r'''
 
-          en_core = [
-              pub('Beyond correlation: a survey on causal inference for dynamics-aware perception and introspective decision-making in robotics', 'https://doi.org/10.1007/s11071-026-12695-2', '<strong>Y Cai</strong>, X Zhang, S Liu, J Lou, C Yuan', 'Nonlinear Dynamics, Vol. 114, Article 869, 2026', 'First author'),
-              pub('Toward edge-intelligent consumer robots: a decoupled RL–LLM architecture for robust navigation under partial observability', 'https://doi.org/10.1007/s44443-026-00870-9', '<strong>Y Cai</strong>, W Tan, Y Wang, X Du, T Sun, Q Ai, S Bourouis, S Alalmaei, W Shao, C Yuan', 'Journal of King Saud University Computer and Information Sciences, Vol. 38, Article 470, 2026', 'First author'),
-              pub('KA-IHO: A Kinematic-Aware Improved Hippo Optimization Algorithm for Collision-Free Mobile Robot Path Planning in Complex Grid Environments', 'https://doi.org/10.3390/s26082416', 'C Yuan, <strong>Y Cai</strong>, H Que, Y Pei, X Zhang, J Xie, Q Zhang, L Mu, F Qiao', 'Sensors, Vol. 26, Issue 8, Article 2416, 2026'),
-              pub('Application of SHAP-Based Explainable Machine Learning in Remaining Useful Life Prediction for Aircraft Engine Systems', 'https://doi.org/10.1007/s13042-026-03246-7', 'C Yuan, <strong>Y Cai</strong>, Z Zhang', 'International Journal of Machine Learning and Cybernetics, Vol. 17, Issue 9, 2026'),
-              pub('A study of artificial intelligence in writing assessment for secondary school students: a comparative analysis based on the GPT-4 and human raters', 'https://doi.org/10.1080/03055698.2025.2531969', 'N Xiao, CH Yuan, YT Pei, W Xue, <strong>YL Cai</strong>', 'Educational Studies, Vol. 52, Issue 4, pp. 504–526, 2026'),
-              pub('Spatial Distribution Prediction of Environmental Microbial Communities Based on Deep Learning Combined with MAXENT Model', 'https://doi.org/10.1117/12.3068755', 'Q Yang, J Chen, C Yuan, L Na, W Chen, J Sun, <strong>Y Cai</strong>', 'Proceedings of SPIE, Vol. 13692, 136923X, 2025')
-          ]
-          en_extra = [
-              pub('PaperOrchestrator: An LLM-Orchestrated Multi-Agent Pipeline for Automated End-to-End Scientific Paper Writing', 'https://doi.org/10.1007/s44443-026-00708-4', 'C Yuan, T Wei, C Li, X Yi, S Liu, Z Zhang, <strong>Y Cai</strong>, X Du', 'Journal of King Saud University Computer and Information Sciences, Vol. 38, Article 296, 2026', 'Additional publication'),
-              pub('Enhancing Student Learning Outcomes through AI-Driven Educational Interventions: A Comprehensive Study of Classroom Behavior and Machine Learning Integration', 'https://doi.org/10.70693/itphss.v2i2.216', 'CH Yuan, N Xiao, Y Pei, Y Bu, <strong>Y Cai</strong>', 'International Theory and Practice in Humanities and Social Sciences, Vol. 2, Issue 2, pp. 197–215, 2025', 'Additional publication'),
-              pub("The Impact of Artificial Intelligence Adoption on Firms' Innovation Performance in the Digital Era: Based on Dynamic Capabilities Theory", 'https://doi.org/10.70693/itphss.v2i3.343', 'K Li, <strong>Y Cai</strong>, Y Pei, C Yuan', 'International Theory and Practice in Humanities and Social Sciences, Vol. 2, Issue 3, pp. 228–237, 2025', 'Additional publication'),
-              pub('Exploring the MBTI and the Career Field: How HR Chooses the Best Talent Based on Personality', 'https://doi.org/10.70693/itphss.v2i3.342', '<strong>Y Cai</strong>, Y Pei', 'International Theory and Practice in Humanities and Social Sciences, Vol. 2, Issue 3, pp. 210–227, 2025', 'Additional publication')
-          ]
+        /* Springer Nature peer-review cards — uses the site's original card language */
+        .reviewer-summary {
+            margin: 12px 0 22px;
+            color: #68727d;
+            font-size: 0.98em;
+        }
 
-          zh_core = [
-              pub('超越相关性：面向机器人动态感知与内省式决策的因果推断综述', 'https://doi.org/10.1007/s11071-026-12695-2', '<strong>Y Cai</strong>, X Zhang, S Liu, J Lou, C Yuan', 'Nonlinear Dynamics，第 114 卷，文章号 869，2026', '第一作者'),
-              pub('迈向边缘智能消费机器人：部分可观测条件下鲁棒导航的解耦 RL–LLM 架构', 'https://doi.org/10.1007/s44443-026-00870-9', '<strong>Y Cai</strong>, W Tan, Y Wang, X Du, T Sun, Q Ai, S Bourouis, S Alalmaei, W Shao, C Yuan', 'Journal of King Saud University Computer and Information Sciences，第 38 卷，文章号 470，2026', '第一作者'),
-              pub('KA-IHO：面向复杂栅格环境中无碰撞移动机器人路径规划的运动学感知改进河马优化算法', 'https://doi.org/10.3390/s26082416', 'C Yuan, <strong>Y Cai</strong>, H Que, Y Pei, X Zhang, J Xie, Q Zhang, L Mu, F Qiao', 'Sensors，第 26 卷第 8 期，文章号 2416，2026'),
-              pub('基于 SHAP 的可解释机器学习在航空发动机系统剩余寿命预测中的应用', 'https://doi.org/10.1007/s13042-026-03246-7', 'C Yuan, <strong>Y Cai</strong>, Z Zhang', 'International Journal of Machine Learning and Cybernetics，第 17 卷第 9 期，2026'),
-              pub('人工智能用于中学生写作评价研究：基于 GPT-4 与人工评分者的比较分析', 'https://doi.org/10.1080/03055698.2025.2531969', 'N Xiao, CH Yuan, YT Pei, W Xue, <strong>YL Cai</strong>', 'Educational Studies，第 52 卷第 4 期，504–526 页，2026'),
-              pub('基于深度学习结合 MAXENT 模型的环境微生物群落空间分布预测', 'https://doi.org/10.1117/12.3068755', 'Q Yang, J Chen, C Yuan, L Na, W Chen, J Sun, <strong>Y Cai</strong>', 'Proceedings of SPIE，第 13692 卷，136923X，2025')
-          ]
-          zh_extra = [
-              pub('PaperOrchestrator：由 LLM 编排的端到端自动化科学论文写作多智能体流程', 'https://doi.org/10.1007/s44443-026-00708-4', 'C Yuan, T Wei, C Li, X Yi, S Liu, Z Zhang, <strong>Y Cai</strong>, X Du', 'Journal of King Saud University Computer and Information Sciences，第 38 卷，文章号 296，2026', '补充发表'),
-              pub('通过 AI 驱动的教育干预提升学生学习成果：课堂行为与机器学习融合的综合研究', 'https://doi.org/10.70693/itphss.v2i2.216', 'CH Yuan, N Xiao, Y Pei, Y Bu, <strong>Y Cai</strong>', 'International Theory and Practice in Humanities and Social Sciences，第 2 卷第 2 期，197–215 页，2025', '补充发表'),
-              pub('数字时代人工智能采用对企业创新绩效的影响：基于动态能力理论', 'https://doi.org/10.70693/itphss.v2i3.343', 'K Li, <strong>Y Cai</strong>, Y Pei, C Yuan', 'International Theory and Practice in Humanities and Social Sciences，第 2 卷第 3 期，228–237 页，2025', '补充发表'),
-              pub('探索 MBTI 与职业领域：人力资源如何基于人格选择合适人才', 'https://doi.org/10.70693/itphss.v2i3.342', '<strong>Y Cai</strong>, Y Pei', 'International Theory and Practice in Humanities and Social Sciences，第 2 卷第 3 期，210–227 页，2025', '补充发表')
-          ]
+        .reviewer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 18px;
+            margin-top: 22px;
+        }
 
-          en_block = '<h2>📚 Selected Publications</h2>\n<p>My main research publications are listed first. Additional co-authored and earlier publications are retained at the end for completeness.</p>\n' + '\n'.join(en_core) + '\n<h3 style="color: #2c3e50; margin: 36px 0 18px; font-size: 1.15em;">Additional Publications</h3>\n<p style="color: #7f8c8d; font-size: 0.95em; margin-bottom: 20px;">Additional co-authored and earlier work.</p>\n' + '\n'.join(en_extra) + '\n<h2>💼 Work Experience</h2>'
-          zh_block = '<h2>📚 代表性论文</h2>\n<p>主要科研成果优先展示；其他合作与早期论文统一放在最后，作为完整发表记录。</p>\n' + '\n'.join(zh_core) + '\n<h3 style="color: #2c3e50; margin: 36px 0 18px; font-size: 1.15em;">其他发表</h3>\n<p style="color: #7f8c8d; font-size: 0.95em; margin-bottom: 20px;">其他合作与早期发表。</p>\n' + '\n'.join(zh_extra) + '\n<h2>💼 工作经历</h2>'
+        .reviewer-card {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            padding: 16px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            border-left: 4px solid #667eea;
+            transition: all 0.3s ease;
+            color: inherit;
+            text-decoration: none;
+        }
 
-          en_marker = '<div aria-hidden="false" class="container" data-lang-panel="en">'
-          zh_marker = '<div aria-hidden="true" class="container" data-lang-panel="zh">'
-          prefix, rest = html.split(en_marker, 1)
-          en, zh = rest.split(zh_marker, 1)
-          en, n1 = re.subn(r'<h2>📚 Selected Publications</h2>.*?<h2>💼 Work Experience</h2>', en_block, en, count=1, flags=re.S)
-          zh, n2 = re.subn(r'<h2>📚 代表性论文</h2>.*?<h2>💼 工作经历</h2>', zh_block, zh, count=1, flags=re.S)
-          if n1 != 1 or n2 != 1:
-              raise SystemExit(f'Publication block replacement failed: en={n1}, zh={n2}')
+        .reviewer-card::after {
+            display: none;
+        }
 
-          html = prefix + en_marker + en + zh_marker + zh
-          html = html.replace('Last updated: July 2026', 'Last updated: September 2026')
-          html = html.replace('最后更新：2026 年 7 月', '最后更新：2026 年 9 月')
+        .reviewer-card:hover {
+            transform: translateY(-5px);
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            box-shadow: 0 12px 28px rgba(102, 126, 234, 0.2);
+            border-left-color: #764ba2;
+        }
+
+        .reviewer-cover {
+            width: 66px;
+            height: 88px;
+            flex: 0 0 66px;
+            object-fit: cover;
+            border-radius: 4px;
+            box-shadow: 0 5px 14px rgba(0, 0, 0, 0.16);
+            background: #ffffff;
+        }
+
+        .reviewer-info {
+            min-width: 0;
+        }
+
+        .reviewer-journal {
+            color: #2c3e50;
+            font-size: 0.96em;
+            font-weight: 700;
+            line-height: 1.45;
+            margin-bottom: 6px;
+        }
+
+        .reviewer-count {
+            color: #7f8c8d;
+            font-size: 0.86em;
+            line-height: 1.5;
+        }
+
+        @media (max-width: 480px) {
+            .reviewer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+'''
+
+          if '.reviewer-grid {' not in html:
+              html = html.replace('</style>', css + '\n</style>', 1)
+
+          en_section = r'''<h2>🧾 Academic Service</h2>
+<div class="experience-item">
+<strong>Peer Reviewer — Springer Nature Journals</strong><br/>
+<em>2026 - Present</em>
+<p class="reviewer-summary">Completed <strong>9 manuscript reviews</strong> across <strong>6 Springer Nature journals</strong> in artificial intelligence, robotics, information security, multidisciplinary science, and computing.</p>
+<div class="reviewer-grid">
+<a class="reviewer-card" href="https://link.springer.com/journal/10207" target="_blank" rel="noopener">
+<img class="reviewer-cover" src="images/reviewer/international-journal-information-security.png" alt="International Journal of Information Security cover"/>
+<div class="reviewer-info"><div class="reviewer-journal">International Journal of Information Security</div><div class="reviewer-count">1 manuscript reviewed</div></div>
+</a>
+<a class="reviewer-card" href="https://www.nature.com/srep/" target="_blank" rel="noopener">
+<img class="reviewer-cover" src="images/reviewer/scientific-reports.png" alt="Scientific Reports cover"/>
+<div class="reviewer-info"><div class="reviewer-journal">Scientific Reports</div><div class="reviewer-count">3 manuscripts reviewed</div></div>
+</a>
+<a class="reviewer-card" href="https://link.springer.com/journal/44430" target="_blank" rel="noopener">
+<img class="reviewer-cover" src="images/reviewer/discover-robotics.png" alt="Discover Robotics cover"/>
+<div class="reviewer-info"><div class="reviewer-journal">Discover Robotics</div><div class="reviewer-count">1 manuscript reviewed</div></div>
+</a>
+<a class="reviewer-card" href="https://link.springer.com/journal/10462" target="_blank" rel="noopener">
+<img class="reviewer-cover" src="images/reviewer/artificial-intelligence-review.png" alt="Artificial Intelligence Review cover"/>
+<div class="reviewer-info"><div class="reviewer-journal">Artificial Intelligence Review</div><div class="reviewer-count">1 manuscript reviewed</div></div>
+</a>
+<a class="reviewer-card" href="https://link.springer.com/journal/44163" target="_blank" rel="noopener">
+<img class="reviewer-cover" src="images/reviewer/discover-artificial-intelligence.png" alt="Discover Artificial Intelligence cover"/>
+<div class="reviewer-info"><div class="reviewer-journal">Discover Artificial Intelligence</div><div class="reviewer-count">2 manuscripts reviewed</div></div>
+</a>
+<a class="reviewer-card" href="https://link.springer.com/journal/11227" target="_blank" rel="noopener">
+<img class="reviewer-cover" src="images/reviewer/journal-of-supercomputing.png" alt="The Journal of Supercomputing cover"/>
+<div class="reviewer-info"><div class="reviewer-journal">The Journal of Supercomputing</div><div class="reviewer-count">1 manuscript reviewed</div></div>
+</a>
+</div>
+</div>'''
+
+          zh_section = r'''<h2>🧾 学术服务</h2>
+<div class="experience-item">
+<strong>Springer Nature 期刊同行评审人</strong><br/>
+<em>2026 年至今</em>
+<p class="reviewer-summary">已为 <strong>6 本 Springer Nature 期刊</strong>完成 <strong>9 次论文评审</strong>，涉及人工智能、机器人、信息安全、综合科学与高性能计算等方向。</p>
+<div class="reviewer-grid">
+<a class="reviewer-card" href="https://link.springer.com/journal/10207" target="_blank" rel="noopener">
+<img class="reviewer-cover" src="images/reviewer/international-journal-information-security.png" alt="International Journal of Information Security 期刊封面"/>
+<div class="reviewer-info"><div class="reviewer-journal">International Journal of Information Security</div><div class="reviewer-count">已评审 1 篇</div></div>
+</a>
+<a class="reviewer-card" href="https://www.nature.com/srep/" target="_blank" rel="noopener">
+<img class="reviewer-cover" src="images/reviewer/scientific-reports.png" alt="Scientific Reports 期刊封面"/>
+<div class="reviewer-info"><div class="reviewer-journal">Scientific Reports</div><div class="reviewer-count">已评审 3 篇</div></div>
+</a>
+<a class="reviewer-card" href="https://link.springer.com/journal/44430" target="_blank" rel="noopener">
+<img class="reviewer-cover" src="images/reviewer/discover-robotics.png" alt="Discover Robotics 期刊封面"/>
+<div class="reviewer-info"><div class="reviewer-journal">Discover Robotics</div><div class="reviewer-count">已评审 1 篇</div></div>
+</a>
+<a class="reviewer-card" href="https://link.springer.com/journal/10462" target="_blank" rel="noopener">
+<img class="reviewer-cover" src="images/reviewer/artificial-intelligence-review.png" alt="Artificial Intelligence Review 期刊封面"/>
+<div class="reviewer-info"><div class="reviewer-journal">Artificial Intelligence Review</div><div class="reviewer-count">已评审 1 篇</div></div>
+</a>
+<a class="reviewer-card" href="https://link.springer.com/journal/44163" target="_blank" rel="noopener">
+<img class="reviewer-cover" src="images/reviewer/discover-artificial-intelligence.png" alt="Discover Artificial Intelligence 期刊封面"/>
+<div class="reviewer-info"><div class="reviewer-journal">Discover Artificial Intelligence</div><div class="reviewer-count">已评审 2 篇</div></div>
+</a>
+<a class="reviewer-card" href="https://link.springer.com/journal/11227" target="_blank" rel="noopener">
+<img class="reviewer-cover" src="images/reviewer/journal-of-supercomputing.png" alt="The Journal of Supercomputing 期刊封面"/>
+<div class="reviewer-info"><div class="reviewer-journal">The Journal of Supercomputing</div><div class="reviewer-count">已评审 1 篇</div></div>
+</a>
+</div>
+</div>'''
+
+          # Replace the former editor role in both language panels, while leaving all surrounding layout untouched.
+          html, n_en = re.subn(
+              r'<h2>💼 Work Experience</h2>\s*<div class="experience-item">.*?</div>\s*(?=<h2>🏆 Certifications &amp; Achievements</h2>)',
+              en_section + '\n', html, count=1, flags=re.S)
+          html, n_zh = re.subn(
+              r'<h2>💼 工作经历</h2>\s*<div class="experience-item">.*?</div>\s*(?=<h2>🏆 证书与经历</h2>)',
+              zh_section + '\n', html, count=1, flags=re.S)
+
+          if n_en != 1 or n_zh != 1:
+              raise SystemExit(f'Expected one EN and one ZH work section; got EN={n_en}, ZH={n_zh}')
+
+          # Remove the outdated editor description from the short bio without changing layout.
+          html = html.replace(
+              'B.Sc. in Information Technology | Research &amp; Editing Professional',
+              'B.Sc. in Information Technology | AI &amp; Robotics Research')
+          html = html.replace(
+              'I currently work as a part-time Youth Editor at the Hong Kong Institute of Humanities and Social Sciences, \n                where I edit academic journal articles to ensure clarity and accuracy, and collaborate with researchers to enhance manuscript quality before publication.',
+              'Alongside my research, I contribute as a peer reviewer for Springer Nature journals across artificial intelligence, robotics, information security, and computing.')
+          html = html.replace('信息技术本科生｜科研与学术编辑', '信息技术本科生｜人工智能与机器人科研')
+          html = html.replace(
+              '目前我在香港人文社会科学研究院担任兼职青年编辑，主要负责学术论文的语言润色、清晰度检查与稿件质量提升。',
+              '除科研外，我也为 Springer Nature 旗下人工智能、机器人、信息安全与计算方向期刊提供同行评审。')
+
+          html = html.replace('Last updated: September 2026', 'Last updated: September 2026')
+          html = html.replace('最后更新：2026 年 9 月', '最后更新：2026 年 9 月')
+
           path.write_text(html, encoding='utf-8')
           PY
-
+      - name: Commit updated reviewer service
+        run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add index.html
-          git commit -m "Reorder publications while preserving original design"
+          git diff --cached --quiet || git commit -m "Replace editor role with Springer Nature peer review service"
           git push
