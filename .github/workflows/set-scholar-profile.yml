@@ -1,0 +1,28 @@
+name: Set Google Scholar profile
+
+on:
+  push:
+    paths:
+      - '.github/workflows/set-scholar-profile.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  update-site:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set profile link
+        run: python .github/scripts/set_scholar_profile.py
+      - name: Commit site update
+        run: |
+          if git diff --quiet; then
+            echo "No changes needed"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git commit -m "Link Google Scholar profile"
+          git push
