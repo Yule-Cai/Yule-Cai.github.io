@@ -945,7 +945,7 @@
         }
 
 
-/* Independent translucent sections and bilingual sticky navigation. */
+/* Independent translucent sections. */
 html { scroll-behavior: smooth; }
 body { overflow-x: clip; }
 .container {
@@ -964,7 +964,7 @@ body { overflow-x: clip; }
     border: 1px solid rgba(255, 255, 255, 0.65);
     border-radius: 22px;
     box-shadow: 0 12px 36px rgba(27, 39, 60, 0.10);
-    scroll-margin-top: var(--nav-offset, 120px);
+    scroll-margin-top: 24px;
     min-width: 0;
 }
 .section-card > h2 { margin-top: 0; }
@@ -981,43 +981,6 @@ body { overflow-x: clip; }
     border-radius: 20px;
 }
 .container > footer p:last-child { margin-bottom: 0; }
-.site-nav {
-    position: sticky;
-    top: 18px;
-    z-index: 2000;
-    max-width: 900px;
-    margin: 0 auto 28px;
-    padding: 12px 18px;
-    display: grid;
-    grid-template-columns: auto 1fr auto;
-    align-items: center;
-    gap: 16px;
-    background: rgba(255, 255, 255, 0.92);
-    border: 1px solid rgba(255, 255, 255, 0.78);
-    border-radius: 18px;
-    box-shadow: 0 8px 28px rgba(27, 39, 60, 0.12);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-}
-.nav-brand { font-size: 1em; font-weight: 750; color: #334155; white-space: nowrap; }
-.nav-brand::after, .nav-links a::after { display: none; }
-.nav-links { display: flex; align-items: center; justify-content: center; gap: 4px; }
-.nav-links a {
-    padding: 8px 10px;
-    border-radius: 10px;
-    color: #475569;
-    font-size: 0.88em;
-    font-weight: 600;
-    white-space: nowrap;
-    transition: background 0.2s ease, color 0.2s ease;
-}
-.nav-links a:hover, .nav-links a[aria-current="location"] {
-    color: #493b91;
-    background: rgba(102, 126, 234, 0.12);
-}
-.nav-links a:focus-visible, .nav-brand:focus-visible { outline: 2px solid #667eea; outline-offset: 3px; }
-.site-nav .language-toggle { position: static; }
-.site-nav .lang-toggle-btn { padding: 8px 13px; font-size: 0.85em; box-shadow: 0 3px 12px rgba(102, 126, 234, 0.25); }
 .publication-item {
     padding: 24px;
     margin-bottom: 18px;
@@ -1056,11 +1019,6 @@ body { overflow-x: clip; }
 @media (max-width: 768px) {
     .container { padding: 0; border-radius: 0; gap: 22px; }
     .section-card { padding: 32px 28px; border-radius: 18px; }
-    .site-nav { top: 12px; padding: 12px; grid-template-columns: 1fr auto; gap: 8px; }
-    .nav-brand { font-size: 0.95em; }
-    .site-nav .language-toggle { grid-column: 2; grid-row: 1; }
-    .nav-links { grid-row: 2; grid-column: 1 / -1; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 3px; }
-    .nav-links a { padding: 8px 2px; text-align: center; font-size: 0.74em; }
     .publication-item { padding: 20px; }
 }
 @media (max-width: 480px) {
@@ -1077,9 +1035,9 @@ body { overflow-x: clip; }
 }
 </style>
 </head>
-<body data-lang="en"><nav class="site-nav" aria-label="Main navigation"><a class="nav-brand" href="#about-en" data-nav-brand="">Yule Cai</a><div class="nav-links"><a href="#about-en" data-nav-link="about" data-en="About" data-zh="关于我">About</a><a href="#publications-en" data-nav-link="publications" data-en="Papers" data-zh="论文">Papers</a><a href="#projects-en" data-nav-link="projects" data-en="Projects" data-zh="项目">Projects</a><a href="#service-en" data-nav-link="service" data-en="Service" data-zh="学术服务">Service</a><a href="#artwork-en" data-nav-link="artwork" data-en="Art" data-zh="作品">Art</a></div><div aria-label="Language switcher" class="language-toggle">
+<body data-lang="en"><div aria-label="Language switcher" class="language-toggle">
 <button aria-label="切换到中文" aria-pressed="false" class="lang-toggle-btn" id="languageToggle" type="button">中文</button>
-</div></nav>
+</div>
 
 
 <div aria-hidden="false" class="container" data-lang-panel="en"><section class="section-card" id="about-en" tabindex="-1" data-nav="about" aria-labelledby="about-title-en"><div class="header">
@@ -1488,20 +1446,12 @@ body { overflow-x: clip; }
                     toggle.setAttribute('aria-pressed', String(activeLang === 'zh'));
                 }
 
-                const nav = document.querySelector('.site-nav');
-                nav.setAttribute('aria-label', activeLang === 'zh' ? '站点导航' : 'Main navigation');
-                nav.querySelectorAll('[data-nav-link]').forEach(function (link) {
-                    link.textContent = link.dataset[activeLang];
-                    link.setAttribute('href', '#' + link.dataset.navLink + '-' + activeLang);
-                });
-                nav.querySelector('[data-nav-brand]').setAttribute('href', '#about-' + activeLang);
                 const sectionHash = location.hash.match(/^#(about|projects|publications|service|artwork)-(en|zh)$/);
                 if (sectionHash && sectionHash[2] !== activeLang) {
                     const target = document.getElementById(sectionHash[1] + '-' + activeLang);
                     history.replaceState(null, '', '#' + target.id);
                     requestAnimationFrame(function () { target.scrollIntoView({ behavior: 'instant', block: 'start' }); });
                 }
-                requestAnimationFrame(updateActiveNavigation);
 
                 try {
                     localStorage.setItem(STORAGE_KEY, activeLang);
@@ -1525,50 +1475,6 @@ body { overflow-x: clip; }
                     setLanguage(nextLang);
                 });
             }
-        function updateActiveNavigation() {
-            const lang = document.body.getAttribute('data-lang') || 'en';
-            const panel = document.querySelector('[data-lang-panel="' + lang + '"]');
-            const nav = document.querySelector('.site-nav');
-            if (!panel || !nav) return;
-            let active = 'about';
-            const threshold = nav.getBoundingClientRect().bottom + 36;
-            panel.querySelectorAll('[data-nav]').forEach(function (section) {
-                if (section.getBoundingClientRect().top <= threshold) active = section.dataset.nav;
-            });
-            nav.querySelectorAll('[data-nav-link]').forEach(function (link) {
-                if (link.dataset.navLink === active) link.setAttribute('aria-current', 'location');
-                else link.removeAttribute('aria-current');
-            });
-        }
-
-        const navigation = document.querySelector('.site-nav');
-        if (navigation) {
-            function updateNavigationOffset() {
-                const top = parseFloat(getComputedStyle(navigation).top) || 0;
-                document.documentElement.style.setProperty('--nav-offset', (navigation.offsetHeight + top + 18) + 'px');
-            }
-            updateNavigationOffset();
-            if ('ResizeObserver' in window) new ResizeObserver(updateNavigationOffset).observe(navigation);
-            window.addEventListener('resize', updateNavigationOffset);
-            let navigationFramePending = false;
-            window.addEventListener('scroll', function () {
-                if (navigationFramePending) return;
-                navigationFramePending = true;
-                requestAnimationFrame(function () {
-                    updateActiveNavigation();
-                    navigationFramePending = false;
-                });
-            }, { passive: true });
-            navigation.addEventListener('click', function (event) {
-                const link = event.target.closest('a[href^="#"]');
-                if (!link) return;
-                const section = document.getElementById(link.getAttribute('href').slice(1));
-                if (section) section.focus({ preventScroll: true });
-            });
-            window.addEventListener('hashchange', updateActiveNavigation);
-            requestAnimationFrame(updateActiveNavigation);
-        }
-
         })();
 </script>
 
