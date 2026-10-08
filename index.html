@@ -1,13 +1,11 @@
 <!DOCTYPE html>
-
-<html lang="en">
-<head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
 <title>Yule Cai - Academic Portfolio</title>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&amp;display=swap" rel="stylesheet">
 <style>
         * {
             margin: 0;
@@ -946,23 +944,152 @@
             }
         }
 
+
+/* Independent translucent sections and bilingual sticky navigation. */
+html { scroll-behavior: smooth; }
+body { overflow-x: clip; }
+.container {
+    padding: 0;
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    animation: none;
+    display: grid;
+    gap: 28px;
+}
+.section-card {
+    padding: 44px 56px;
+    background: rgba(255, 255, 255, 0.64);
+    border: 1px solid rgba(255, 255, 255, 0.65);
+    border-radius: 22px;
+    box-shadow: 0 12px 36px rgba(27, 39, 60, 0.10);
+    scroll-margin-top: var(--nav-offset, 120px);
+    min-width: 0;
+}
+.section-card > h2 { margin-top: 0; }
+.section-card > :last-child { margin-bottom: 0; }
+.section-card:focus { outline: none; }
+.section-card:focus-visible { outline: 3px solid #667eea; outline-offset: 5px; }
+.section-card .artwork-showcase { margin: 0; padding: 0; background: transparent; overflow: visible; }
+.section-card .artwork-grid { grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); }
+.container > footer {
+    margin: 0;
+    padding: 24px;
+    background: rgba(255, 255, 255, 0.64);
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    border-radius: 20px;
+}
+.container > footer p:last-child { margin-bottom: 0; }
+.site-nav {
+    position: sticky;
+    top: 18px;
+    z-index: 2000;
+    max-width: 900px;
+    margin: 0 auto 28px;
+    padding: 12px 18px;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 16px;
+    background: rgba(255, 255, 255, 0.92);
+    border: 1px solid rgba(255, 255, 255, 0.78);
+    border-radius: 18px;
+    box-shadow: 0 8px 28px rgba(27, 39, 60, 0.12);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+.nav-brand { font-size: 1em; font-weight: 750; color: #334155; white-space: nowrap; }
+.nav-brand::after, .nav-links a::after { display: none; }
+.nav-links { display: flex; align-items: center; justify-content: center; gap: 4px; }
+.nav-links a {
+    padding: 8px 10px;
+    border-radius: 10px;
+    color: #475569;
+    font-size: 0.88em;
+    font-weight: 600;
+    white-space: nowrap;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+.nav-links a:hover, .nav-links a[aria-current="location"] {
+    color: #493b91;
+    background: rgba(102, 126, 234, 0.12);
+}
+.nav-links a:focus-visible, .nav-brand:focus-visible { outline: 2px solid #667eea; outline-offset: 3px; }
+.site-nav .language-toggle { position: static; }
+.site-nav .lang-toggle-btn { padding: 8px 13px; font-size: 0.85em; box-shadow: 0 3px 12px rgba(102, 126, 234, 0.25); }
+.publication-item {
+    padding: 24px;
+    margin-bottom: 18px;
+    background: rgba(255, 255, 255, 0.62);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-left: 3px solid #667eea;
+    border-radius: 16px;
+    opacity: 1;
+    transform: none;
+    animation: none;
+    transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.publication-item:hover { transform: none; background: rgba(255, 255, 255, 0.76); box-shadow: 0 8px 22px rgba(80, 65, 130, 0.12); }
+.publication-title { font-size: 1.13em; font-weight: 700; line-height: 1.6; margin-bottom: 12px; }
+.publication-title a { color: #26364c; }
+.publication-title a:hover { color: #493b91; }
+.publication-authors { font-size: 0.9em; line-height: 1.7; margin-bottom: 6px; }
+.publication-authors strong { color: #29384e; font-weight: 700; }
+.publication-venue { font-size: 0.87em; font-style: normal; line-height: 1.7; }
+.publication-badges { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+.publication-badges .journal-metrics { display: contents; }
+.publication-badges .metric-badge { font-size: 0.75em; padding: 3px 10px; }
+.publication-year {
+    display: inline-flex;
+    padding: 3px 10px;
+    border-radius: 999px;
+    color: #475569;
+    background: rgba(71, 85, 105, 0.08);
+    border: 1px solid rgba(71, 85, 105, 0.12);
+    font-size: 0.75em;
+    font-weight: 700;
+    line-height: 1.8;
+    font-variant-numeric: tabular-nums;
+}
+.publication-badges .first-author { color: #51358b; background: rgba(118, 75, 162, 0.11); border-color: rgba(118, 75, 162, 0.2); }
+@media (max-width: 768px) {
+    .container { padding: 0; border-radius: 0; gap: 22px; }
+    .section-card { padding: 32px 28px; border-radius: 18px; }
+    .site-nav { top: 12px; padding: 12px; grid-template-columns: 1fr auto; gap: 8px; }
+    .nav-brand { font-size: 0.95em; }
+    .site-nav .language-toggle { grid-column: 2; grid-row: 1; }
+    .nav-links { grid-row: 2; grid-column: 1 / -1; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 3px; }
+    .nav-links a { padding: 8px 2px; text-align: center; font-size: 0.74em; }
+    .publication-item { padding: 20px; }
+}
+@media (max-width: 480px) {
+    .container { padding: 0; }
+    .section-card { padding: 30px 20px; }
+    .publication-item { padding: 18px 16px; }
+    .publication-title { font-size: 1.02em; }
+    .publication-authors { font-size: 0.86em; }
+    .publication-venue { font-size: 0.83em; }
+}
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+}
 </style>
 </head>
-<body data-lang="en">
-<div aria-label="Language switcher" class="language-toggle">
+<body data-lang="en"><nav class="site-nav" aria-label="Main navigation"><a class="nav-brand" href="#about-en" data-nav-brand="">Yule Cai</a><div class="nav-links"><a href="#about-en" data-nav-link="about" data-en="About" data-zh="关于我">About</a><a href="#publications-en" data-nav-link="publications" data-en="Papers" data-zh="论文">Papers</a><a href="#projects-en" data-nav-link="projects" data-en="Projects" data-zh="项目">Projects</a><a href="#service-en" data-nav-link="service" data-en="Service" data-zh="学术服务">Service</a><a href="#artwork-en" data-nav-link="artwork" data-en="Art" data-zh="作品">Art</a></div><div aria-label="Language switcher" class="language-toggle">
 <button aria-label="切换到中文" aria-pressed="false" class="lang-toggle-btn" id="languageToggle" type="button">中文</button>
-</div>
+</div></nav>
 
-<div aria-hidden="false" class="container" data-lang-panel="en">
-<div class="header">
+
+<div aria-hidden="false" class="container" data-lang-panel="en"><section class="section-card" id="about-en" tabindex="-1" data-nav="about" aria-labelledby="about-title-en"><div class="header">
 <div class="signature">Hi, I'm Yule!</div>
 <div class="profile-image">
-<img alt="Yule Cai" src="profile.png"/>
+<img alt="Yule Cai" src="profile.png">
 </div>
-<h1>Yule Cai</h1>
+<h1 id="about-title-en">Yule Cai</h1>
 <div class="subtitle">B.Sc. in Information Technology | AI &amp; Robotics Research</div>
-</div>
-<div class="bio">
+</div><div class="bio">
 <p>
                 I am an undergraduate student in Information Technology at the <a href="https://www.uum.edu.my" target="_blank">Universiti Utara Malaysia</a>. 
                 Alongside my research, I contribute as a peer reviewer for Springer Nature journals across artificial intelligence, robotics, information security, and computing.
@@ -975,15 +1102,11 @@
                 I am a diligent, detail-oriented, and proactive learner with a strong desire to expand my subject-matter expertise. 
                 I am optimistic, resilient, and highly adaptable, with a curiosity about diverse topics.
             </p>
-</div>
-<div class="contact-section">
+</div><div class="contact-section">
 <a href="mailto:caiyule0911@163.com">📧 Email</a>
-<a href="https://scholar.google.com/citations?hl=en&user=W8lwxUYAAAAJ" target="_blank">🎓 Google Scholar</a>
+<a href="https://scholar.google.com/citations?hl=en&amp;user=W8lwxUYAAAAJ" target="_blank">🎓 Google Scholar</a>
 <a href="https://github.com/Yule-Cai" target="_blank">🐙 GitHub</a>
-</div>
-<h2>🛠️ Projects</h2>
-<p>Here are some of my key technical projects on GitHub, spanning robotics, computer vision, autonomous navigation, and LLM-guided task recovery.</p>
-<div class="projects-section">
+</div></section><section class="section-card" id="projects-en" tabindex="-1" data-nav="projects" aria-labelledby="projects-title-en"><h2 id="projects-title-en">🛠️ Projects</h2><p>Here are some of my key technical projects on GitHub, spanning robotics, computer vision, autonomous navigation, and LLM-guided task recovery.</p><div class="projects-section">
 <div class="project-card">
 <div class="project-card-title">
 <a href="https://github.com/Yule-Cai/llm_task_recovery" target="_blank">LLM Task Recovery</a>
@@ -1020,133 +1143,110 @@
                 </div>
 <a class="project-card-link" href="https://github.com/Yule-Cai/Decoupled-Dual-Brain-Nav" target="_blank">🐙 View on GitHub</a>
 </div>
-</div>
-<h2>📚 Selected Publications</h2>
-<p>My main research publications are listed first. Additional co-authored and earlier publications are retained at the end for completeness.</p>
-<div class="publication-item">
+</div></section><section class="section-card" id="publications-en" tabindex="-1" data-nav="publications" aria-labelledby="publications-title-en"><h2 id="publications-title-en">📚 Selected Publications</h2><p>My main research publications are listed first. Additional co-authored and earlier publications are retained at the end for completeness.</p><div class="publication-item">
 <div class="publication-title">
 <a href="https://doi.org/10.1007/s11071-026-12695-2" target="_blank">Beyond correlation: a survey on causal inference for dynamics-aware perception and introspective decision-making in robotics</a>
 </div>
 <div class="publication-authors"><strong>Y Cai</strong>, X Zhang, S Liu, J Lou, C Yuan</div>
-<div class="publication-venue">Nonlinear Dynamics, Vol. 114, Article 869, 2026<div aria-label="Publication notes" class="journal-metrics"><span class="metric-badge">First author</span></div></div>
-</div>
-<div class="publication-item">
+<div class="publication-venue">Nonlinear Dynamics, Vol. 114, Article 869</div>
+<div class="publication-badges"><time class="publication-year" datetime="2026">2026</time><div aria-label="Publication notes" class="journal-metrics"><span class="metric-badge first-author">First author</span></div></div></div><div class="publication-item">
 <div class="publication-title">
 <a href="https://doi.org/10.1007/s44443-026-00870-9" target="_blank">Toward edge-intelligent consumer robots: a decoupled RL–LLM architecture for robust navigation under partial observability</a>
 </div>
 <div class="publication-authors"><strong>Y Cai</strong>, W Tan, Y Wang, X Du, T Sun, Q Ai, S Bourouis, S Alalmaei, W Shao, C Yuan</div>
-<div class="publication-venue">Journal of King Saud University Computer and Information Sciences, Vol. 38, Article 470, 2026<div aria-label="Publication notes" class="journal-metrics"><span class="metric-badge">First author</span></div></div>
-</div>
-<div class="publication-item">
+<div class="publication-venue">Journal of King Saud University Computer and Information Sciences, Vol. 38, Article 470</div>
+<div class="publication-badges"><time class="publication-year" datetime="2026">2026</time><div aria-label="Publication notes" class="journal-metrics"><span class="metric-badge first-author">First author</span></div></div></div><div class="publication-item">
 <div class="publication-title">
 <a href="https://doi.org/10.3390/s26082416" target="_blank">KA-IHO: A Kinematic-Aware Improved Hippo Optimization Algorithm for Collision-Free Mobile Robot Path Planning in Complex Grid Environments</a>
 </div>
 <div class="publication-authors">C Yuan, <strong>Y Cai</strong>, H Que, Y Pei, X Zhang, J Xie, Q Zhang, L Mu, F Qiao</div>
-<div class="publication-venue">Sensors, Vol. 26, Issue 8, Article 2416, 2026</div>
-</div>
-<div class="publication-item">
+<div class="publication-venue">Sensors, Vol. 26, Issue 8, Article 2416</div>
+<div class="publication-badges"><time class="publication-year" datetime="2026">2026</time></div></div><div class="publication-item">
 <div class="publication-title">
 <a href="https://doi.org/10.1007/s13042-026-03246-7" target="_blank">Application of SHAP-Based Explainable Machine Learning in Remaining Useful Life Prediction for Aircraft Engine Systems</a>
 </div>
 <div class="publication-authors">C Yuan, <strong>Y Cai</strong>, Z Zhang</div>
-<div class="publication-venue">International Journal of Machine Learning and Cybernetics, Vol. 17, Issue 9, 2026</div>
-</div>
-<div class="publication-item">
+<div class="publication-venue">International Journal of Machine Learning and Cybernetics, Vol. 17, Issue 9</div>
+<div class="publication-badges"><time class="publication-year" datetime="2026">2026</time></div></div><div class="publication-item">
 <div class="publication-title">
 <a href="https://doi.org/10.1080/03055698.2025.2531969" target="_blank">A study of artificial intelligence in writing assessment for secondary school students: a comparative analysis based on the GPT-4 and human raters</a>
 </div>
 <div class="publication-authors">N Xiao, CH Yuan, YT Pei, W Xue, <strong>YL Cai</strong></div>
-<div class="publication-venue">Educational Studies, Vol. 52, Issue 4, pp. 504–526, 2026</div>
-</div>
-<div class="publication-item">
+<div class="publication-venue">Educational Studies, Vol. 52, Issue 4, pp. 504–526</div>
+<div class="publication-badges"><time class="publication-year" datetime="2026">2026</time></div></div><div class="publication-item">
 <div class="publication-title">
 <a href="https://doi.org/10.1117/12.3068755" target="_blank">Spatial Distribution Prediction of Environmental Microbial Communities Based on Deep Learning Combined with MAXENT Model</a>
 </div>
 <div class="publication-authors">Q Yang, J Chen, C Yuan, L Na, W Chen, J Sun, <strong>Y Cai</strong></div>
-<div class="publication-venue">Proceedings of SPIE, Vol. 13692, 136923X, 2025</div>
-</div>
-<h3 style="color: #2c3e50; margin: 36px 0 18px; font-size: 1.15em;">Additional Publications</h3>
-<p style="color: #475569; font-size: 0.95em; margin-bottom: 20px;">Additional co-authored and earlier work.</p>
-<div class="publication-item">
+<div class="publication-venue">Proceedings of SPIE, Vol. 13692, 136923X</div>
+<div class="publication-badges"><time class="publication-year" datetime="2025">2025</time></div></div><h3 style="color: #2c3e50; margin: 36px 0 18px; font-size: 1.15em;">Additional Publications</h3><p style="color: #475569; font-size: 0.95em; margin-bottom: 20px;">Additional co-authored and earlier work.</p><div class="publication-item">
 <div class="publication-title">
 <a href="https://doi.org/10.1007/s44443-026-00708-4" target="_blank">PaperOrchestrator: An LLM-Orchestrated Multi-Agent Pipeline for Automated End-to-End Scientific Paper Writing</a>
 </div>
 <div class="publication-authors">C Yuan, T Wei, C Li, X Yi, S Liu, Z Zhang, <strong>Y Cai</strong>, X Du</div>
-<div class="publication-venue">Journal of King Saud University Computer and Information Sciences, Vol. 38, Article 296, 2026<div aria-label="Publication notes" class="journal-metrics"><span class="metric-badge">Additional publication</span></div></div>
-</div>
-<div class="publication-item">
+<div class="publication-venue">Journal of King Saud University Computer and Information Sciences, Vol. 38, Article 296</div>
+<div class="publication-badges"><time class="publication-year" datetime="2026">2026</time><div aria-label="Publication notes" class="journal-metrics"><span class="metric-badge">Additional publication</span></div></div></div><div class="publication-item">
 <div class="publication-title">
 <a href="https://doi.org/10.70693/itphss.v2i2.216" target="_blank">Enhancing Student Learning Outcomes through AI-Driven Educational Interventions: A Comprehensive Study of Classroom Behavior and Machine Learning Integration</a>
 </div>
 <div class="publication-authors">CH Yuan, N Xiao, Y Pei, Y Bu, <strong>Y Cai</strong></div>
-<div class="publication-venue">International Theory and Practice in Humanities and Social Sciences, Vol. 2, Issue 2, pp. 197–215, 2025<div aria-label="Publication notes" class="journal-metrics"><span class="metric-badge">Additional publication</span></div></div>
-</div>
-<div class="publication-item">
+<div class="publication-venue">International Theory and Practice in Humanities and Social Sciences, Vol. 2, Issue 2, pp. 197–215</div>
+<div class="publication-badges"><time class="publication-year" datetime="2025">2025</time><div aria-label="Publication notes" class="journal-metrics"><span class="metric-badge">Additional publication</span></div></div></div><div class="publication-item">
 <div class="publication-title">
 <a href="https://doi.org/10.70693/itphss.v2i3.343" target="_blank">The Impact of Artificial Intelligence Adoption on Firms' Innovation Performance in the Digital Era: Based on Dynamic Capabilities Theory</a>
 </div>
 <div class="publication-authors">K Li, <strong>Y Cai</strong>, Y Pei, C Yuan</div>
-<div class="publication-venue">International Theory and Practice in Humanities and Social Sciences, Vol. 2, Issue 3, pp. 228–237, 2025<div aria-label="Publication notes" class="journal-metrics"><span class="metric-badge">Additional publication</span></div></div>
-</div>
-<div class="publication-item">
+<div class="publication-venue">International Theory and Practice in Humanities and Social Sciences, Vol. 2, Issue 3, pp. 228–237</div>
+<div class="publication-badges"><time class="publication-year" datetime="2025">2025</time><div aria-label="Publication notes" class="journal-metrics"><span class="metric-badge">Additional publication</span></div></div></div><div class="publication-item">
 <div class="publication-title">
 <a href="https://doi.org/10.70693/itphss.v2i3.342" target="_blank">Exploring the MBTI and the Career Field: How HR Chooses the Best Talent Based on Personality</a>
 </div>
 <div class="publication-authors"><strong>Y Cai</strong>, Y Pei</div>
-<div class="publication-venue">International Theory and Practice in Humanities and Social Sciences, Vol. 2, Issue 3, pp. 210–227, 2025<div aria-label="Publication notes" class="journal-metrics"><span class="metric-badge">Additional publication</span></div></div>
-</div>
-<h2>🧾 Academic Service</h2>
-<div class="experience-item">
-<strong>Peer Reviewer — Springer Nature Journals</strong><br/>
+<div class="publication-venue">International Theory and Practice in Humanities and Social Sciences, Vol. 2, Issue 3, pp. 210–227</div>
+<div class="publication-badges"><time class="publication-year" datetime="2025">2025</time><div aria-label="Publication notes" class="journal-metrics"><span class="metric-badge">Additional publication</span></div><span class="metric-badge first-author">First author</span></div></div></section><section class="section-card" id="service-en" tabindex="-1" data-nav="service" aria-labelledby="service-title-en"><h2 id="service-title-en">🧾 Academic Service</h2><div class="experience-item">
+<strong>Peer Reviewer — Springer Nature Journals</strong><br>
 <em>2026 - Present</em>
 <p class="reviewer-summary">Completed <strong>9 manuscript reviews</strong> across <strong>6 Springer Nature journals</strong> in artificial intelligence, robotics, information security, multidisciplinary science, and computing.</p>
 <div class="reviewer-grid">
 <a class="reviewer-card" href="https://link.springer.com/journal/10207" target="_blank" rel="noopener">
-<img class="reviewer-cover" src="images/reviewer/international-journal-information-security.png" alt="International Journal of Information Security cover"/>
+<img class="reviewer-cover" src="images/reviewer/international-journal-information-security.png" alt="International Journal of Information Security cover">
 <div class="reviewer-info"><div class="reviewer-journal">International Journal of Information Security</div><div class="reviewer-count">1 manuscript reviewed</div></div>
 </a>
 <a class="reviewer-card" href="https://www.nature.com/srep/" target="_blank" rel="noopener">
-<img class="reviewer-cover" src="images/reviewer/scientific-reports.png" alt="Scientific Reports cover"/>
+<img class="reviewer-cover" src="images/reviewer/scientific-reports.png" alt="Scientific Reports cover">
 <div class="reviewer-info"><div class="reviewer-journal">Scientific Reports</div><div class="reviewer-count">3 manuscripts reviewed</div></div>
 </a>
 <a class="reviewer-card" href="https://link.springer.com/journal/44430" target="_blank" rel="noopener">
-<img class="reviewer-cover" src="images/reviewer/discover-robotics.png" alt="Discover Robotics cover"/>
+<img class="reviewer-cover" src="images/reviewer/discover-robotics.png" alt="Discover Robotics cover">
 <div class="reviewer-info"><div class="reviewer-journal">Discover Robotics</div><div class="reviewer-count">1 manuscript reviewed</div></div>
 </a>
 <a class="reviewer-card" href="https://link.springer.com/journal/10462" target="_blank" rel="noopener">
-<img class="reviewer-cover" src="images/reviewer/artificial-intelligence-review.png" alt="Artificial Intelligence Review cover"/>
+<img class="reviewer-cover" src="images/reviewer/artificial-intelligence-review.png" alt="Artificial Intelligence Review cover">
 <div class="reviewer-info"><div class="reviewer-journal">Artificial Intelligence Review</div><div class="reviewer-count">1 manuscript reviewed</div></div>
 </a>
 <a class="reviewer-card" href="https://link.springer.com/journal/44163" target="_blank" rel="noopener">
-<img class="reviewer-cover" src="images/reviewer/discover-artificial-intelligence.png" alt="Discover Artificial Intelligence cover"/>
+<img class="reviewer-cover" src="images/reviewer/discover-artificial-intelligence.png" alt="Discover Artificial Intelligence cover">
 <div class="reviewer-info"><div class="reviewer-journal">Discover Artificial Intelligence</div><div class="reviewer-count">2 manuscripts reviewed</div></div>
 </a>
 <a class="reviewer-card" href="https://link.springer.com/journal/11227" target="_blank" rel="noopener">
-<img class="reviewer-cover" src="images/reviewer/journal-of-supercomputing.png" alt="The Journal of Supercomputing cover"/>
+<img class="reviewer-cover" src="images/reviewer/journal-of-supercomputing.png" alt="The Journal of Supercomputing cover">
 <div class="reviewer-info"><div class="reviewer-journal">The Journal of Supercomputing</div><div class="reviewer-count">1 manuscript reviewed</div></div>
 </a>
 </div>
-</div>
-<h2>🏆 Certifications &amp; Achievements</h2>
-<div class="experience-item">
-<strong>Data Science Summer School 2025</strong><br/>
-            Hertie School Data Science Lab<br/>
+</div></section><section class="section-card" id="certifications-en" tabindex="-1" aria-labelledby="certifications-title-en"><h2 id="certifications-title-en">🏆 Certifications &amp; Achievements</h2><div class="experience-item">
+<strong>Data Science Summer School 2025</strong><br>
+            Hertie School Data Science Lab<br>
 <em>August 04 - August 08, 2025</em>
 <p style="margin-top: 10px; color: #334155;">Actively participated in the Data Science Summer School directed by Prof. Simon Munzert</p>
-</div>
-<h2>🎓 Education</h2>
-<div class="experience-item">
-<strong>B.Sc. in Information Technology</strong><br/>
-            Universiti Utara Malaysia<br/>
+</div></section><section class="section-card" id="education-en" tabindex="-1" aria-labelledby="education-title-en"><h2 id="education-title-en">🎓 Education</h2><div class="experience-item">
+<strong>B.Sc. in Information Technology</strong><br>
+            Universiti Utara Malaysia<br>
 <em>Current</em>
-</div>
-<div class="highlight">
+</div><div class="highlight">
 <strong>💡 Skills &amp; Expertise</strong>
             Proficient in Microsoft Word, Excel, and PowerPoint | Python fundamentals | 
             Leadership, problem-solving, communication, and teamwork | High stress tolerance and strong sense of responsibility
-        </div>
-<h2>🎨 Interests &amp; Hobbies</h2>
-<div class="interests-section">
+        </div></section><section class="section-card" id="interests-en" tabindex="-1" aria-labelledby="interests-title-en"><h2 id="interests-title-en">🎨 Interests &amp; Hobbies</h2><div class="interests-section">
 <div class="interest-card">
 <div class="interest-icon">🎨</div>
 <div class="interest-title">Drawing</div>
@@ -1162,35 +1262,30 @@
 <div class="interest-title">Running</div>
 <div class="interest-desc">Completed 2 community 5K runs</div>
 </div>
-</div>
-<div class="artwork-showcase">
-<h3 style="color: #2c3e50; margin-bottom: 10px;">✨ My Artwork</h3>
+</div></section><section class="section-card" id="artwork-en" tabindex="-1" data-nav="artwork" aria-labelledby="artwork-title-en"><div class="artwork-showcase">
+<h2 id="artwork-title-en">✨ My Artwork</h2>
 <p style="color: #475569;">Though I'm a beginner in drawing, I love using art to unwind and clear my mind.</p>
 <div class="artwork-grid">
 <div class="artwork-card">
-<img alt="Original still life sketch by Yule Cai" src="cc9c50062de85fa9b832802192013202.jpg"/>
+<img alt="Original still life sketch by Yule Cai" src="cc9c50062de85fa9b832802192013202.jpg">
 <p class="artwork-caption">Original still life sketch — Finding peace through art</p>
 </div>
 <div class="artwork-card">
-<img alt="New still life pencil sketch by Yule Cai" src="artwork-still-life.jpg"/>
+<img alt="New still life pencil sketch by Yule Cai" src="artwork-still-life.jpg">
 <p class="artwork-caption">New still life pencil sketch — Recent artwork</p>
 </div>
 </div>
-</div>
-<footer>
+</div></section><footer>
 <p>© 2026 Yule Cai. Last updated: September 2026</p>
 <p style="margin-top: 10px; font-size: 0.85em;">Built with passion for research, art, and innovation</p>
-</footer>
-</div><div aria-hidden="true" class="container" data-lang-panel="zh">
-<div class="header">
+</footer></div><div aria-hidden="true" class="container" data-lang-panel="zh"><section class="section-card" id="about-zh" tabindex="-1" data-nav="about" aria-labelledby="about-title-zh"><div class="header">
 <div class="signature">你好，我是 Yule！</div>
 <div class="profile-image">
-<img alt="Yule Cai" src="profile.png"/>
+<img alt="Yule Cai" src="profile.png">
 </div>
-<h1>Yule Cai</h1>
+<h1 id="about-title-zh">Yule Cai</h1>
 <div class="subtitle">信息技术本科生｜人工智能与机器人科研</div>
-</div>
-<div class="bio">
+</div><div class="bio">
 <p>
                 我是 <a href="https://www.uum.edu.my" target="_blank">马来西亚北方大学（Universiti Utara Malaysia）</a> 信息技术专业本科生。
                 除科研外，我也为 Springer Nature 旗下人工智能、机器人、信息安全与计算方向期刊提供同行评审。
@@ -1202,15 +1297,11 @@
 <p>
                 我是一个勤奋、细致且主动的学习者，希望持续拓展自己的专业能力。我保持乐观、抗压和适应性强，也对跨学科问题保持持续好奇。
             </p>
-</div>
-<div class="contact-section">
+</div><div class="contact-section">
 <a href="mailto:caiyule0911@163.com">📧 邮箱</a>
-<a href="https://scholar.google.com/citations?hl=en&user=W8lwxUYAAAAJ" target="_blank">🎓 Google Scholar</a>
+<a href="https://scholar.google.com/citations?hl=en&amp;user=W8lwxUYAAAAJ" target="_blank">🎓 Google Scholar</a>
 <a href="https://github.com/Yule-Cai" target="_blank">🐙 GitHub</a>
-</div>
-<h2>🛠️ 项目</h2>
-<p>以下是我在 GitHub 上的部分代表性技术项目，涵盖机器人、计算机视觉、自主导航以及 LLM 引导的任务恢复。</p>
-<div class="projects-section">
+</div></section><section class="section-card" id="projects-zh" tabindex="-1" data-nav="projects" aria-labelledby="projects-title-zh"><h2 id="projects-title-zh">🛠️ 项目</h2><p>以下是我在 GitHub 上的部分代表性技术项目，涵盖机器人、计算机视觉、自主导航以及 LLM 引导的任务恢复。</p><div class="projects-section">
 <div class="project-card">
 <div class="project-card-title">
 <a href="https://github.com/Yule-Cai/llm_task_recovery" target="_blank">LLM Task Recovery</a>
@@ -1239,133 +1330,110 @@
 <div class="project-card-desc">一种解耦式双脑自主导航架构，将高层规划与低层控制分离，以提升复杂环境中的适应能力。</div>
 <a class="project-card-link" href="https://github.com/Yule-Cai/Decoupled-Dual-Brain-Nav" target="_blank">🐙 查看 GitHub</a>
 </div>
-</div>
-<h2>📚 代表性论文</h2>
-<p>主要科研成果优先展示；其他合作与早期论文统一放在最后，作为完整发表记录。</p>
-<div class="publication-item">
+</div></section><section class="section-card" id="publications-zh" tabindex="-1" data-nav="publications" aria-labelledby="publications-title-zh"><h2 id="publications-title-zh">📚 代表性论文</h2><p>主要科研成果优先展示；其他合作与早期论文统一放在最后，作为完整发表记录。</p><div class="publication-item">
 <div class="publication-title">
 <a href="https://doi.org/10.1007/s11071-026-12695-2" target="_blank">超越相关性：面向机器人动态感知与内省式决策的因果推断综述</a>
 </div>
 <div class="publication-authors"><strong>Y Cai</strong>, X Zhang, S Liu, J Lou, C Yuan</div>
-<div class="publication-venue">Nonlinear Dynamics，第 114 卷，文章号 869，2026<div aria-label="Publication notes" class="journal-metrics"><span class="metric-badge">第一作者</span></div></div>
-</div>
-<div class="publication-item">
+<div class="publication-venue">Nonlinear Dynamics，第 114 卷，文章号 869</div>
+<div class="publication-badges"><time class="publication-year" datetime="2026">2026</time><div aria-label="Publication notes" class="journal-metrics"><span class="metric-badge first-author">第一作者</span></div></div></div><div class="publication-item">
 <div class="publication-title">
 <a href="https://doi.org/10.1007/s44443-026-00870-9" target="_blank">迈向边缘智能消费机器人：部分可观测条件下鲁棒导航的解耦 RL–LLM 架构</a>
 </div>
 <div class="publication-authors"><strong>Y Cai</strong>, W Tan, Y Wang, X Du, T Sun, Q Ai, S Bourouis, S Alalmaei, W Shao, C Yuan</div>
-<div class="publication-venue">Journal of King Saud University Computer and Information Sciences，第 38 卷，文章号 470，2026<div aria-label="Publication notes" class="journal-metrics"><span class="metric-badge">第一作者</span></div></div>
-</div>
-<div class="publication-item">
+<div class="publication-venue">Journal of King Saud University Computer and Information Sciences，第 38 卷，文章号 470</div>
+<div class="publication-badges"><time class="publication-year" datetime="2026">2026</time><div aria-label="Publication notes" class="journal-metrics"><span class="metric-badge first-author">第一作者</span></div></div></div><div class="publication-item">
 <div class="publication-title">
 <a href="https://doi.org/10.3390/s26082416" target="_blank">KA-IHO：面向复杂栅格环境中无碰撞移动机器人路径规划的运动学感知改进河马优化算法</a>
 </div>
 <div class="publication-authors">C Yuan, <strong>Y Cai</strong>, H Que, Y Pei, X Zhang, J Xie, Q Zhang, L Mu, F Qiao</div>
-<div class="publication-venue">Sensors，第 26 卷第 8 期，文章号 2416，2026</div>
-</div>
-<div class="publication-item">
+<div class="publication-venue">Sensors，第 26 卷第 8 期，文章号 2416</div>
+<div class="publication-badges"><time class="publication-year" datetime="2026">2026</time></div></div><div class="publication-item">
 <div class="publication-title">
 <a href="https://doi.org/10.1007/s13042-026-03246-7" target="_blank">基于 SHAP 的可解释机器学习在航空发动机系统剩余寿命预测中的应用</a>
 </div>
 <div class="publication-authors">C Yuan, <strong>Y Cai</strong>, Z Zhang</div>
-<div class="publication-venue">International Journal of Machine Learning and Cybernetics，第 17 卷第 9 期，2026</div>
-</div>
-<div class="publication-item">
+<div class="publication-venue">International Journal of Machine Learning and Cybernetics，第 17 卷第 9 期</div>
+<div class="publication-badges"><time class="publication-year" datetime="2026">2026</time></div></div><div class="publication-item">
 <div class="publication-title">
 <a href="https://doi.org/10.1080/03055698.2025.2531969" target="_blank">人工智能用于中学生写作评价研究：基于 GPT-4 与人工评分者的比较分析</a>
 </div>
 <div class="publication-authors">N Xiao, CH Yuan, YT Pei, W Xue, <strong>YL Cai</strong></div>
-<div class="publication-venue">Educational Studies，第 52 卷第 4 期，504–526 页，2026</div>
-</div>
-<div class="publication-item">
+<div class="publication-venue">Educational Studies，第 52 卷第 4 期，504–526 页</div>
+<div class="publication-badges"><time class="publication-year" datetime="2026">2026</time></div></div><div class="publication-item">
 <div class="publication-title">
 <a href="https://doi.org/10.1117/12.3068755" target="_blank">基于深度学习结合 MAXENT 模型的环境微生物群落空间分布预测</a>
 </div>
 <div class="publication-authors">Q Yang, J Chen, C Yuan, L Na, W Chen, J Sun, <strong>Y Cai</strong></div>
-<div class="publication-venue">Proceedings of SPIE，第 13692 卷，136923X，2025</div>
-</div>
-<h3 style="color: #2c3e50; margin: 36px 0 18px; font-size: 1.15em;">其他发表</h3>
-<p style="color: #475569; font-size: 0.95em; margin-bottom: 20px;">其他合作与早期发表。</p>
-<div class="publication-item">
+<div class="publication-venue">Proceedings of SPIE，第 13692 卷，136923X</div>
+<div class="publication-badges"><time class="publication-year" datetime="2025">2025</time></div></div><h3 style="color: #2c3e50; margin: 36px 0 18px; font-size: 1.15em;">其他发表</h3><p style="color: #475569; font-size: 0.95em; margin-bottom: 20px;">其他合作与早期发表。</p><div class="publication-item">
 <div class="publication-title">
 <a href="https://doi.org/10.1007/s44443-026-00708-4" target="_blank">PaperOrchestrator：由 LLM 编排的端到端自动化科学论文写作多智能体流程</a>
 </div>
 <div class="publication-authors">C Yuan, T Wei, C Li, X Yi, S Liu, Z Zhang, <strong>Y Cai</strong>, X Du</div>
-<div class="publication-venue">Journal of King Saud University Computer and Information Sciences，第 38 卷，文章号 296，2026<div aria-label="Publication notes" class="journal-metrics"><span class="metric-badge">补充发表</span></div></div>
-</div>
-<div class="publication-item">
+<div class="publication-venue">Journal of King Saud University Computer and Information Sciences，第 38 卷，文章号 296</div>
+<div class="publication-badges"><time class="publication-year" datetime="2026">2026</time><div aria-label="Publication notes" class="journal-metrics"><span class="metric-badge">补充发表</span></div></div></div><div class="publication-item">
 <div class="publication-title">
 <a href="https://doi.org/10.70693/itphss.v2i2.216" target="_blank">通过 AI 驱动的教育干预提升学生学习成果：课堂行为与机器学习融合的综合研究</a>
 </div>
 <div class="publication-authors">CH Yuan, N Xiao, Y Pei, Y Bu, <strong>Y Cai</strong></div>
-<div class="publication-venue">International Theory and Practice in Humanities and Social Sciences，第 2 卷第 2 期，197–215 页，2025<div aria-label="Publication notes" class="journal-metrics"><span class="metric-badge">补充发表</span></div></div>
-</div>
-<div class="publication-item">
+<div class="publication-venue">International Theory and Practice in Humanities and Social Sciences，第 2 卷第 2 期，197–215 页</div>
+<div class="publication-badges"><time class="publication-year" datetime="2025">2025</time><div aria-label="Publication notes" class="journal-metrics"><span class="metric-badge">补充发表</span></div></div></div><div class="publication-item">
 <div class="publication-title">
 <a href="https://doi.org/10.70693/itphss.v2i3.343" target="_blank">数字时代人工智能采用对企业创新绩效的影响：基于动态能力理论</a>
 </div>
 <div class="publication-authors">K Li, <strong>Y Cai</strong>, Y Pei, C Yuan</div>
-<div class="publication-venue">International Theory and Practice in Humanities and Social Sciences，第 2 卷第 3 期，228–237 页，2025<div aria-label="Publication notes" class="journal-metrics"><span class="metric-badge">补充发表</span></div></div>
-</div>
-<div class="publication-item">
+<div class="publication-venue">International Theory and Practice in Humanities and Social Sciences，第 2 卷第 3 期，228–237 页</div>
+<div class="publication-badges"><time class="publication-year" datetime="2025">2025</time><div aria-label="Publication notes" class="journal-metrics"><span class="metric-badge">补充发表</span></div></div></div><div class="publication-item">
 <div class="publication-title">
 <a href="https://doi.org/10.70693/itphss.v2i3.342" target="_blank">探索 MBTI 与职业领域：人力资源如何基于人格选择合适人才</a>
 </div>
 <div class="publication-authors"><strong>Y Cai</strong>, Y Pei</div>
-<div class="publication-venue">International Theory and Practice in Humanities and Social Sciences，第 2 卷第 3 期，210–227 页，2025<div aria-label="Publication notes" class="journal-metrics"><span class="metric-badge">补充发表</span></div></div>
-</div>
-<h2>🧾 学术服务</h2>
-<div class="experience-item">
-<strong>Springer Nature 期刊同行评审人</strong><br/>
+<div class="publication-venue">International Theory and Practice in Humanities and Social Sciences，第 2 卷第 3 期，210–227 页</div>
+<div class="publication-badges"><time class="publication-year" datetime="2025">2025</time><div aria-label="Publication notes" class="journal-metrics"><span class="metric-badge">补充发表</span></div><span class="metric-badge first-author">第一作者</span></div></div></section><section class="section-card" id="service-zh" tabindex="-1" data-nav="service" aria-labelledby="service-title-zh"><h2 id="service-title-zh">🧾 学术服务</h2><div class="experience-item">
+<strong>Springer Nature 期刊同行评审人</strong><br>
 <em>2026 年至今</em>
 <p class="reviewer-summary">已为 <strong>6 本 Springer Nature 期刊</strong>完成 <strong>9 次论文评审</strong>，涉及人工智能、机器人、信息安全、综合科学与高性能计算等方向。</p>
 <div class="reviewer-grid">
 <a class="reviewer-card" href="https://link.springer.com/journal/10207" target="_blank" rel="noopener">
-<img class="reviewer-cover" src="images/reviewer/international-journal-information-security.png" alt="International Journal of Information Security 期刊封面"/>
+<img class="reviewer-cover" src="images/reviewer/international-journal-information-security.png" alt="International Journal of Information Security 期刊封面">
 <div class="reviewer-info"><div class="reviewer-journal">International Journal of Information Security</div><div class="reviewer-count">已评审 1 篇</div></div>
 </a>
 <a class="reviewer-card" href="https://www.nature.com/srep/" target="_blank" rel="noopener">
-<img class="reviewer-cover" src="images/reviewer/scientific-reports.png" alt="Scientific Reports 期刊封面"/>
+<img class="reviewer-cover" src="images/reviewer/scientific-reports.png" alt="Scientific Reports 期刊封面">
 <div class="reviewer-info"><div class="reviewer-journal">Scientific Reports</div><div class="reviewer-count">已评审 3 篇</div></div>
 </a>
 <a class="reviewer-card" href="https://link.springer.com/journal/44430" target="_blank" rel="noopener">
-<img class="reviewer-cover" src="images/reviewer/discover-robotics.png" alt="Discover Robotics 期刊封面"/>
+<img class="reviewer-cover" src="images/reviewer/discover-robotics.png" alt="Discover Robotics 期刊封面">
 <div class="reviewer-info"><div class="reviewer-journal">Discover Robotics</div><div class="reviewer-count">已评审 1 篇</div></div>
 </a>
 <a class="reviewer-card" href="https://link.springer.com/journal/10462" target="_blank" rel="noopener">
-<img class="reviewer-cover" src="images/reviewer/artificial-intelligence-review.png" alt="Artificial Intelligence Review 期刊封面"/>
+<img class="reviewer-cover" src="images/reviewer/artificial-intelligence-review.png" alt="Artificial Intelligence Review 期刊封面">
 <div class="reviewer-info"><div class="reviewer-journal">Artificial Intelligence Review</div><div class="reviewer-count">已评审 1 篇</div></div>
 </a>
 <a class="reviewer-card" href="https://link.springer.com/journal/44163" target="_blank" rel="noopener">
-<img class="reviewer-cover" src="images/reviewer/discover-artificial-intelligence.png" alt="Discover Artificial Intelligence 期刊封面"/>
+<img class="reviewer-cover" src="images/reviewer/discover-artificial-intelligence.png" alt="Discover Artificial Intelligence 期刊封面">
 <div class="reviewer-info"><div class="reviewer-journal">Discover Artificial Intelligence</div><div class="reviewer-count">已评审 2 篇</div></div>
 </a>
 <a class="reviewer-card" href="https://link.springer.com/journal/11227" target="_blank" rel="noopener">
-<img class="reviewer-cover" src="images/reviewer/journal-of-supercomputing.png" alt="The Journal of Supercomputing 期刊封面"/>
+<img class="reviewer-cover" src="images/reviewer/journal-of-supercomputing.png" alt="The Journal of Supercomputing 期刊封面">
 <div class="reviewer-info"><div class="reviewer-journal">The Journal of Supercomputing</div><div class="reviewer-count">已评审 1 篇</div></div>
 </a>
 </div>
-</div>
-<h2>🏆 证书与经历</h2>
-<div class="experience-item">
-<strong>数据科学暑期学校 2025</strong><br/>
-            Hertie School Data Science Lab<br/>
+</div></section><section class="section-card" id="certifications-zh" tabindex="-1" aria-labelledby="certifications-title-zh"><h2 id="certifications-title-zh">🏆 证书与经历</h2><div class="experience-item">
+<strong>数据科学暑期学校 2025</strong><br>
+            Hertie School Data Science Lab<br>
 <em>2025 年 8 月 4 日至 8 月 8 日</em>
 <p style="margin-top: 10px; color: #334155;">积极参加由 Simon Munzert 教授指导的数据科学暑期学校。</p>
-</div>
-<h2>🎓 教育背景</h2>
-<div class="experience-item">
-<strong>信息技术本科</strong><br/>
-            Universiti Utara Malaysia<br/>
+</div></section><section class="section-card" id="education-zh" tabindex="-1" aria-labelledby="education-title-zh"><h2 id="education-title-zh">🎓 教育背景</h2><div class="experience-item">
+<strong>信息技术本科</strong><br>
+            Universiti Utara Malaysia<br>
 <em>在读</em>
-</div>
-<div class="highlight">
+</div><div class="highlight">
 <strong>💡 技能与专长</strong>
             熟练使用 Microsoft Word、Excel 和 PowerPoint｜Python 基础｜
             领导力、问题解决、沟通与团队协作｜较强抗压能力与责任感
-    </div>
-<h2>🎨 兴趣爱好</h2>
-<div class="interests-section">
+    </div></section><section class="section-card" id="interests-zh" tabindex="-1" aria-labelledby="interests-title-zh"><h2 id="interests-title-zh">🎨 兴趣爱好</h2><div class="interests-section">
 <div class="interest-card">
 <div class="interest-icon">🎨</div>
 <div class="interest-title">绘画</div>
@@ -1381,26 +1449,23 @@
 <div class="interest-title">跑步</div>
 <div class="interest-desc">已完成 2 次社区 5 公里跑</div>
 </div>
-</div>
-<div class="artwork-showcase">
-<h3 style="color: #2c3e50; margin-bottom: 10px;">✨ 我的绘画作品</h3>
+</div></section><section class="section-card" id="artwork-zh" tabindex="-1" data-nav="artwork" aria-labelledby="artwork-title-zh"><div class="artwork-showcase">
+<h2 id="artwork-title-zh">✨ 我的绘画作品</h2>
 <p style="color: #475569;">虽然我还是绘画初学者，但我喜欢用艺术放松自己、整理思绪。</p>
 <div class="artwork-grid">
 <div class="artwork-card">
-<img alt="Original still life sketch by Yule Cai" src="cc9c50062de85fa9b832802192013202.jpg"/>
+<img alt="Original still life sketch by Yule Cai" src="cc9c50062de85fa9b832802192013202.jpg">
 <p class="artwork-caption">原创静物素描——在艺术中寻找平静</p>
 </div>
 <div class="artwork-card">
-<img alt="New still life pencil sketch by Yule Cai" src="artwork-still-life.jpg"/>
+<img alt="New still life pencil sketch by Yule Cai" src="artwork-still-life.jpg">
 <p class="artwork-caption">新的静物铅笔素描——近期作品</p>
 </div>
 </div>
-</div>
-<footer>
+</div></section><footer>
 <p>© 2026 Yule Cai。最后更新：2026 年 9 月</p>
 <p style="margin-top: 10px; font-size: 0.85em;">以对科研、艺术与创新的热情构建</p>
-</footer>
-</div>
+</footer></div>
 <a class="back-to-top" href="#" title="Back to top">↑</a>
 <script>
         (function () {
@@ -1422,6 +1487,21 @@
                     toggle.setAttribute('aria-label', activeLang === 'zh' ? 'Switch to English' : '切换到中文');
                     toggle.setAttribute('aria-pressed', String(activeLang === 'zh'));
                 }
+
+                const nav = document.querySelector('.site-nav');
+                nav.setAttribute('aria-label', activeLang === 'zh' ? '站点导航' : 'Main navigation');
+                nav.querySelectorAll('[data-nav-link]').forEach(function (link) {
+                    link.textContent = link.dataset[activeLang];
+                    link.setAttribute('href', '#' + link.dataset.navLink + '-' + activeLang);
+                });
+                nav.querySelector('[data-nav-brand]').setAttribute('href', '#about-' + activeLang);
+                const sectionHash = location.hash.match(/^#(about|projects|publications|service|artwork)-(en|zh)$/);
+                if (sectionHash && sectionHash[2] !== activeLang) {
+                    const target = document.getElementById(sectionHash[1] + '-' + activeLang);
+                    history.replaceState(null, '', '#' + target.id);
+                    requestAnimationFrame(function () { target.scrollIntoView({ behavior: 'instant', block: 'start' }); });
+                }
+                requestAnimationFrame(updateActiveNavigation);
 
                 try {
                     localStorage.setItem(STORAGE_KEY, activeLang);
@@ -1445,6 +1525,52 @@
                     setLanguage(nextLang);
                 });
             }
+        function updateActiveNavigation() {
+            const lang = document.body.getAttribute('data-lang') || 'en';
+            const panel = document.querySelector('[data-lang-panel="' + lang + '"]');
+            const nav = document.querySelector('.site-nav');
+            if (!panel || !nav) return;
+            let active = 'about';
+            const threshold = nav.getBoundingClientRect().bottom + 36;
+            panel.querySelectorAll('[data-nav]').forEach(function (section) {
+                if (section.getBoundingClientRect().top <= threshold) active = section.dataset.nav;
+            });
+            nav.querySelectorAll('[data-nav-link]').forEach(function (link) {
+                if (link.dataset.navLink === active) link.setAttribute('aria-current', 'location');
+                else link.removeAttribute('aria-current');
+            });
+        }
+
+        const navigation = document.querySelector('.site-nav');
+        if (navigation) {
+            function updateNavigationOffset() {
+                const top = parseFloat(getComputedStyle(navigation).top) || 0;
+                document.documentElement.style.setProperty('--nav-offset', (navigation.offsetHeight + top + 18) + 'px');
+            }
+            updateNavigationOffset();
+            if ('ResizeObserver' in window) new ResizeObserver(updateNavigationOffset).observe(navigation);
+            window.addEventListener('resize', updateNavigationOffset);
+            let navigationFramePending = false;
+            window.addEventListener('scroll', function () {
+                if (navigationFramePending) return;
+                navigationFramePending = true;
+                requestAnimationFrame(function () {
+                    updateActiveNavigation();
+                    navigationFramePending = false;
+                });
+            }, { passive: true });
+            navigation.addEventListener('click', function (event) {
+                const link = event.target.closest('a[href^="#"]');
+                if (!link) return;
+                const section = document.getElementById(link.getAttribute('href').slice(1));
+                if (section) section.focus({ preventScroll: true });
+            });
+            window.addEventListener('hashchange', updateActiveNavigation);
+            requestAnimationFrame(updateActiveNavigation);
+        }
+
         })();
-</script></body>
-</html>
+</script>
+
+
+</body></html>
