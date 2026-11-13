@@ -287,3 +287,34 @@
 :root[data-theme="dark"] .tech-emblem .yc-node{fill:#29D5DD;stroke:#202A42}
 :root[data-theme="dark"] .tech-emblem .yc-pulse{fill:#29D5DD}
 @media(max-width:430px){.tech-emblem{width:31px;height:31px}}
+
+
+/* v2.0 — robot route planning monogram and visible research progression */
+.route-brand-emblem{width:40px;height:40px;flex:0 0 auto;display:block;overflow:visible}
+.route-brand-emblem .letter-y{stroke:var(--accent)}
+.route-brand-emblem .letter-c,.route-brand-emblem .route{stroke:var(--ink)}
+.route-brand-emblem .point{fill:#10b3bd;stroke:var(--surface)}
+:root[data-theme="dark"] .route-brand-emblem .point{fill:#31d6db}
+@media(max-width:430px){.route-brand-emblem{width:34px;height:34px}}
+/* The arrows indicate stages of research, not click targets. */
+.research-arc-list{column-gap:22px;row-gap:22px}
+.arc-step:not(:last-child)::after{
+  content:"→";
+  position:absolute;z-index:3;box-sizing:border-box;
+  width:38px;height:38px;right:-30px;left:auto;
+  top:50%;bottom:auto;transform:translateY(-50%);
+  display:grid;place-items:center;
+  background:var(--accent);color:#fff;
+  border:3px solid var(--bg);border-radius:50%;
+  box-shadow:0 3px 12px rgba(42,45,85,.18);
+  font:800 23px/1 Arial,sans-serif;
+}
+:root[data-theme="dark"] .arc-step:not(:last-child)::after{color:#191c2b;box-shadow:0 3px 15px #0006}
+@media(max-width:1080px){
+  .research-arc-list{grid-template-columns:1fr;row-gap:27px;column-gap:0}
+  .arc-step:not(:last-child)::after{
+    content:"↓";top:auto;right:auto;bottom:-24px;left:calc(50% - 19px);
+    transform:none;width:38px;height:38px;font-size:22px;
+  }
+}
+@media(prefers-reduced-motion:reduce){.arc-step:not(:last-child)::after{transition:none;animation:none}}

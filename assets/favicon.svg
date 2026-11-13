@@ -1,13 +1,15 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="t">
-<title id="t">Yule Cai · Robot Navigation</title>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-labelledby="title">
+<title id="title">Yule Cai — robot path planning</title>
 <style>
-.yc-y{stroke:#716CC7}.yc-c{stroke:#273350}.yc-n{fill:#08AEBB;stroke:#F7FAFF}
-@media (prefers-color-scheme: dark){.yc-y{stroke:#A29CFF}.yc-c{stroke:#EDF2FF}.yc-n{fill:#29D5DD;stroke:#202A42}}
+  .letter-y{stroke:#7772ca}.letter-c{stroke:#26334f}.route{stroke:#26334f}.point{fill:#10b3bd;stroke:#ffffff}
+  @media (prefers-color-scheme: dark){.letter-y{stroke:#aca6ff}.letter-c,.route{stroke:#f0f2ff}.point{fill:#31d6db;stroke:#1e2639}}
 </style>
-<g fill="none" stroke-linejoin="round" stroke-linecap="square">
-<path class="yc-y" d="M9.5 14 L21 27.5 L32.5 14 M21 27.5 V49" stroke-width="6.6"/>
-<path class="yc-c" d="M54 16.5 L47 13 H42.5 L35 20.5 V43.5 L42.5 51 H47 L54 47.5" stroke-width="6.4"/>
+<g fill="none" stroke-linejoin="round" stroke-linecap="round">
+  <path class="letter-y" d="M14 17 L34 40 L54 17 M34 40 V64" stroke-width="10"/>
+  <path class="letter-c" d="M84 22 H73 Q61 22 61 34 V60 Q61 72 73 72 H84" stroke-width="10"/>
+  <path class="route" d="M21 79 H41 L52 68 H70 L81 58" stroke-width="5.7"/>
 </g>
-<circle class="yc-n" cx="54" cy="16.5" r="3.9" stroke-width="1.8"/>
-<circle cx="21" cy="49" r="2.3" fill="#08AEBB"/>
+<circle class="point" cx="21" cy="79" r="5.7" stroke-width="2.5"/>
+<circle class="point" cx="52" cy="68" r="5.2" stroke-width="2.3"/>
+<path class="point" d="M81 50 L89 58 L81 66 L73 58 Z" stroke-width="2.4"/>
 </svg>
