@@ -1,0 +1,71 @@
+/* Yule Cai academic site / gentle, progressive page transitions */
+@view-transition { navigation: auto; }
+
+@keyframes yule-page-out {
+  to { opacity: 0; transform: translate3d(0, -5px, 0); }
+}
+@keyframes yule-page-in {
+  from { opacity: 0; transform: translate3d(0, 9px, 0); }
+  to { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+@keyframes yule-panel-in {
+  from { opacity: 0; transform: translate3d(0, 13px, 0) scale(.993); }
+  to { opacity: 1; transform: translate3d(0, 0, 0) scale(1); }
+}
+@keyframes yule-panel-out {
+  to { opacity: 0; transform: translate3d(0, 7px, 0) scale(.997); }
+}
+@keyframes yule-backdrop-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes yule-backdrop-out { to { opacity: 0; } }
+@keyframes yule-reveal { from { opacity: 0; transform: translate3d(0, 8px, 0); } to { opacity: 1; transform: translate3d(0, 0, 0); } }
+@keyframes yule-menu-in { from { opacity: 0; transform: translate3d(0, -7px, 0); } to { opacity: 1; transform: translate3d(0, 0, 0); } }
+@keyframes yule-section-arrive { from { box-shadow: inset 3px 0 0 var(--accent, #666aa2); } to { box-shadow: inset 0 0 0 transparent; } }
+
+::view-transition-old(root) { animation: 165ms cubic-bezier(.4, 0, 1, 1) both yule-page-out; }
+::view-transition-new(root) { animation: 260ms cubic-bezier(.22, 1, .36, 1) both yule-page-in; }
+
+/* Older engines get the same short transition without relying on View Transitions. */
+html.motion-leaving body { opacity: 0; transform: translate3d(0, -5px, 0); pointer-events: none; }
+html.motion-leaving body { transition: opacity 150ms ease-in, transform 150ms ease-in; }
+html.motion-entering body { animation: yule-page-in 240ms cubic-bezier(.22, 1, .36, 1) both; }
+
+/* Same-page anchors get a light arrival cue without moving the layout. */
+.section-arriving { animation: yule-section-arrive 550ms ease-out 1; }
+
+/* Card contents refresh when a paper filter or language is changed. */
+.pub-card { animation: yule-reveal 245ms cubic-bezier(.22, 1, .36, 1) both; }
+.pub-card:nth-child(2) { animation-delay: 30ms; }
+.pub-card:nth-child(3) { animation-delay: 55ms; }
+.pub-card:nth-child(4) { animation-delay: 75ms; }
+
+/* Light, touch-friendly hover feedback: movement only for precise pointers. */
+@media (hover: hover) and (pointer: fine) {
+  .doc-btn, .profile-cta a, .get-in-touch, .project-link, .pub-actions a, .pub-actions button { transition: transform 170ms ease, box-shadow 170ms ease, background-color 170ms ease; }
+  .doc-btn:hover, .profile-cta a:hover, .get-in-touch:hover, .project-link:hover { transform: translate3d(0,-2px,0); }
+  .pub-actions a:hover, .pub-actions button:hover { transform: translate3d(0,-1px,0); }
+}
+
+/* The publication reader opens/closes independently of page changes. */
+.paper-dialog[open]:not(.is-closing) { animation: yule-panel-in 275ms cubic-bezier(.22,1,.36,1) both; }
+.paper-dialog[open]:not(.is-closing)::backdrop { animation: yule-backdrop-in 230ms ease-out both; }
+.paper-dialog.is-closing { animation: yule-panel-out 155ms ease-in forwards; }
+.paper-dialog.is-closing::backdrop { animation: yule-backdrop-out 155ms ease-in forwards; }
+
+@media (max-width: 760px) {
+  .primary-nav.open { animation: yule-menu-in 195ms cubic-bezier(.22, 1, .36, 1) both; transform-origin: top center; }
+  .pub-card:nth-child(n) { animation-delay: 0ms; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  @view-transition { navigation: none; }
+  ::view-transition-old(root), ::view-transition-new(root) { animation: none !important; }
+  html { scroll-behavior: auto !important; }
+  .section-arriving, .pub-card, .primary-nav.open, .paper-dialog[open], .paper-dialog.is-closing,
+  .paper-dialog[open]::backdrop, html.motion-entering body { animation: none !important; }
+  html.motion-leaving body { transition: none !important; opacity: 1 !important; transform: none !important; }
+}
+
+@media print {
+  @view-transition { navigation: none; }
+  .pub-card, .section-arriving, html.motion-entering body { animation: none !important; }
+}
