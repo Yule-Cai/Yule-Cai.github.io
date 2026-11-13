@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 650 360" role="img" aria-label="Abstract research illustration for AUTONOMOUS / SYSTEMS">
+ <defs><linearGradient id="a" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#598c8d"/><stop offset="1" stop-color="#303849"/></linearGradient><radialGradient id="b"><stop stop-color="#eeeaff" stop-opacity=".22"/><stop offset="1" stop-color="#eeeaff" stop-opacity="0"/></radialGradient></defs>
+ <rect width="650" height="360" fill="url(#a)"/><circle cx="458" cy="142" r="225" fill="url(#b)"/>
+ <path d="M252 0V360" stroke="#fff" stroke-opacity=".2"/>
+ <text x="31" y="44" fill="#fff" fill-opacity=".7" font-family="Arial,sans-serif" font-weight="700" font-size="12" letter-spacing="3">YULE CAI / RESEARCH</text>
+ <text x="31" y="151" fill="#fff" font-family="Arial,sans-serif" font-weight="700" font-size="22">AUTONOMOUS / SYSTEMS</text>
+ <text x="31" y="185" fill="#fff" fill-opacity=".65" font-family="Arial,sans-serif" font-size="13">The dual-brain architecture</text>
+ <rect x="30" y="293" width="46" height="3" rx="1" fill="#dce0ff"/>
+ <text x="31" y="328" fill="#fff" fill-opacity=".5" font-family="Arial,sans-serif" font-size="11" letter-spacing="2">CONCEPT / 08</text>
+ <g stroke="#fff" stroke-opacity=".19" fill="none"><path d="M40 0V360"/><path d="M84 0V360"/><path d="M128 0V360"/><path d="M172 0V360"/><path d="M216 0V360"/><path d="M260 0V360"/><path d="M304 0V360"/><path d="M348 0V360"/><path d="M392 0V360"/><path d="M436 0V360"/><path d="M480 0V360"/><path d="M524 0V360"/><path d="M568 0V360"/><path d="M612 0V360"/><path d="M0 0H650"/><path d="M0 44H650"/><path d="M0 88H650"/><path d="M0 132H650"/><path d="M0 176H650"/><path d="M0 220H650"/><path d="M0 264H650"/><path d="M0 308H650"/><path d="M0 352H650"/></g><path d="M310 267 L350 267 L350 224 L440 224 L440 158 L526 158 L526 91" fill="none" stroke="#e4e9ff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="12 9"/><circle cx="310" cy="267" r="13" fill="#ffffff" fill-opacity=".14" stroke="#fff" stroke-width="2"/><circle cx="310" cy="267" r="4" fill="#fff"/><circle cx="526" cy="91" r="13" fill="#ffffff" fill-opacity=".14" stroke="#fff" stroke-width="2"/><circle cx="526" cy="91" r="4" fill="#fff"/>
+ </svg>
