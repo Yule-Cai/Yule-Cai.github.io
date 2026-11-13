@@ -266,3 +266,12 @@
 
 /* v1.6: private-research image source labeling */
 .project-access-note{display:inline-flex;align-items:center;min-height:32px;font-size:11px;font-weight:700;color:var(--muted)}
+
+/* v1.8 — understated YC monogram shared by navbar and favicon */
+.brand{gap:11px}
+.brand-emblem{width:34px;height:34px;flex:0 0 auto;display:block;overflow:visible}
+.brand-emblem .emblem-ring{stroke:var(--ink)}
+.brand-emblem .emblem-initial{stroke:var(--accent)}
+.brand:focus-visible .brand-emblem,.brand:hover .brand-emblem{transform:translateY(-1px);transition:transform .16s ease}
+@media(max-width:430px){.brand-emblem{width:30px;height:30px}.brand{gap:8px}}
+@media(prefers-reduced-motion:reduce){.brand:focus-visible .brand-emblem,.brand:hover .brand-emblem{transform:none;transition:none}}
