@@ -6,6 +6,23 @@
   <meta name="color-scheme" content="light dark" />
   <meta name="description" content="Yule Cai — academic portfolio in embodied AI, robotic navigation, reinforcement learning, and language-grounded robotics." />
   <title>Yule Cai · Research & Robotics</title>
+  <link rel="canonical" href="https://yule-cai.github.io/" />
+  <meta name="theme-color" content="#f8f8f6" />
+  <meta property="og:type" content="profile" />
+  <meta property="og:site_name" content="Yule Cai · Academic Portfolio" />
+  <meta property="og:title" content="Yule Cai | Robotics, Reinforcement Learning & LLM Planning" />
+  <meta property="og:description" content="Research in reliable robot navigation, embodied intelligence, task recovery, and edge RL–LLM systems. Publications, reproducible experiments, and open-source projects." />
+  <meta property="og:url" content="https://yule-cai.github.io/" />
+  <meta property="og:image" content="https://yule-cai.github.io/images/homepage-bg.jpg" />
+  <meta property="og:image:alt" content="Abstract header image for Yule Cai's academic portfolio" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Yule Cai | Robotics & Embodied AI" />
+  <meta name="twitter:description" content="Robotics research, navigation, RL–LLM systems, publications and projects." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Person","name":"Yule Cai","alternateName":"蔡雨乐","url":"https://yule-cai.github.io/","email":"mailto:caiyule0911@163.com","jobTitle":"Undergraduate Researcher","affiliation":{"@type":"CollegeOrUniversity","name":"Universiti Utara Malaysia","url":"https://www.uum.edu.my/"},"sameAs":["https://github.com/Yule-Cai","https://scholar.google.com/citations?user=W8lwxUYAAAAJ","https://orcid.org/0009-0007-2692-0031"],"knowsAbout":["Robot Navigation","Reinforcement Learning","Embodied Artificial Intelligence","Language-Model Planning"]}
+  </script>
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="styles.css" />
 </head>
@@ -13,28 +30,32 @@
   <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
   <header class="global-header" id="top">
     <a class="brand" href="#top" aria-label="Yule Cai homepage"><span class="brand-mark">Y<span class="brand-dot">.</span></span><span class="brand-caption">YULE CAI <small>/ RESEARCH NOTES</small></span></a>
-    <nav class="primary-nav" aria-label="Main navigation">
+    <nav class="primary-nav" id="main-navigation" aria-label="Main navigation">
       <a href="#about" data-nav="about">About</a><a href="#publications" data-nav="publications">Publications</a><a href="#research" data-nav="research">Research</a><a href="#experience" data-nav="experience">Experience</a>
     </nav>
     <div class="header-actions">
       <button id="language-toggle" class="header-button lang-button" aria-label="Switch language">中文</button>
-      <button id="theme-toggle" class="header-button theme-button" title="Switch color mode" aria-label="Switch color mode"><span id="theme-icon">☾</span></button>
+      <button id="theme-toggle" class="header-button theme-button" title="Switch color mode" aria-label="Switch color mode" aria-pressed="false"><span id="theme-icon">☾</span></button>
       <a class="get-in-touch" href="mailto:caiyule0911@163.com">Get in touch <span>↗</span></a>
     </div>
-    <button class="mobile-menu" id="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+    <button class="mobile-menu" id="menu-toggle" aria-label="Toggle navigation" aria-controls="main-navigation" aria-expanded="false">☰</button>
   </header>
   <main class="layout">
     <aside class="profile-column" aria-label="Profile information">
       <div class="profile-sticky">
         <div class="portrait-frame">
           <div class="portrait-shape"></div>
-          <img class="portrait" id="portrait" src="profile.png" alt="Yule Cai" />
+          <img class="portrait" id="portrait" src="profile.png" alt="Portrait of Yule Cai" width="680" height="680" fetchpriority="high" decoding="async" />
           <div class="portrait-fallback" id="portrait-fallback">YC</div>
           <span class="portrait-label">RESEARCH / 2026</span>
         </div>
         <div class="profile-heading"><span class="eyebrow with-point" data-i18n="position">UNDERGRADUATE RESEARCHER</span><h1>Yule Cai<span class="period">.</span></h1><p id="profile-role">Embodied AI <span class="separator">/</span> Robot Navigation <span class="separator">/</span> RL × LLM</p></div>
         <div class="profile-rule"></div>
-        <div class="profile-affiliation"><span class="round-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10h18"/><path d="M4 21h16"/><path d="M5 10v9m4-9v9m6-9v9m4-9v9"/><path d="M12 3 2 9h20L12 3Z"/></svg></span><span class="affiliation-details"><strong>Universiti Utara Malaysia</strong><small>Sintok, Kedah · Malaysia</small></span></div>
+        <div class="profile-affiliation"><span class="round-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10h18"/><path d="M4 21h16"/><path d="M5 10v9m4-9v9m6-9v9m4-9v9"/><path d="M12 3 2 9h20L12 3Z"/></svg></span><span class="affiliation-details"><strong>Universiti Utara Malaysia</strong><small data-i18n-text="location">Sintok, Kedah · Malaysia</small></span></div>
+        <div class="profile-cta" aria-label="Research documents">
+          <a href="cv.html" class="profile-cta-primary" id="cv-link">View CV <span aria-hidden="true">↗</span></a>
+          <a href="research.html" class="profile-cta-secondary" id="research-link">Research overview <span aria-hidden="true">↗</span></a>
+        </div>
         <div class="socials" aria-label="Academic profile links">
           <a href="mailto:caiyule0911@163.com" aria-label="Email" title="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.4" y="4.3" width="19.2" height="15.4" rx="2.5"/><path d="m3.5 6 8.5 7 8.5-7"/></svg></a>
           <a href="https://scholar.google.com/citations?hl=en&amp;user=W8lwxUYAAAAJ" target="_blank" rel="noopener noreferrer" aria-label="Google Scholar" title="Google Scholar"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"/></svg></a>
@@ -46,33 +67,34 @@
     </aside>
     <div class="content-column">
       <section class="intro-section observed" id="about">
-        <div class="section-kicker"><span>01 / INTRODUCTION</span><span class="kicker-line"></span><span>ABOUT ME</span></div>
+        <div class="section-kicker"><span data-i18n-text="introKicker">01 / INTRODUCTION</span><span class="kicker-line"></span><span data-i18n-text="aboutKicker">ABOUT ME</span></div>
         <h2 class="intro-title" id="intro-title">Building robots that can <em>reason, adapt, and recover.</em></h2>
         <div id="bio-paragraphs" class="bio-text"></div>
         <div class="research-tags"><span>Reinforcement Learning</span><span>Robot Navigation</span><span>LLM Planning</span><span>Embodied AI</span></div>
+        <div class="research-premise"><span class="premise-label" data-i18n-text="researchQuestion">CURRENT RESEARCH QUESTION</span><p id="premise-text">When should a robot stop repairing a route and decide to replan?</p><a href="research.html" id="premise-link">Explore the research approach ↗</a></div>
       </section>
       <section class="news-section observed" id="news">
-        <div class="section-heading"><div><div class="section-kicker">LATEST UPDATES</div><h2 data-i18n="news">News <span>& notes</span></h2></div><span class="section-number">/ 02</span></div>
-        <div id="news-list" class="news-list"></div>
+        <div class="section-heading"><div><div class="section-kicker" data-i18n-text="latest">LATEST UPDATES</div><h2 data-i18n="news">News <span>& notes</span></h2></div><span class="section-number">/ 02</span></div>
+        <div id="news-list" class="news-list"><div class="news-row"><span class="news-date">2026.06</span><div class="news-body">Shared the LLM Task Recovery research prototype, exploring language-guided recovery for navigation agents. <a href="https://github.com/Yule-Cai/llm_task_recovery" target="_blank" rel="noreferrer" aria-label="Related source">↗</a></div><span class="news-type">Open source</span></div><div class="news-row"><span class="news-date">2026.05</span><div class="news-body">Our first-author survey on causal inference and introspective robotics was accepted by Nonlinear Dynamics. <a href="https://doi.org/10.1007/s11071-026-12695-2" target="_blank" rel="noreferrer" aria-label="Related source">↗</a></div><span class="news-type">Journal</span></div><div class="news-row"><span class="news-date">2026.05</span><div class="news-body">Our first-author work on edge-intelligent RL–LLM navigation was accepted by JKSUCIS. <a href="https://doi.org/10.1007/s44443-026-00870-9" target="_blank" rel="noreferrer" aria-label="Related source">↗</a></div><span class="news-type">Journal</span></div><div class="news-row"><span class="news-date">2026.04</span><div class="news-body">KA-IHO, our co-authored research on kinematic-aware mobile robot path planning, appeared in Sensors. <a href="https://doi.org/10.3390/s26082416" target="_blank" rel="noreferrer" aria-label="Related source">↗</a></div><span class="news-type">Journal</span></div></div>
       </section>
       <section class="publication-section observed" id="publications">
-        <div class="section-heading"><div><div class="section-kicker">SELECTED WORK / RESEARCH OUTPUT</div><h2 data-i18n="publications">Selected <span>publications</span></h2></div><span class="section-number">/ 03</span></div>
-        <div class="publication-toolbar"><p id="publication-caption">A selection of peer-reviewed work; the complete list is available on Google Scholar.</p><div class="pub-filters" role="group" aria-label="Filter publications"><button class="filter active" data-filter="all">All</button><button class="filter" data-filter="first">First author</button><button class="filter" data-filter="other">Co-author</button></div></div>
-        <div id="publication-list" class="publication-list"></div>
+        <div class="section-heading"><div><div class="section-kicker" data-i18n-text="selectedWork">SELECTED WORK / RESEARCH OUTPUT</div><h2 data-i18n="publications">Selected <span>publications</span></h2></div><span class="section-number">/ 03</span></div>
+        <div class="publication-toolbar"><p id="publication-caption">A selection of peer-reviewed work; the complete list is available on Google Scholar.</p><div class="pub-filters" role="group" aria-label="Filter publications"><button class="filter active" data-filter="all" aria-pressed="true">All</button><button class="filter" data-filter="first" aria-pressed="false">First author</button><button class="filter" data-filter="cofirst" aria-pressed="false">Co-first author</button></div></div>
+        <div id="publication-list" class="publication-list" aria-live="polite"><article class="pub-card" data-static="true"><div class="paper-visual"><a href="papers/causal.html" aria-label="Read Beyond correlation: a survey on causal inference for dynamics-aware perception and introspective decision-making in robotics"><img class="pub-cover" alt="Beyond correlation: a survey on causal inference for dynamics-aware perception and introspective decision-making in robotics" src="https://media.springernature.com/m312/springer-static/image/art%3A10.1007%2Fs11071-026-12695-2/MediaObjects/11071_2026_12695_Fig1_HTML.png" loading="lazy" decoding="async" /></a></div><div class="pub-body"><div class="pub-meta"><span class="pub-venue">Nonlinear Dynamics</span><span class="pub-year">2026</span></div><h3 class="pub-title"><a href="papers/causal.html">Beyond correlation: a survey on causal inference for dynamics-aware perception and introspective decision-making in robotics</a></h3><p class="pub-authors">Y. Cai, X. Zhang, S. Liu, J. Lou, C. Yuan</p><div class="pub-tags"><span>Causal inference</span><span>Robot perception</span><span>Introspection</span></div><div class="pub-actions"><a href="papers/causal.html">Research summary ↗</a><a href="https://doi.org/10.1007/s11071-026-12695-2" target="_blank" rel="noreferrer">Publisher ↗</a></div></div></article><article class="pub-card" data-static="true"><div class="paper-visual"><a href="papers/edge.html" aria-label="Read Toward edge-intelligent consumer robots: a decoupled RL–LLM architecture for robust navigation under partial observability"><img class="pub-cover" alt="Toward edge-intelligent consumer robots: a decoupled RL–LLM architecture for robust navigation under partial observability" src="https://media.springernature.com/lw685/springer-static/image/art%3A10.1007%2Fs44443-026-00870-9/MediaObjects/44443_2026_870_Fig2_HTML.png" loading="lazy" decoding="async" /></a></div><div class="pub-body"><div class="pub-meta"><span class="pub-venue">Journal of King Saud University – Computer and Information Sciences</span><span class="pub-year">2026</span></div><h3 class="pub-title"><a href="papers/edge.html">Toward edge-intelligent consumer robots: a decoupled RL–LLM architecture for robust navigation under partial observability</a></h3><p class="pub-authors">Y. Cai, W. Tan, Y. Wang, X. Du, T. Sun, Q. Ai, S. Bourouis, S. Alalmaei, W. Shao, C. Yuan</p><div class="pub-tags"><span>RL–LLM</span><span>Edge robotics</span><span>Navigation</span></div><div class="pub-actions"><a href="papers/edge.html">Research summary ↗</a><a href="https://doi.org/10.1007/s44443-026-00870-9" target="_blank" rel="noreferrer">Publisher ↗</a></div></div></article><article class="pub-card" data-static="true"><div class="paper-visual"><a href="papers/iho.html" aria-label="Read KA-IHO: A Kinematic-Aware Improved Hippo Optimization Algorithm for Collision-Free Mobile Robot Path Planning in Complex Grid Environments"><img class="pub-cover" alt="KA-IHO: A Kinematic-Aware Improved Hippo Optimization Algorithm for Collision-Free Mobile Robot Path Planning in Complex Grid Environments" src="https://mdpi-res.com/sensors/sensors-26-02416/article_deploy/html/images/sensors-26-02416-g001-550.jpg" loading="lazy" decoding="async" /></a></div><div class="pub-body"><div class="pub-meta"><span class="pub-venue">Sensors</span><span class="pub-year">2026</span></div><h3 class="pub-title"><a href="papers/iho.html">KA-IHO: A Kinematic-Aware Improved Hippo Optimization Algorithm for Collision-Free Mobile Robot Path Planning in Complex Grid Environments</a></h3><p class="pub-authors">C. Yuan, Y. Cai, H. Que, Y. Pei, X. Zhang, J. Xie, Q. Zhang, L. Mu, F. Qiao</p><div class="pub-tags"><span>Path planning</span><span>Optimization</span></div><div class="pub-actions"><a href="papers/iho.html">Research summary ↗</a><a href="https://doi.org/10.3390/s26082416" target="_blank" rel="noreferrer">Publisher ↗</a></div></div></article><article class="pub-card" data-static="true"><div class="paper-visual"><a href="papers/shap.html" aria-label="Read Application of SHAP-Based Explainable Machine Learning in Remaining Useful Life Prediction for Aircraft Engine Systems"><img class="pub-cover" alt="Application of SHAP-Based Explainable Machine Learning in Remaining Useful Life Prediction for Aircraft Engine Systems" src="https://media.springernature.com/m312/springer-static/image/art%3A10.1007%2Fs13042-026-03246-7/MediaObjects/13042_2026_3246_Fig5_HTML.png" loading="lazy" decoding="async" /></a></div><div class="pub-body"><div class="pub-meta"><span class="pub-venue">International Journal of Machine Learning and Cybernetics</span><span class="pub-year">2026</span></div><h3 class="pub-title"><a href="papers/shap.html">Application of SHAP-Based Explainable Machine Learning in Remaining Useful Life Prediction for Aircraft Engine Systems</a></h3><p class="pub-authors">C. Yuan, Y. Cai, Z. Zhang</p><div class="pub-tags"><span>Explainable AI</span><span>Predictive maintenance</span></div><div class="pub-actions"><a href="papers/shap.html">Research summary ↗</a><a href="https://doi.org/10.1007/s13042-026-03246-7" target="_blank" rel="noreferrer">Publisher ↗</a></div></div></article></div>
         <a class="archive-link" href="https://scholar.google.com/citations?hl=en&amp;user=W8lwxUYAAAAJ" target="_blank" rel="noreferrer"><span id="all-publications-link">Explore full publication list</span><span>↗</span></a>
       </section>
       <section class="research-section observed" id="research">
-        <div class="section-heading"><div><div class="section-kicker">WORK IN PROGRESS / OPEN SOURCE</div><h2 data-i18n="research">Research <span>& projects</span></h2></div><span class="section-number">/ 04</span></div>
+        <div class="section-heading"><div><div class="section-kicker" data-i18n-text="openSource">WORK IN PROGRESS / OPEN SOURCE</div><h2 data-i18n="research">Research <span>& projects</span></h2></div><span class="section-number">/ 04</span></div>
         <p class="section-lede" id="project-lede">Research questions and working prototypes, from task recovery to path planning and robotic manipulation.</p>
         <div id="focus-grid" class="focus-grid"></div>
         <div class="projects-label"><span id="selected-projects-label">SELECTED PROJECTS</span><span>↘</span></div>
         <div id="projects-list" class="projects-list"></div>
       </section>
       <section class="experience-section observed" id="experience">
-        <div class="section-heading"><div><div class="section-kicker">ACADEMIC BACKGROUND</div><h2 data-i18n="experience">Education <span>& service</span></h2></div><span class="section-number">/ 05</span></div>
+        <div class="section-heading"><div><div class="section-kicker" data-i18n-text="background">ACADEMIC BACKGROUND</div><h2 data-i18n="experience">Education <span>& service</span></h2></div><span class="section-number">/ 05</span></div>
         <div id="experience-content" class="experience-content"></div>
       </section>
-      <footer class="footer"><div><span class="footer-sign">Yule Cai<span>.</span></span><p id="footer-note">Made for the work, not just the webpage.</p></div><div class="footer-right"><span>© 2026 Yule Cai</span><a href="#top">Back to top ↑</a><small>Academic portfolio · 2026</small></div></footer>
+      <footer class="footer"><div><span class="footer-sign">Yule Cai<span>.</span></span><p id="footer-note">Made for the work, not just the webpage.</p></div><div class="footer-right"><span>© 2026 Yule Cai</span><a href="#top" id="back-to-top">Back to top ↑</a><small data-i18n-text="siteType">Academic portfolio · 2026</small></div></footer>
     </div>
   </main>
   <dialog id="paper-dialog" class="paper-dialog" aria-labelledby="paper-modal-title"><div class="modal-shell"><button id="paper-close" class="modal-close" aria-label="Close preview">✕</button><div id="modal-content"></div></div></dialog>
