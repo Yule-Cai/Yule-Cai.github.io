@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build public-site images from pre-existing owner's assets and CC BY licensed sources.
+"""Build public-site images from public owner project assets and CC BY licensed sources.
 
 Sources are public repository figures and (for one paper) an MDPI figure; no
 private data or unpublished research materials are used. Keeps originals intact.
@@ -15,10 +15,8 @@ OUT = ROOT / 'assets'
 OUT.mkdir(exist_ok=True)
 
 SOURCES = {
- 'project-recovery.webp': 'https://raw.githubusercontent.com/Yule-Cai/llm_task_recovery/main/figures/fig_map_viz_recovery.png',
  'project-navigation.webp': 'https://raw.githubusercontent.com/Yule-Cai/Decoupled-Dual-Brain-Nav/main/docs/fig4_benchmark_panel.png',
  'project-optimization.webp': 'https://raw.githubusercontent.com/Yule-Cai/Kinematic-Aware-IHO/main/results/planned_paths/Path_Map4.png',
- 'project-hand.webp': 'https://raw.githubusercontent.com/Yule-Cai/shadow-hand-asl/main/docs/simulation/1/12.png',
  # MDPI figure, CC BY 4.0; attribution remains in website figure caption.
  'paper-iho.webp': 'https://mdpi-res.com/sensors/sensors-26-02416/article_deploy/html/images/sensors-26-02416-g001-550.jpg',
 }

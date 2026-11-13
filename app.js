@@ -89,8 +89,16 @@
   };
   const renderResearch=()=>{
     $('focus-grid').innerHTML=D.focus.map(f=>`<article class="focus-card"><div class="focus-mark">${glyph[f.shape]}<span class="mono">${f.key}</span></div><h3>${escape(lang.current==='zh'?f.zh:f.title)}</h3><p>${escape(lang.current==='zh'?f.descZh:f.desc)}</p></article>`).join('');
-    $('projects-list').innerHTML=D.projects.map(p=>`<article class="project-card"><a class="project-media-link" href="${escape(p.evidence||p.url)}" target="_blank" rel="noopener noreferrer" aria-label="${escape(lang.current==='zh'?'在 GitHub 中查看实验原图：':'View the original research figure on GitHub: ')}${escape(p.name)}"><img src="${escape(img(p.cover))}" data-fallback="${escape(img(p.fallbackCover))}" class="project-art" alt="${escape(lang.current==='zh'?p.evidenceZh:p.evidenceEn)}" loading="lazy" decoding="async"/><span class="project-evidence-chip">${escape(lang.current==='zh'?'项目原始结果':'Original project figure')}</span></a><div class="project-content"><div class="project-category">${escape(p.category)} / ${p.n}</div><h3>${escape(p.name)}</h3><p>${escape(lang.current==='zh'?p.zh:p.description)}</p><div class="project-evidence-caption">${escape(lang.current==='zh'?p.evidenceZh:p.evidenceEn)} <span>· ${escape(p.evidenceTag)}</span></div><div class="project-actions"><a class="project-link" href="${escape(p.url)}" target="_blank" rel="noopener noreferrer">${lang.current==='zh'?'查看研究代码':'View code'} ↗</a><a class="project-secondary-link" href="${escape(p.evidence)}" target="_blank" rel="noopener noreferrer">${lang.current==='zh'?'原始图片':'Source figure'} ↗</a></div></div></article>`).join('');
-    $('projects-list').querySelectorAll('img[data-fallback]').forEach(el=>el.addEventListener('error',()=>{if(!el.dataset.fallbackUsed){el.dataset.fallbackUsed='1';el.src=el.dataset.fallback;el.alt=lang.current==='zh'?'项目图暂时无法加载':'Research figure temporarily unavailable';el.closest('.project-media-link')?.querySelector('.project-evidence-chip')?.remove();}}));
+    $('projects-list').innerHTML=D.projects.map(p=>{
+      const available = p.public !== false;
+      const picture = `<img src="${escape(img(p.cover))}" data-remote="${escape(img(p.remoteCover||p.cover))}" data-fallback="${escape(img(p.fallbackCover))}" class="project-art" alt="${escape(lang.current==='zh'?p.evidenceZh:p.evidenceEn)}" loading="lazy" decoding="async" />`;
+      const label = escape(lang.current==='zh'?(available?'在 GitHub 中查看实验原图：':'项目概念示意：'):(available?'View the original research figure on GitHub: ':'Concept illustration for '))+escape(p.name);
+      const chip = `<span class="project-evidence-chip">${available?(lang.current==='zh'?'项目原始结果':'Original project figure'):(lang.current==='zh'?'研究方向示意':'Concept illustration')}</span>`;
+      const media = available ? `<a class="project-media-link" href="${escape(p.evidence||p.url)}" target="_blank" rel="noopener noreferrer" aria-label="${label}">${picture}${chip}</a>` : `<div class="project-media-link" aria-label="${label}">${picture}${chip}</div>`;
+      const actions = available ? `<a class="project-link" href="${escape(p.url)}" target="_blank" rel="noopener noreferrer">${lang.current==='zh'?'查看研究代码':'View code'} ↗</a><a class="project-secondary-link" href="${escape(p.evidence)}" target="_blank" rel="noopener noreferrer">${lang.current==='zh'?'原始图片':'Source figure'} ↗</a>` : `<span class="project-access-note">${lang.current==='zh'?'研究仓库暂未公开':'Research repository not public'}</span>`;
+      return `<article class="project-card">${media}<div class="project-content"><div class="project-category">${escape(p.category)} / ${p.n}</div><h3>${escape(p.name)}</h3><p>${escape(lang.current==='zh'?p.zh:p.description)}</p><div class="project-evidence-caption">${escape(lang.current==='zh'?p.evidenceZh:p.evidenceEn)} <span>· ${escape(p.evidenceTag)}</span></div><div class="project-actions">${actions}</div></div></article>`;
+    }).join('');
+    $('projects-list').querySelectorAll('img[data-fallback]').forEach(el=>el.addEventListener('error',()=>{if(!el.dataset.remoteUsed && el.dataset.remote && el.src!==el.dataset.remote){el.dataset.remoteUsed='1';el.src=el.dataset.remote;return;} if(!el.dataset.remoteUsed && el.dataset.remote && el.src!==el.dataset.remote){el.dataset.remoteUsed='1';el.src=el.dataset.remote;return;} if(!el.dataset.fallbackUsed){el.dataset.fallbackUsed='1';el.src=el.dataset.fallback;el.alt=lang.current==='zh'?'项目图暂时无法加载':'Research figure temporarily unavailable';el.closest('.project-media-link')?.querySelector('.project-evidence-chip')?.remove();}}));
   };
   const renderExperience=()=>{
     const education=`<article class="timeline-item"><div class="timeline-date">${escape(D.education[0].period)}</div><div><h3>${w('education')}</h3><p class="organization">${escape(D.education[0].school)}</p><p>${escape(lang.current==='zh'?D.education[0].degreeZh:D.education[0].degree)}</p></div></article>`;
@@ -160,7 +168,7 @@
   let portraitIndex=0;
   portrait.addEventListener('error',()=>{
     portraitIndex+=1;
-    if(portraitIndex<portraitSources.length) portrait.src=portraitSources[portraitIndex];
+    if(portraitIndex<portraitSources.length){ portrait.removeAttribute('srcset'); portrait.src=portraitSources[portraitIndex]; }
     else {portrait.style.display='none';$('portrait-fallback').style.display='flex';}
   });
   portrait.addEventListener('load',()=>{$('portrait-fallback').style.display='none';portrait.style.display='block';});

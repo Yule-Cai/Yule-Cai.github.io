@@ -263,3 +263,6 @@
  .arc-state{font-size:7.5px}
  .research-arc-block,.ongoing-block{min-width:0}
 }
+
+/* v1.6: private-research image source labeling */
+.project-access-note{display:inline-flex;align-items:center;min-height:32px;font-size:11px;font-weight:700;color:var(--muted)}
