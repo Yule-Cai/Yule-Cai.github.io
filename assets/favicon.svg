@@ -1,10 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <title>Yule Cai</title>
-  <style>
-    .ring{stroke:#273047}
-    .initial{stroke:#777faf}
-    @media (prefers-color-scheme: dark){.ring{stroke:#e9ebf7}.initial{stroke:#afb6ed}}
-  </style>
-  <path class="ring" d="M51 15.5A24 24 0 1 0 51 48.5" fill="none" stroke-width="5.8" stroke-linecap="round"/>
-  <path class="initial" d="M20.5 21 32 33.5 43.5 21 M32 33.5V47.5" fill="none" stroke-width="6.4" stroke-linecap="round" stroke-linejoin="round"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="t">
+<title id="t">Yule Cai · Robot Navigation</title>
+<style>
+.yc-y{stroke:#716CC7}.yc-c{stroke:#273350}.yc-n{fill:#08AEBB;stroke:#F7FAFF}
+@media (prefers-color-scheme: dark){.yc-y{stroke:#A29CFF}.yc-c{stroke:#EDF2FF}.yc-n{fill:#29D5DD;stroke:#202A42}}
+</style>
+<g fill="none" stroke-linejoin="round" stroke-linecap="square">
+<path class="yc-y" d="M9.5 14 L21 27.5 L32.5 14 M21 27.5 V49" stroke-width="6.6"/>
+<path class="yc-c" d="M54 16.5 L47 13 H42.5 L35 20.5 V43.5 L42.5 51 H47 L54 47.5" stroke-width="6.4"/>
+</g>
+<circle class="yc-n" cx="54" cy="16.5" r="3.9" stroke-width="1.8"/>
+<circle cx="21" cy="49" r="2.3" fill="#08AEBB"/>
 </svg>

@@ -275,3 +275,15 @@
 .brand:focus-visible .brand-emblem,.brand:hover .brand-emblem{transform:translateY(-1px);transition:transform .16s ease}
 @media(max-width:430px){.brand-emblem{width:30px;height:30px}.brand{gap:8px}}
 @media(prefers-reduced-motion:reduce){.brand:focus-visible .brand-emblem,.brand:hover .brand-emblem{transform:none;transition:none}}
+
+
+/* v1.9 — technical YC route monogram, with two navigation waypoints */
+.tech-emblem{width:35px;height:35px}
+.tech-emblem .yc-y{stroke:#716CC7}
+.tech-emblem .yc-c{stroke:var(--ink)}
+.tech-emblem .yc-node{fill:#08AEBB;stroke:var(--bg)}
+.tech-emblem .yc-pulse{fill:#08AEBB}
+:root[data-theme="dark"] .tech-emblem .yc-y{stroke:#A29CFF}
+:root[data-theme="dark"] .tech-emblem .yc-node{fill:#29D5DD;stroke:#202A42}
+:root[data-theme="dark"] .tech-emblem .yc-pulse{fill:#29D5DD}
+@media(max-width:430px){.tech-emblem{width:31px;height:31px}}
