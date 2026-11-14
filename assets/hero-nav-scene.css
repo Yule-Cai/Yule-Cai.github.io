@@ -178,3 +178,47 @@
   }
   .hero-lens-stage .hero-lens-overlay {height:230px;}
 }
+
+/* v3.3 — iPhone / touch: the trigger precedes a compact, optional scene.
+ * The old 244px panel expanded above the pressed button, causing iOS scroll
+ * anchoring to jump and push the main heading behind the sticky header.
+ * This visual demo is secondary; keep the research introduction readable. */
+@media (hover:none), (pointer:coarse) {
+  .hero-lens-stage {
+    display:flex;
+    flex-direction:column;
+    align-items:stretch;
+  }
+  .hero-lens-stage > .intro-title { order:0; }
+  .hero-lens-stage > .hero-lens-touch-toggle {
+    order:1;
+    align-self:flex-start;
+    margin:0 0 3px;
+  }
+  .hero-lens-stage > .hero-lens-overlay {
+    order:2;
+    height:clamp(168px,49vw,196px);
+    min-height:0;
+    margin:10px 0 14px;
+    border-radius:14px;
+  }
+  .hero-lens-stage .hero-lens-overlay .hero-nav-map {
+    top:41%!important;
+    transform:translate(-50%,-50%) scale(.67);
+  }
+  .hero-lens-stage .hero-lens-overlay .hero-lens-orbit-label {
+    top:auto!important;
+    bottom:7px!important;
+    left:50%!important;
+    transform:translateX(-50%)!important;
+    font-size:9px;
+    line-height:1.3;
+    max-width:calc(100% - 16px);
+  }
+}
+@media (max-width:360px) {
+  .hero-lens-stage > .hero-lens-overlay {height:168px;}
+  .hero-lens-stage .hero-lens-overlay .hero-nav-map {
+    transform:translate(-50%,-50%) scale(.60);
+  }
+}

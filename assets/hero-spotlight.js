@@ -143,7 +143,10 @@
   tapButton.className = 'hero-lens-touch-toggle';
   tapButton.setAttribute('aria-pressed','false');
   tapButton.innerHTML = '<span class="lens-toggle-dot" aria-hidden="true"></span><span class="lens-toggle-text">Explore the unknown</span>';
-  stage.appendChild(tapButton);
+  // On touch screens keep the trigger BEFORE the expanding preview.
+  // Inserting a panel above the pressed control causes Safari scroll anchoring
+  // to jump and puts the heading behind the sticky navigation.
+  stage.insertBefore(tapButton, overlay);
   function syncButtonLanguage() {
     const zh = document.documentElement.lang.toLowerCase().startsWith('zh');
     const label = zh ? '探索隐藏视角' : 'Explore the unknown';
