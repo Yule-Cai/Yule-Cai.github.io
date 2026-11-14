@@ -18,7 +18,7 @@
   overlay.setAttribute('aria-hidden', 'true');
   const pattern = document.createElement('div');
   pattern.className = 'hero-lens-pattern';
-  ['ROBOT · NAVIGATION · ROBOT', 'PATH · PLAN · REPLAN', 'REASON · ADAPT · RECOVER', 'ROBOT · NAVIGATION · ROBOT', 'PATH · PLAN · REPLAN', 'REASON · ADAPT · RECOVER'].forEach(str => {
+  ['MOTION · PLAN · CONSTRAINTS', 'VERIFY · AUDIT · ADAPT', 'MULTI-ROBOT · COORDINATE', 'MOTION · PLAN · CONSTRAINTS', 'VERIFY · AUDIT · ADAPT', 'MULTI-ROBOT · COORDINATE'].forEach(str => {
     const line = document.createElement('span');
     line.textContent = str;
     pattern.appendChild(line);
@@ -28,7 +28,7 @@
   copy.setAttribute('aria-hidden', 'true');
   const label = document.createElement('span');
   label.className = 'hero-lens-orbit-label';
-  label.textContent = 'PATH  /  REPLAN  /  RECOVER';
+  label.textContent = 'PLAN  /  VERIFY  /  COORDINATE';
   overlay.append(pattern, copy, label);
   stage.appendChild(overlay);
 
