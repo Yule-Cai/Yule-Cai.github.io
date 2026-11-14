@@ -155,8 +155,8 @@
     if (active) conceal();
     else {
       const a = title.getBoundingClientRect();
-      revealAt(a.left + a.width*.6, a.top + a.height*.5);
       tapButton.setAttribute('aria-pressed','true');
+      revealAt(a.left + a.width*.6, a.top + a.height*.5);
     }
   });
 
