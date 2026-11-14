@@ -379,3 +379,12 @@
   .summer-school-link{min-height:44px;font-size:12px}
   .summer-school-item .timeline-date{font-variant-numeric:tabular-nums}
 }
+
+
+/* v2.4 — put “reason” at the beginning of the second line.
+   Applies to both the readable title and the spotlight's visual clone.
+   Chinese heading keeps its natural responsive wrapping. */
+html[lang="en"] .intro-title em {
+  display: block;
+  margin-top: .015em;
+}
