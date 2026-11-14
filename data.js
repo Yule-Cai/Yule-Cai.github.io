@@ -61,6 +61,15 @@ window.YULE_DATA = {
     {name:'Kinematic-Aware IHO',category:'PATH PLANNING',description:'Kinematic-aware optimization for feasible, collision-free robot trajectories in complex grid environments.',zh:'面向复杂栅格环境的运动学约束路径优化。',url:'https://github.com/Yule-Cai/Kinematic-Aware-IHO',cover:'project-optimization.webp',remoteCover:'https://raw.githubusercontent.com/Yule-Cai/Kinematic-Aware-IHO/main/results/planned_paths/Path_Map4.png',fallbackCover:'project-optimization.svg',evidence:'https://github.com/Yule-Cai/Kinematic-Aware-IHO/blob/main/results/planned_paths/Path_Map4.png',evidenceEn:'Planned path on Map 4',evidenceZh:'地图 4 的规划路径',evidenceTag:'Planned route',n:'03'},
     {name:'Shadow Hand ASL',category:'ROBOT MANIPULATION',description:'A computer-vision-to-robot pipeline for recognizing and reproducing ASL gestures using the Shadow Dexterous Hand.',zh:'基于 Shadow Dexterous Hand 的视觉识别与手势复现系统。',url:'',cover:'project-hand.svg',public:false,fallbackCover:'project-hand.svg',evidence:'',evidenceEn:'Concept illustration; research files are not public',evidenceZh:'概念示意图；研究仓库暂未公开',evidenceTag:'Concept only',n:'04'}
   ],
+  summerSchools: [
+    {
+      period: 'Aug 4–8, 2025', periodZh: '2025 年 8 月 4–8 日',
+      name: {en:'Data Science Summer School 2025', zh:'2025 数据科学暑期学校'},
+      org: {en:'Hertie School Data Science Lab', zh:'Hertie School Data Science Lab'},
+      desc: {en:'Participated in the online Data Science Summer School, directed by Prof. Simon Munzert.', zh:'参加由 Simon Munzert 教授指导的线上数据科学暑期学校。'},
+      link: 'https://www.hertie-school.org/en/sustainability/news/detail/content/data-democracy-from-zero-to-ai-agent-in-five-days'
+    }
+  ],
   service: [{title:'Peer reviewer',org:'Springer Nature journals',period:'2026 — Present', en:'Selected reviewing venues: Scientific Reports, Discover Artificial Intelligence, Artificial Intelligence Review, Discover Robotics, and The Journal of Supercomputing. Individual confidential manuscript details are not published.',zh:'审稿期刊包括 Scientific Reports、Discover Artificial Intelligence、Artificial Intelligence Review、Discover Robotics 与 The Journal of Supercomputing。未公开受审稿件的保密细节。'}],
   education:[{degree:'B.Sc. in Information Technology',degreeZh:'信息技术理学学士（在读）',school:'Universiti Utara Malaysia',period:'2025 — Present'}]
 };
