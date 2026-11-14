@@ -1,0 +1,76 @@
+/* v2.3 | Yule Cai / Interactive research-title spotlight
+ * Original visual treatment; no MiMo brand marks or assets are reused.
+ * The original heading remains the sole accessible/SEO heading.
+ */
+.hero-lens-stage{position:relative;isolation:isolate;display:flow-root;min-width:0}
+.hero-lens-stage>.intro-title{position:relative;z-index:0}
+.hero-lens-overlay{
+  position:absolute;inset:-145px -82px -145px -82px;
+  z-index:3;pointer-events:none;overflow:hidden;
+  background:#111827;color:#fff;
+  opacity:0;clip-path:circle(0px at 50% 50%);
+  contain:paint;
+}
+.hero-lens-stage.is-revealing .hero-lens-overlay{opacity:1}
+.hero-lens-pattern{
+  position:absolute;inset:-40px -75px;
+  display:flex;flex-direction:column;justify-content:center;gap:20px;
+  transform:rotate(-7deg);overflow:hidden;
+  font:800 clamp(20px,3.2vw,41px)/1.2 'DM Sans','Manrope',sans-serif;
+  letter-spacing:.32em;color:#fff;opacity:.095;
+  white-space:nowrap;user-select:none;
+}
+.hero-lens-pattern span:nth-child(even){transform:translateX(74px)}
+.hero-lens-pattern span:nth-child(3n){transform:translateX(-35px)}
+.hero-lens-overlay .hero-lens-copy{
+  position:absolute;z-index:2;left:0;top:0;width:auto;height:auto;
+  margin:0;max-width:none;
+  color:#f9fbff;
+  font-family:'DM Sans','Manrope',sans-serif;
+  pointer-events:none;user-select:none;
+}
+.hero-lens-overlay .hero-lens-copy em{
+  color:#9ae5dc;
+}
+.hero-lens-overlay .hero-lens-orbit-label{
+  position:absolute;bottom:62px;right:76px;
+  font:800 9px/1.4 'DM Sans',sans-serif;
+  letter-spacing:.26em;color:#9ae5dc;opacity:.7;
+}
+.hero-lens-touch-toggle{display:none}
+@media(hover:hover) and (pointer:fine){
+  .hero-lens-stage>.intro-title{cursor:crosshair}
+}
+@media(hover:none), (pointer:coarse){
+  .hero-lens-overlay{inset:-100px -35px -95px -35px}
+  .hero-lens-touch-toggle{
+    display:inline-flex;align-items:center;justify-content:center;
+    gap:8px;min-height:44px;max-width:100%;
+    margin:-5px 0 17px;padding:9px 14px;
+    background:var(--surface);border:1px solid var(--line);
+    border-radius:999px;color:var(--accent);
+    font-size:11px;font-weight:800;letter-spacing:.035em;
+    transition:background .2s ease,border-color .2s ease;
+    position:relative;z-index:4;
+  }
+  .hero-lens-touch-toggle[aria-pressed="true"]{background:var(--accent-soft);border-color:var(--accent)}
+  .hero-lens-touch-toggle .lens-toggle-dot{width:11px;height:11px;border-radius:50%;background:var(--accent);display:inline-block;box-shadow:0 0 0 3px var(--accent-soft)}
+  .hero-lens-overlay .hero-lens-orbit-label{display:none}
+}
+@media(max-width:430px){
+  .hero-lens-overlay{inset:-85px -24px -80px -24px}
+  .hero-lens-pattern{font-size:23px;gap:16px;opacity:.08}
+}
+@media(prefers-reduced-motion:reduce){
+  .hero-lens-overlay{display:none!important}
+  .hero-lens-touch-toggle{display:none!important}
+  .hero-lens-stage>.intro-title{cursor:auto!important}
+}
+/* Small screens must not create horizontal scrolling through negative insets. */
+@media(max-width:760px){.hero-lens-overlay{left:0;right:0}}
+/* The reveal always contrasts with the page behind it. */
+:root[data-theme="dark"] .hero-lens-overlay{background:#e5eaf5;color:#15203a}
+:root[data-theme="dark"] .hero-lens-overlay .hero-lens-copy{color:#16233e}
+:root[data-theme="dark"] .hero-lens-overlay .hero-lens-copy em{color:#625eaf}
+:root[data-theme="dark"] .hero-lens-pattern{color:#16213d;opacity:.105}
+:root[data-theme="dark"] .hero-lens-orbit-label{color:#575c9d}
