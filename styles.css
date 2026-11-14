@@ -318,3 +318,23 @@
   }
 }
 @media(prefers-reduced-motion:reduce){.arc-step:not(:last-child)::after{transition:none;animation:none}}
+
+
+/* v2.1: exact source artwork. No approximate SVG recreation. */
+.brand .brand-artwork{
+  flex:0 0 auto;display:block;width:65px;aspect-ratio:1049 / 671;
+  max-height:44px;overflow:visible;line-height:0;
+}
+.brand .brand-original-image{
+  display:block;width:100%;height:100%;object-fit:contain;image-rendering:auto;
+}
+.brand:hover .brand-original-image,.brand:focus-visible .brand-original-image{
+  transform:translateY(-1px);transition:transform .16s ease;
+}
+@media(max-width:760px){.brand .brand-artwork{width:53px}}
+@media(max-width:380px){.brand .brand-artwork{width:43px}}
+@media(prefers-reduced-motion:reduce){
+  .brand:hover .brand-original-image,.brand:focus-visible .brand-original-image{
+    transform:none;transition:none;
+  }
+}
