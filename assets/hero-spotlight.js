@@ -86,7 +86,10 @@
     overlay.style.clipPath = `circle(${Math.max(0,r).toFixed(2)}px at ${x.toFixed(2)}px ${y.toFixed(2)}px)`;
     overlay.style.setProperty('--spotlight-x', `${x.toFixed(2)}px`);
     overlay.style.setProperty('--spotlight-y', `${y.toFixed(2)}px`);
-    overlay.style.setProperty('--spotlight-label-offset', `${Math.round(Math.min(94, Math.max(62, Math.max(0,r) * .44)))}px`);
+    overlay.style.setProperty('--spotlight-label-offset', `${Math.round(Math.min(100, Math.max(78, Math.max(0,r) * .5)))}px`);
+    overlay.style.setProperty('--hero-map-scale', Math.min(.94, Math.max(.62, (Math.max(0,r)-18)/195)).toFixed(3));
+    overlay.style.setProperty('--hero-label-offset', `${Math.round(Math.min(100, Math.max(78, Math.max(0,r) * .5)))}px`);
+    overlay.style.setProperty('--hero-label-width', `${Math.round(Math.min(270, Math.max(145, Math.max(0,r) * 1.75 - 20)))}px`);
     if (!active && r < .4) stage.classList.remove('is-revealing');
     if (!done) frame = requestAnimationFrame(tick);
   }
@@ -97,10 +100,13 @@
     targetX = pos.x;
     targetY = pos.y;
     if (!active) {
-      x = targetX; y = targetY; r = 0;
+      // Resume smoothly if the user comes back before the lens closes.
+      const resuming = r > .5 && stage.classList.contains('is-revealing');
+      if (!resuming) { x = targetX; y = targetY; r = 0; }
       active = true;
       stage.classList.add('is-revealing');
       syncCopy();
+      stage.dispatchEvent(new Event('yc-hero-open'));
     }
     targetR = pos.radius;
     schedule();
@@ -110,6 +116,15 @@
     active = false;
     targetR = 0;
     if (tapButton) tapButton.setAttribute('aria-pressed','false');
+    stage.dispatchEvent(new Event('yc-hero-close'));
+    if (coarse.matches) {
+      // Touch preview uses clip-path:none, so a collapsing circle cannot hide it.
+      if (frame) cancelAnimationFrame(frame);
+      frame = 0; r = 0;
+      stage.classList.remove('is-revealing');
+      overlay.style.clipPath = 'circle(0px at 50% 50%)';
+      return;
+    }
     schedule();
   }
 
@@ -121,6 +136,7 @@
   });
   title.addEventListener('pointerleave', conceal);
   window.addEventListener('blur', conceal);
+  document.addEventListener('visibilitychange', () => { if (document.hidden) conceal(); });
 
   tapButton = document.createElement('button');
   tapButton.type = 'button';
@@ -151,6 +167,6 @@
   window.addEventListener('resize', () => { syncCopy(); if (active) {conceal();} }, {passive:true});
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(syncCopy).catch(() => {});
   if (window.ResizeObserver) new ResizeObserver(syncCopy).observe(title);
-  reduced.addEventListener?.('change', () => { conceal(); if (reduced.matches) stage.classList.remove('is-revealing'); });
+  reduced.addEventListener?.('change', () => { if (reduced.matches) { conceal(); stage.classList.remove('is-revealing'); } });
   syncCopy(); syncButtonLanguage();
 })();

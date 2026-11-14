@@ -75,7 +75,6 @@
     en: ['PLAN · FEASIBLE MOTION', 'VERIFY · RUNTIME CONSTRAINTS', 'COORDINATE · TEAM LEARNING'],
     zh: ['规划 · 运动可行性', '验证 · 运行时约束', '协同 · 团队强化学习']
   };
-  const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)');
   const language = () => document.documentElement.lang.toLowerCase().startsWith('zh') ? 'zh' : 'en';
   let phaseTimer = null;
   let currentPhase = 0;
@@ -102,21 +101,15 @@
     }
   }
   const start = () => {
-    if (document.hidden || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (!stage.classList.contains('is-revealing') || document.hidden || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     clearTimer();
     running = true;
     phaseTo(0);
   };
   const stop = () => { running = false; clearTimer(); };
-  title.addEventListener('pointerenter', e => {
-    if (finePointer.matches && (e.pointerType === 'mouse' || e.pointerType === 'pen')) start();
-  });
-  title.addEventListener('pointerleave', stop);
-  touchToggle.addEventListener('click', () => {
-    if (touchToggle.getAttribute('aria-pressed') === 'true') start();
-    else stop();
-    syncCopy();
-  });
+  // The spotlight owns all open/close interactions. One lifecycle = one animation.
+  stage.addEventListener('yc-hero-open', start);
+  stage.addEventListener('yc-hero-close', stop);
   window.addEventListener('blur', stop);
   document.addEventListener('visibilitychange', () => { if (document.hidden) stop(); });
   const observer = new MutationObserver(() => { if (!stage.classList.contains('is-revealing')) stop(); });
