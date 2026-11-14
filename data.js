@@ -3,8 +3,8 @@
 window.YULE_DATA = {
   profile: {
     name: 'Yule Cai', zhName: '蔡雨乐',
-    role: 'Undergraduate Researcher · Embodied AI & Robotics',
-    roleZh: '本科研究者 · 具身智能与机器人',
+    role: 'Undergraduate Researcher · Robot Planning & Learning',
+    roleZh: '本科研究者 · 机器人规划与学习',
     institution: 'Universiti Utara Malaysia',
     email: 'caiyule0911@163.com',
     scholar: 'https://scholar.google.com/citations?hl=en&user=W8lwxUYAAAAJ',
@@ -12,24 +12,19 @@ window.YULE_DATA = {
     portrait: 'assets/profile-900.webp',
     portraitSources: ['assets/profile-900.webp','profile.png'],
     orcid: 'https://orcid.org/0009-0007-2692-0031',
-    lines: ['Robot navigation & reinforcement learning', 'LLM-guided planning and task recovery', 'Embodied intelligence under uncertainty'],
-    linesZh: ['机器人导航与强化学习', '大语言模型辅助规划与任务恢复', '不确定环境中的具身智能']
+    lines: ['Motion Planning & Runtime Assurance','Reliable Robot Decision-Making','Multi-Robot Reinforcement Learning'],
+    linesZh: ['运动规划与运行时约束','可靠机器人决策','多机器人强化学习']
   },
   about: {
     en: [
-      'I am an Information Technology undergraduate at Universiti Utara Malaysia. My research focuses on how robots plan, navigate, and recover when instructions or the environment change.',
-      'I work at the intersection of reinforcement learning, language-model reasoning, and autonomous systems, with particular interest in practical evaluation and resource-constrained deployment. I also contribute to journal peer review.'
+      'I am an Information Technology undergraduate at Universiti Utara Malaysia. My research explores reliable robot autonomy in changing environments and under task constraints, spanning motion-feasible planning, runtime constraint enforcement and decision reliability.',
+      'My published work includes kinematic-aware path optimization and decoupled RL–LLM navigation. Ongoing studies explore language-grounded decision auditing, feedback-driven multi-robot coordination and communication efficiency in distributed reinforcement learning. Experimental prototypes are distinguished from peer-reviewed results.'
     ],
     zh: [
-      '我目前就读于马来西亚北方大学信息技术本科。研究主要关注机器人在任务指令变化、部分可观测与环境扰动条件下的规划、导航和恢复能力。',
-      '我重点探索强化学习、语言模型推理与自主系统的结合，关注可复现的实验评估和资源受限环境中的部署，也参与学术期刊同行评审。'
+      '我目前就读于马来西亚北方大学信息技术本科，研究动态环境与任务约束下的可靠机器人自主决策，包括运动可行性路径规划、运行时空间约束执行和决策可靠性。',
+      '已发表工作涉及运动学约束路径优化和解耦式 RL–LLM 导航。目前还在探索语言接地的决策审计、执行反馈驱动的多机器人协同以及分布式强化学习通信效率；研究设想与实验原型不等同于已发表结论。'
     ]
   },
-  focus: [
-    {id:'nav', key:'01', title:'Autonomous Navigation', zh:'自主导航', desc:'Robust route planning, partial observability, and multi-robot coordination.', descZh:'鲁棒路径规划、部分可观测与多机器人协作。', shape:'path'},
-    {id:'rl', key:'02', title:'Reinforcement Learning', zh:'强化学习', desc:'Policy learning, task recovery, and agent adaptation.', descZh:'策略学习、任务恢复与智能体适应。', shape:'policy'},
-    {id:'llm', key:'03', title:'Language-Grounded Robotics', zh:'语言驱动的机器人', desc:'Connecting natural-language goals to verifiable robot behavior.', descZh:'把自然语言任务目标连接到可验证的机器人行为。', shape:'graph'}
-  ],
   news: [
     {date:'2026.06', en:'Developed an LLM Task Recovery prototype to study language-guided navigation recovery.', zh:'开展 LLM Task Recovery 原型研究，探索导航智能体的语言引导恢复。', url:'', type:'Research'},
     {date:'2026.05', en:'Our first-author survey on causal inference and introspective robotics was accepted by Nonlinear Dynamics.', zh:'关于因果推断与机器人内省决策的一作综述被 Nonlinear Dynamics 接收。', url:'https://doi.org/10.1007/s11071-026-12695-2', type:'Journal'},
@@ -43,14 +38,14 @@ window.YULE_DATA = {
     {id:'shap',year:2026,venue:'International Journal of Machine Learning and Cybernetics',kind:'Journal',title:'Application of SHAP-Based Explainable Machine Learning in Remaining Useful Life Prediction for Aircraft Engine Systems',authors:'C. Yuan, Y. Cai, Z. Zhang',role:'Co-first author',doi:'https://doi.org/10.1007/s13042-026-03246-7',tags:['Explainable AI','Predictive maintenance'],cover:'https://media.springernature.com/m312/springer-static/image/art%3A10.1007%2Fs13042-026-03246-7/MediaObjects/13042_2026_3246_Fig5_HTML.png',backupCover:'paper-pending-shap.svg',figure:'Fig. 5',figureSource:'Original SHAP summary plot · Int. J. Mach. Learn. Cybern.',figureOriginal:true,figureLink:'https://doi.org/10.1007/s13042-026-03246-7',abstract:'An explainable machine-learning approach for estimating remaining useful life in aircraft engine systems.',takeaway:'Making prognostic predictions more interpretable.',method:['Predict remaining useful life','Use SHAP explanations','Interpret contributing factors'],bib:'@article{yuan2026shap,\n  title={Application of SHAP-Based Explainable Machine Learning in Remaining Useful Life Prediction for Aircraft Engine Systems},\n  author={Yuan, Chunhong and Cai, Yule and Zhang, Zixin},\n  journal={International Journal of Machine Learning and Cybernetics},\n  year={2026},\n  doi={10.1007/s13042-026-03246-7}\n}'},
   ],
   researchArc: [
-    {num:'01',state:{en:'PUBLISHED WORK',zh:'已发表研究'},status:'verified',title:{en:'Plan with constraints',zh:'面向运动约束规划'},detail:{en:'Find collision-free paths that remain feasible for a moving robot.',zh:'不仅寻找无碰撞路径，也要满足机器人实际运动约束。'},link:'papers/iho.html',linkLabel:{en:'KA-IHO · Sensors ↗',zh:'KA-IHO · Sensors ↗'}},
-    {num:'02',state:{en:'PUBLISHED WORK',zh:'已发表研究'},status:'verified',title:{en:'Notice when progress stops',zh:'识别导航进度停滞'},detail:{en:'Use execution feedback to request higher-level guidance when local navigation fails to make progress.',zh:'在局部导航停滞时，通过执行反馈触发高层规划调整。'},link:'papers/edge.html',linkLabel:{en:'RL–LLM navigation · JKSUCIS ↗',zh:'RL–LLM 导航 · JKSUCIS ↗'}},
-    {num:'03',state:{en:'IN EXPLORATION',zh:'探索阶段'},status:'exploring',title:{en:'Recover together',zh:'协作中恢复任务'},detail:{en:'Investigate when robot teams should wait, yield or reconsider a shared plan.',zh:'研究多机器人何时等待、让行或重新考虑共同计划。'},link:'research.html',linkLabel:{en:'Research questions ↗',zh:'研究问题 ↗'}}
+    {num:'01',state:{en:'PUBLISHED + ACTIVE',zh:'已发表 + 在研'},status:'mixed',title:{en:'Motion Planning & Constraint Enforcement',zh:'运动规划与约束执行'},detail:{en:'Kinematic-feasible route optimization (KA-IHO) and runtime motion authorization under changing spatial rules (RuleSync).',zh:'KA-IHO 研究运动可行的路径优化；RuleSync 探索空间规则变化时的一致性运动准入。'},link:'research.html#planning',linkLabel:{en:'Planning & runtime assurance ↗',zh:'规划与运行时约束 ↗'}},
+    {num:'02',state:{en:'PUBLISHED + STUDIED',zh:'已发表 + 在研'},status:'mixed',title:{en:'Reliable Robot Decision-Making',zh:'可靠机器人决策'},detail:{en:'Feedback-triggered RL–LLM navigation, auditable route decisions and faithfulness to language-grounded safety rules.',zh:'执行反馈驱动的 RL–LLM 导航、路径决策审计与自然语言安全规则忠实性。'},link:'research.html#decision-reliability',linkLabel:{en:'Decision reliability ↗',zh:'可靠决策研究 ↗'}},
+    {num:'03',state:{en:'ONGOING',zh:'探索阶段'},status:'exploring',title:{en:'Multi-Robot Learning & Coordination',zh:'多机器人学习与协作'},detail:{en:'Hierarchical reinforcement learning and execution feedback for team coordination, adaptation and task recovery.',zh:'探索分层强化学习和执行反馈如何支持团队协同、适应与任务恢复。'},link:'research.html#multi-robot',linkLabel:{en:'Multi-robot learning ↗',zh:'多机器人协同学习 ↗'}}
   ],
   ongoing: [
-    {num:'01',title:{en:'Rule-aware execution',zh:'规则感知执行'},text:{en:'How should a robot respond when task constraints change during execution?',zh:'当任务约束在执行中变化时，机器人应如何响应？'}},
-    {num:'02',title:{en:'Multi-robot negotiation',zh:'多机器人协商'},text:{en:'When should one robot wait or yield, and how should the team decide?',zh:'何时应等待或让行？团队如何做出决定？'}},
-    {num:'03',title:{en:'Communication-aware learning',zh:'通信感知学习'},text:{en:'What should teammates communicate to coordinate under limited information?',zh:'信息受限时，队友应该交换什么内容来协作？'}}
+    {num:'01',stage:{en:'IN EXPERIMENT',zh:'实验中'},title:{en:'Runtime Spatial Constraints',zh:'运行时空间约束'},text:{en:'RuleSync studies authorization, revocation and renewed admission as spatial constraints change during execution.',zh:'RuleSync 研究空间规则动态变化时的运动授权、撤销及重新准入。'}},
+    {num:'02',stage:{en:'UNDER REVIEW / STUDY',zh:'在审与研究中'},title:{en:'Auditable Route Decisions',zh:'可审计的路径决策'},text:{en:'Can language-grounded route decisions be verified against task intent and safety constraints?',zh:'能否验证语言接地的路径决策是否忠于任务意图和安全约束？'}},
+    {num:'03',stage:{en:'IN DEVELOPMENT',zh:'开发验证中'},title:{en:'Feedback-Driven Team Learning',zh:'反馈驱动的团队学习'},text:{en:'When should execution feedback update high-level coordination rather than only low-level robot actions?',zh:'什么样的执行反馈应当改变高层团队协作，而非仅修正底层动作？'}}
   ],
   researchExperience: [
     {period:'2026',role:{en:'Research internship · SenseLab',zh:'科研实习 · SenseLab'},org:{en:'Department of Electronic Engineering, Tsinghua University',zh:'清华大学电子工程系 · SenseLab'},desc:{en:'Contributed to the KA-IHO mobile-robot path-planning research, with published work in Sensors (2026). Internship dates and additional responsibilities are not listed.',zh:'参与 KA-IHO 移动机器人路径规划研究，相关成果发表于 Sensors（2026）。不列出尚未核实的实习起止时间或额外职责。'},link:'https://doi.org/10.3390/s26082416'}

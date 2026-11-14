@@ -27,10 +27,10 @@
   <link rel="icon" type="image/png" sizes="64x64" href="/assets/yc-icon-64.png?v=2.1" />
   <link rel="shortcut icon" href="/favicon.ico?v=2.1" />
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/yc-icon-180.png?v=2.1" />
-  <link rel="stylesheet" href="styles.css?v=2.5" />
+  <link rel="stylesheet" href="styles.css?v=2.9" />
 <link rel="stylesheet" href="/assets/motion.css?v=1.7"><script src="/assets/motion.js?v=1.7"></script>  <link rel="stylesheet" href="/assets/hero-spotlight.css?v=2.5" />
   <link rel="stylesheet" href="/assets/hero-nav-scene.css?v=2.8" />
-  <link rel="stylesheet" href="/assets/scroll-route.css?v=2.8" />
+  
 </head>
 <body>
   <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
@@ -79,30 +79,7 @@
         <div class="research-tags"><span>Reinforcement Learning</span><span>Robot Navigation</span><span>LLM Planning</span><span>Embodied AI</span></div>
         <div class="research-premise"><span class="premise-label" data-i18n-text="researchQuestion">CURRENT RESEARCH QUESTION</span><p id="premise-text">When should a robot stop repairing a route and decide to replan?</p><a href="research.html" id="premise-link">Explore the research approach ↗</a></div>
       </section>
-<section class="route-story" id="route-story" aria-label="Interactive robot navigation demonstration">
-  <div class="route-story-sticky">
-    <header class="route-story-header">
-      <div class="route-story-overline"><span class="route-story-dot"></span><span data-story-i18n="eyebrow">INTERACTIVE / ROBOT NAVIGATION</span><span class="route-story-scroll-prompt" data-story-i18n="hint">SCROLL TO ADVANCE <span aria-hidden="true">↓</span></span></div>
-      <h2 data-story-i18n="headline">When the route fails, <em>the plan changes.</em></h2>
-      <p data-story-i18n="lead">A conceptual walkthrough of how navigation adapts when an initially valid route becomes blocked.</p>
-    </header>
-    <div class="route-story-body">
-      <div class="route-story-viewport" id="route-story-viewport"><div class="route-story-fallback" data-story-i18n="fallback">Start → Plan → Obstacle → Replan → Recover</div></div>
-      <aside class="route-story-explanation">
-        <div class="route-story-state"><span class="route-story-step-no">01 / 05</span><span class="route-story-state-pill"><span class="route-story-state-lamp"></span><span class="route-story-state-tag">PLANNING</span></span></div>
-        <h3 class="route-story-stage-title">Plan the route</h3>
-        <p class="route-story-stage-summary">Find a traversable path from start to goal.</p>
-        <div class="route-story-process" aria-hidden="true"><span class="active"></span><span></span><span></span><span></span><span></span></div>
-        <p class="route-story-notice" data-story-i18n="notice">Illustrative navigation sequence · Not experimental footage</p>
-      </aside>
-    </div>
-    <footer class="route-story-footer">
-      <div class="route-story-progress" role="progressbar" aria-label="Navigation story progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span class="route-story-progress-fill"></span></div>
-      <div class="route-story-footer-line"><span class="route-story-progress-text">00%</span><span class="route-story-step-caption" data-story-i18n="footer">Scroll down to move through the route · Scroll up to revisit</span><button class="route-story-skip" type="button" data-story-i18n="skip">Skip demonstration <span aria-hidden="true">↘</span></button></div>
-    </footer>
-  </div>
-</section>
-      <section class="news-section observed" id="news">
+<section class="news-section observed" id="news">
         <div class="section-heading"><div><div class="section-kicker" data-i18n-text="latest">LATEST UPDATES</div><h2 data-i18n="news">News <span>& notes</span></h2></div><span class="section-number">/ 02</span></div>
         <div id="news-list" class="news-list"><div class="news-row"><span class="news-date">2026.06</span><div class="news-body">Developed an LLM Task Recovery prototype to study language-guided navigation recovery. </div><span class="news-type">Research</span></div><div class="news-row"><span class="news-date">2026.05</span><div class="news-body">Our first-author survey on causal inference and introspective robotics was accepted by Nonlinear Dynamics. <a href="https://doi.org/10.1007/s11071-026-12695-2" target="_blank" rel="noreferrer" aria-label="Related source">↗</a></div><span class="news-type">Journal</span></div><div class="news-row"><span class="news-date">2026.05</span><div class="news-body">Our first-author work on edge-intelligent RL–LLM navigation was accepted by JKSUCIS. <a href="https://doi.org/10.1007/s44443-026-00870-9" target="_blank" rel="noreferrer" aria-label="Related source">↗</a></div><span class="news-type">Journal</span></div><div class="news-row"><span class="news-date">2026.04</span><div class="news-body">KA-IHO, our co-authored research on kinematic-aware mobile robot path planning, appeared in Sensors. <a href="https://doi.org/10.3390/s26082416" target="_blank" rel="noreferrer" aria-label="Related source">↗</a></div><span class="news-type">Journal</span></div></div>
       </section>
@@ -116,13 +93,18 @@
         <div class="section-heading"><div><div class="section-kicker" data-i18n-text="openSource">WORK IN PROGRESS / OPEN SOURCE</div><h2 data-i18n="research">Research <span>& projects</span></h2></div><span class="section-number">/ 04</span></div>
         <p class="section-lede" id="project-lede">Research questions and working prototypes, from task recovery to path planning and robotic manipulation.</p>
         
+
         <div class="research-arc-block" aria-labelledby="arc-heading">
-          <div class="research-microhead"><span class="research-microtag" data-i18n-v15="arcEyebrow">RESEARCH TRAJECTORY</span><h3 id="arc-heading" data-i18n-v15="arcTitle">From planning a path to adapting while moving</h3><p data-i18n-v15="arcIntro">Three connected questions, with published work clearly separated from current exploration.</p></div>
-          <ol class="research-arc-list" id="research-arc-list">
-            <li class="arc-step"><div class="arc-step-top"><span class="arc-index">01</span><span class="arc-state verified">PUBLISHED WORK</span></div><h4>Plan with constraints</h4><p>Find collision-free routes that remain feasible for a moving robot.</p><a href="papers/iho.html">KA-IHO · Sensors ↗</a></li>
-            <li class="arc-step"><div class="arc-step-top"><span class="arc-index">02</span><span class="arc-state verified">PUBLISHED WORK</span></div><h4>Notice when progress stops</h4><p>Use execution feedback to decide when local navigation needs higher-level help.</p><a href="papers/edge.html">RL–LLM navigation · JKSUCIS ↗</a></li>
-            <li class="arc-step"><div class="arc-step-top"><span class="arc-index">03</span><span class="arc-state exploring">IN EXPLORATION</span></div><h4>Recover together</h4><p>Study when robot teams should wait, yield or revisit their shared plan.</p><a href="research.html">Research questions ↗</a></li>
+          <div class="research-microhead"><span class="research-microtag" data-i18n-v15="arcEyebrow">RESEARCH PILLARS</span><h3 id="arc-heading" data-i18n-v15="arcTitle">Three complementary research areas</h3><p data-i18n-v15="arcIntro">Parallel research areas across planning, decision reliability and team learning—not successive completed stages.</p></div>
+          <ol class="research-arc-list research-pillar-list" id="research-arc-list">
+            <li class="arc-step"><div class="arc-step-top"><span class="arc-index">01</span><span class="arc-state mixed">PUBLISHED + ACTIVE</span></div><h4>Motion Planning &amp; Constraint Enforcement</h4><p>Kinematic-feasible planning and runtime spatial-constraint authorization.</p><a href="research.html#planning">Planning &amp; assurance ↗</a></li>
+            <li class="arc-step"><div class="arc-step-top"><span class="arc-index">02</span><span class="arc-state mixed">PUBLISHED + STUDIED</span></div><h4>Reliable Robot Decision-Making</h4><p>RL–LLM navigation, safety-rule faithfulness and route decision auditing.</p><a href="research.html#decision-reliability">Decision reliability ↗</a></li>
+            <li class="arc-step"><div class="arc-step-top"><span class="arc-index">03</span><span class="arc-state exploring">ONGOING</span></div><h4>Multi-Robot Learning &amp; Coordination</h4><p>Hierarchical reinforcement learning and feedback-guided team adaptation.</p><a href="research.html#multi-robot">Multi-robot research ↗</a></li>
           </ol>
+          <aside class="research-systems-note" aria-labelledby="systems-heading">
+            <div><span class="research-support-kicker" data-i18n-v15="systemsEyebrow">SUPPORTING SYSTEMS DIRECTION</span><h4 id="systems-heading" data-i18n-v15="systemsTitle">Efficient Distributed Reinforcement Learning</h4><p data-i18n-v15="systemsText">CAMS studies communication scheduling and policy-version age in distributed RL, separate from robot navigation benchmarks.</p></div>
+            <a href="research.html#distributed-rl" data-i18n-v15="systemsLink">Explore systems research ↗</a>
+          </aside>
         </div>
         <section class="results-block" aria-labelledby="results-heading">
           <div class="research-microhead"><span class="research-microtag" data-i18n-v15="resultsEyebrow">EVIDENCE FROM PUBLISHED WORK</span><h3 id="results-heading" data-i18n-v15="resultsTitle">Navigation under partial observability</h3><p data-i18n-v15="resultsIntro">Reported mean success rate across five map-difficulty levels in our published RL–LLM navigation study.</p></div>
@@ -137,7 +119,12 @@
           <div class="ongoing-grid" id="ongoing-grid"><article class="ongoing-card"><span>01 / WORK IN PROGRESS</span><h4>Rule-aware execution</h4><p>How can robots react when task constraints change during execution?</p></article><article class="ongoing-card"><span>02 / WORK IN PROGRESS</span><h4>Multi-robot negotiation</h4><p>When should one robot wait or yield, and how should the team know?</p></article><article class="ongoing-card"><span>03 / WORK IN PROGRESS</span><h4>Communication-aware learning</h4><p>What information should autonomous teammates exchange to coordinate?</p></article></div>
           <a class="ongoing-more" href="research.html" data-i18n-v15="ongoingMore">Read research questions and scope ↗</a>
         </section>
-        <div id="focus-grid" class="focus-grid"></div>
+        <aside class="research-vision" aria-labelledby="vision-heading">
+          <span class="research-microtag" data-i18n-v15="visionEyebrow">LONG-TERM RESEARCH QUESTION · PROPOSED</span>
+          <h3 id="vision-heading" data-i18n-v15="visionTitle">Adaptive Joint Capability Models for Multi-Robot Autonomy</h3>
+          <p data-i18n-v15="visionText">Can a team distinguish a flawed plan from changes in individual capability or coordination, and update only the relevant part of its shared model? This agenda remains unvalidated.</p>
+          <a href="research.html#future" data-i18n-v15="visionLink">Explore the research question ↗</a>
+        </aside>
         <div class="projects-label"><span id="selected-projects-label">SELECTED PROJECTS</span><span>↘</span></div>
         <div id="projects-list" class="projects-list"></div>
       </section>
@@ -150,9 +137,9 @@
   </main>
   <dialog id="paper-dialog" class="paper-dialog" aria-labelledby="paper-modal-title"><div class="modal-shell"><button id="paper-close" class="modal-close" aria-label="Close preview">✕</button><div id="modal-content"></div></div></dialog>
   <div class="toast" id="toast" aria-live="polite"></div>
-  <script src="data.js?v=2.2"></script><script src="studies.js"></script><script src="app.js?v=2.2"></script>
+  <script src="data.js?v=2.9"></script><script src="studies.js"></script><script src="app.js?v=2.9"></script>
   <script src="/assets/hero-spotlight.js?v=2.7"></script>
   <script src="/assets/hero-nav-scene.js?v=2.8"></script>
-  <script src="/assets/scroll-route.js?v=2.8"></script>
+  
 </body>
 </html>
