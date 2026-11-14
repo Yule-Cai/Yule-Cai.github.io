@@ -62,7 +62,18 @@
     copy.style.minHeight = `${a.height}px`;
   }
   function radius() {
-    return Math.round(Math.min(216, Math.max(146, window.innerWidth * .145)));
+    // A slightly smaller lens keeps the map and its caption legible.
+    return Math.round(Math.min(202, Math.max(142, window.innerWidth * .14)));
+  }
+  function safeLensPosition(clientX, clientY, bounds) {
+    // Keep the full circle on the overlay rather than clipping its label at edges.
+    const maxR = Math.max(70, Math.min(radius(), bounds.width / 2 - 10, bounds.height / 2 - 10));
+    const clamp = (value, lo, hi) => Math.min(hi, Math.max(lo, value));
+    return {
+      x: clamp(clientX - bounds.left, maxR + 8, bounds.width - maxR - 8),
+      y: clamp(clientY - bounds.top, maxR + 8, bounds.height - maxR - 8),
+      radius: maxR
+    };
   }
   function tick() {
     frame = 0;
@@ -75,22 +86,23 @@
     overlay.style.clipPath = `circle(${Math.max(0,r).toFixed(2)}px at ${x.toFixed(2)}px ${y.toFixed(2)}px)`;
     overlay.style.setProperty('--spotlight-x', `${x.toFixed(2)}px`);
     overlay.style.setProperty('--spotlight-y', `${y.toFixed(2)}px`);
-    overlay.style.setProperty('--spotlight-label-offset', `${Math.round(Math.min(76, Math.max(43, radius() * .45)))}px`);
+    overlay.style.setProperty('--spotlight-label-offset', `${Math.round(Math.min(94, Math.max(62, Math.max(0,r) * .44)))}px`);
     if (!active && r < .4) stage.classList.remove('is-revealing');
     if (!done) frame = requestAnimationFrame(tick);
   }
   function schedule() { if (!frame) frame = requestAnimationFrame(tick); }
   function revealAt(clientX, clientY) {
     const bounds = overlay.getBoundingClientRect();
-    targetX = clientX - bounds.left;
-    targetY = clientY - bounds.top;
+    const pos = fine.matches ? safeLensPosition(clientX, clientY, bounds) : {x: clientX - bounds.left, y: clientY - bounds.top, radius: radius()};
+    targetX = pos.x;
+    targetY = pos.y;
     if (!active) {
       x = targetX; y = targetY; r = 0;
       active = true;
       stage.classList.add('is-revealing');
       syncCopy();
     }
-    targetR = radius();
+    targetR = pos.radius;
     schedule();
   }
   function conceal() {

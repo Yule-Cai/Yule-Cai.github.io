@@ -93,3 +93,45 @@
 :root[data-theme="dark"] .hero-lens-overlay .hero-lens-orbit-label{background:#ecf5ffec;color:#205270;border-color:#618ba766}
 :root[data-theme="dark"] .hero-lens-overlay .hero-lens-orbit-label::before{background:#277d82}
 @media(prefers-reduced-motion:reduce){.hero-nav-map{display:none!important}.research-trace,.research-scene{animation:none!important;transition:none!important}}
+
+/* v3.1 — keep the actual SVG panel and caption inside the reveal lens. */
+.hero-nav-map {
+  transform:translate(-50%,-50%) translateY(-26px) scale(.96);
+}
+.hero-lens-overlay .hero-lens-orbit-label {
+  top:calc(var(--spotlight-y,50%) + var(--spotlight-label-offset,88px));
+  bottom:auto;
+  width:max-content;
+  max-width:min(260px,calc(100% - 22px));
+  white-space:normal;
+  text-align:center;
+  line-height:1.35;
+  padding:5px 9px;
+}
+@media (min-width:761px) and (max-width:1199px) {
+  .hero-nav-map {transform:translate(-50%,-50%) translateY(-27px) scale(.78);}
+  .hero-lens-overlay .hero-lens-orbit-label {
+    top:calc(var(--spotlight-y,50%) + var(--spotlight-label-offset,72px));
+    font-size:8px;
+    max-width:215px;
+  }
+}
+@media (hover:none), (pointer:coarse) {
+  .hero-lens-overlay .hero-nav-map {
+    top:44%!important;
+    transform:translate(-50%,-50%) scale(.94);
+  }
+  .hero-lens-overlay .hero-lens-orbit-label {
+    top:auto!important;bottom:11px!important;
+    width:max-content;max-width:calc(100% - 24px);
+    white-space:normal;text-align:center;
+    font-size:10px;
+  }
+}
+@media(max-width:360px){
+  .hero-lens-overlay .hero-nav-map {transform:translate(-50%,-50%) scale(.82);}
+  .hero-lens-stage .hero-lens-overlay {height:228px;}
+}
+@media (prefers-reduced-motion: reduce) {
+  .research-scene,.research-trace {transition:none!important;animation:none!important;}
+}

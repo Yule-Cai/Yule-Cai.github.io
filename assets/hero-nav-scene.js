@@ -87,7 +87,7 @@
     if (caption) caption.textContent = touchToggle.getAttribute('aria-pressed') === 'true'
       ? (language() === 'zh' ? '收起研究演示' : 'Hide research preview')
       : (language() === 'zh' ? '探索机器人研究' : 'Explore robot research');
-    touchToggle.setAttribute('aria-label', language() === 'zh' ? '切换机器人研究主题演示' : 'Toggle robot research themes preview');
+    touchToggle.setAttribute('aria-label', language() === 'zh' ? '播放或关闭机器人研究演示' : 'Play or close research preview');
   }
   function phaseTo(index) {
     currentPhase = index;
@@ -101,7 +101,12 @@
       phaseTimer = setTimeout(() => phaseTo(index + 1), index === 0 ? 1900 : 1700);
     }
   }
-  const start = () => { running = true; phaseTo(0); };
+  const start = () => {
+    if (document.hidden || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    clearTimer();
+    running = true;
+    phaseTo(0);
+  };
   const stop = () => { running = false; clearTimer(); };
   title.addEventListener('pointerenter', e => {
     if (finePointer.matches && (e.pointerType === 'mouse' || e.pointerType === 'pen')) start();
