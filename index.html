@@ -29,7 +29,8 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/yc-icon-180.png?v=2.1" />
   <link rel="stylesheet" href="styles.css?v=2.5" />
 <link rel="stylesheet" href="/assets/motion.css?v=1.7"><script src="/assets/motion.js?v=1.7"></script>  <link rel="stylesheet" href="/assets/hero-spotlight.css?v=2.5" />
-  <link rel="stylesheet" href="/assets/hero-nav-scene.css?v=2.7" />
+  <link rel="stylesheet" href="/assets/hero-nav-scene.css?v=2.8" />
+  <link rel="stylesheet" href="/assets/scroll-route.css?v=2.8" />
 </head>
 <body>
   <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
@@ -78,6 +79,29 @@
         <div class="research-tags"><span>Reinforcement Learning</span><span>Robot Navigation</span><span>LLM Planning</span><span>Embodied AI</span></div>
         <div class="research-premise"><span class="premise-label" data-i18n-text="researchQuestion">CURRENT RESEARCH QUESTION</span><p id="premise-text">When should a robot stop repairing a route and decide to replan?</p><a href="research.html" id="premise-link">Explore the research approach ↗</a></div>
       </section>
+<section class="route-story" id="route-story" aria-label="Interactive robot navigation demonstration">
+  <div class="route-story-sticky">
+    <header class="route-story-header">
+      <div class="route-story-overline"><span class="route-story-dot"></span><span data-story-i18n="eyebrow">INTERACTIVE / ROBOT NAVIGATION</span><span class="route-story-scroll-prompt" data-story-i18n="hint">SCROLL TO ADVANCE <span aria-hidden="true">↓</span></span></div>
+      <h2 data-story-i18n="headline">When the route fails, <em>the plan changes.</em></h2>
+      <p data-story-i18n="lead">A conceptual walkthrough of how navigation adapts when an initially valid route becomes blocked.</p>
+    </header>
+    <div class="route-story-body">
+      <div class="route-story-viewport" id="route-story-viewport"><div class="route-story-fallback" data-story-i18n="fallback">Start → Plan → Obstacle → Replan → Recover</div></div>
+      <aside class="route-story-explanation">
+        <div class="route-story-state"><span class="route-story-step-no">01 / 05</span><span class="route-story-state-pill"><span class="route-story-state-lamp"></span><span class="route-story-state-tag">PLANNING</span></span></div>
+        <h3 class="route-story-stage-title">Plan the route</h3>
+        <p class="route-story-stage-summary">Find a traversable path from start to goal.</p>
+        <div class="route-story-process" aria-hidden="true"><span class="active"></span><span></span><span></span><span></span><span></span></div>
+        <p class="route-story-notice" data-story-i18n="notice">Illustrative navigation sequence · Not experimental footage</p>
+      </aside>
+    </div>
+    <footer class="route-story-footer">
+      <div class="route-story-progress" role="progressbar" aria-label="Navigation story progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span class="route-story-progress-fill"></span></div>
+      <div class="route-story-footer-line"><span class="route-story-progress-text">00%</span><span class="route-story-step-caption" data-story-i18n="footer">Scroll down to move through the route · Scroll up to revisit</span><button class="route-story-skip" type="button" data-story-i18n="skip">Skip demonstration <span aria-hidden="true">↘</span></button></div>
+    </footer>
+  </div>
+</section>
       <section class="news-section observed" id="news">
         <div class="section-heading"><div><div class="section-kicker" data-i18n-text="latest">LATEST UPDATES</div><h2 data-i18n="news">News <span>& notes</span></h2></div><span class="section-number">/ 02</span></div>
         <div id="news-list" class="news-list"><div class="news-row"><span class="news-date">2026.06</span><div class="news-body">Developed an LLM Task Recovery prototype to study language-guided navigation recovery. </div><span class="news-type">Research</span></div><div class="news-row"><span class="news-date">2026.05</span><div class="news-body">Our first-author survey on causal inference and introspective robotics was accepted by Nonlinear Dynamics. <a href="https://doi.org/10.1007/s11071-026-12695-2" target="_blank" rel="noreferrer" aria-label="Related source">↗</a></div><span class="news-type">Journal</span></div><div class="news-row"><span class="news-date">2026.05</span><div class="news-body">Our first-author work on edge-intelligent RL–LLM navigation was accepted by JKSUCIS. <a href="https://doi.org/10.1007/s44443-026-00870-9" target="_blank" rel="noreferrer" aria-label="Related source">↗</a></div><span class="news-type">Journal</span></div><div class="news-row"><span class="news-date">2026.04</span><div class="news-body">KA-IHO, our co-authored research on kinematic-aware mobile robot path planning, appeared in Sensors. <a href="https://doi.org/10.3390/s26082416" target="_blank" rel="noreferrer" aria-label="Related source">↗</a></div><span class="news-type">Journal</span></div></div>
@@ -128,6 +152,7 @@
   <div class="toast" id="toast" aria-live="polite"></div>
   <script src="data.js?v=2.2"></script><script src="studies.js"></script><script src="app.js?v=2.2"></script>
   <script src="/assets/hero-spotlight.js?v=2.7"></script>
-  <script src="/assets/hero-nav-scene.js?v=2.7"></script>
+  <script src="/assets/hero-nav-scene.js?v=2.8"></script>
+  <script src="/assets/scroll-route.js?v=2.8"></script>
 </body>
 </html>
