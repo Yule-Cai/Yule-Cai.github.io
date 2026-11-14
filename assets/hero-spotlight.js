@@ -62,7 +62,7 @@
     copy.style.minHeight = `${a.height}px`;
   }
   function radius() {
-    return Math.round(Math.min(174, Math.max(104, window.innerWidth * .115)));
+    return Math.round(Math.min(216, Math.max(146, window.innerWidth * .145)));
   }
   function tick() {
     frame = 0;

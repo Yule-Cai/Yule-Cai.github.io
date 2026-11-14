@@ -1,84 +1,87 @@
-/* v2.6 — a path-planning world glimpsed through the existing cursor lens.
-   The diagram is illustrative, not a research experiment. */
-.hero-lens-pattern{opacity:.025}
-.hero-lens-stage.is-revealing .hero-lens-copy{opacity:.24}
+/* v2.7 — Cursor-scrubbed path planning and recovery, bidirectionally mirrored.
+ * Zero autoplay: each stage is a deterministic mapping of pointer/slider position.
+ * All maps/metrics are illustrative, not experimental measurements. */
+.hero-lens-stage.is-revealing .hero-lens-copy{opacity:.11}
+.hero-lens-pattern{opacity:.018}
 .hero-nav-map{
   position:absolute;z-index:3;pointer-events:none;
   left:var(--spotlight-x,50%);top:var(--spotlight-y,50%);
-  width:238px;height:205px;
-  transform:translate(-50%,-50%) translateY(-20px) scale(.98);
-  transform-origin:center center;
-  filter:drop-shadow(0 2px 3px #070e2077);
+  width:274px;height:274px;transform:translate(-50%,-50%);
+  background:rgba(9,23,41,.88);border:1px solid #a2dcff24;
+  border-radius:21px;padding:12px 12px 9px;
+  box-shadow:0 12px 25px #040a1933,inset 0 0 44px #346fa115;
+  font-family:'DM Sans','Manrope',sans-serif;color:#ecf9ff;
+  display:flex;flex-direction:column;gap:2px;
 }
-.hero-nav-map svg{display:block;width:100%;height:100%;overflow:visible}
-.hero-nav-grid{color:#aad5e4;opacity:.3}
-.hero-nav-block{fill:#e08497;opacity:0;transition:opacity 230ms ease}
-.hero-nav-static-block{fill:#8592a6;opacity:.32}
-.hero-nav-danger{fill:#ff9ba7;opacity:0;transition:opacity 230ms ease}
-.hero-nav-route-original,.hero-nav-route-recovery{fill:none;stroke-linecap:round;stroke-linejoin:round}
-.hero-nav-route-original{stroke:#67e1e7;stroke-width:5;stroke-dasharray:300;stroke-dashoffset:300;animation:hero-route-trace 1250ms ease-out forwards}
-.hero-nav-route-recovery{stroke:#a5f5c2;stroke-width:5.4;stroke-dasharray:300;stroke-dashoffset:300;opacity:0}
-.hero-nav-agent{transition:transform 1050ms cubic-bezier(.2,.7,.24,1);filter:drop-shadow(0 0 4px #baffdf77)}
-.hero-nav-agent-outer{fill:#18546b;stroke:#a4fff4;stroke-width:2.5}
-.hero-nav-agent-center{fill:#effff9}
-.hero-nav-goal{fill:none;stroke:#bbffe3;stroke-width:3}
-.hero-nav-crosshair{stroke:#bbffe3;stroke-width:1.5}
-.hero-nav-waypoint-label{font:800 10px/1 Arial,sans-serif;fill:#eefbf8}
-.nav-phase-blocked .hero-nav-block,.nav-phase-recover .hero-nav-block{opacity:.82}
-.nav-phase-blocked .hero-nav-danger{opacity:.22}
-.nav-phase-blocked .hero-nav-route-original,.nav-phase-recover .hero-nav-route-original{
-  stroke:#ffa4af;opacity:.72;animation:none;stroke-dasharray:6 8;stroke-dashoffset:0;
-}
-.nav-phase-recover .hero-nav-route-original{opacity:.42}
-.nav-phase-recover .hero-nav-route-recovery{opacity:1;animation:hero-route-trace 1250ms ease-out forwards}
-.nav-phase-blocked .hero-nav-agent{transform:translate(54px,-50px)}
-.nav-phase-recover .hero-nav-agent{transform:translate(115px,-80px)}
-@keyframes hero-route-trace{to{stroke-dashoffset:0}}
-.hero-lens-overlay .hero-lens-orbit-label{
-  z-index:4;left:var(--spotlight-x,50%);right:auto;bottom:auto;transform:translateX(-50%);top:calc(var(--spotlight-y,50%) + 106px);
-  display:inline-flex;align-items:center;gap:7px;
-  font-size:9px;letter-spacing:.055em;
-  padding:4px 7px;border-radius:5px;
-  color:#b4f7e9;background:#10243ddd;border:1px solid #8ce9e548;
-  opacity:.95;
-}
-.hero-lens-overlay .hero-lens-orbit-label::before{content:"";width:5px;height:5px;flex:0 0 auto;border-radius:50%;background:#92f1da}
-@media(min-width:761px) and (max-width:1199px){
-  .hero-nav-map{transform:translate(-50%,-50%) translateY(-12px) scale(.76)}
-  .hero-lens-overlay .hero-lens-orbit-label{top:calc(var(--spotlight-y,50%) + 69px);font-size:8px}
-}
-/* Touch devices receive a deliberate, full-width preview instead of a clipped tiny circular map. */
-@media(hover:none), (pointer:coarse){
-  .hero-lens-overlay{
-    position:relative!important;inset:auto!important;
-    display:none;opacity:1;width:100%;height:220px;margin:10px 0 16px;
-    clip-path:none!important;border-radius:18px;contain:layout paint;
-  }
+.nav-hud-head{display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:22px}
+.nav-hud-kicker{font:800 10px/1.4 'DM Sans',sans-serif;letter-spacing:.13em;color:#86c6e8;white-space:nowrap}
+.nav-hud-kicker b{border:1px solid #4b8098;padding:2px 4px;border-radius:3px;color:#d0f5fe}
+.nav-hud-status{display:inline-flex;align-items:center;gap:5px;min-width:0;font:800 9px/1.3 'DM Sans',sans-serif;letter-spacing:.035em;text-align:right;color:#a8eee7}
+.nav-hud-status i{flex:0 0 auto;width:6px;height:6px;border-radius:50%;background:#7eebd8;box-shadow:0 0 8px #7eebd877}
+.nav-hud-status span{min-width:0}
+.nav-phase-blocked .nav-hud-status{color:#ffb2bb}.nav-phase-blocked .nav-hud-status i{background:#ff8d9a;box-shadow:0 0 8px #ff8d9a88}
+.nav-phase-replan .nav-hud-status{color:#b7f1fb}
+.nav-map-frame{position:relative;flex:1;min-height:0;border:1px solid #70a0bb31;border-radius:10px;background:radial-gradient(circle at 50% 38%,#1f3c59ac,#101c2c96 70%);overflow:hidden}
+.nav-grid-svg{display:block;width:100%;height:100%;overflow:visible}
+.nav-grid-ground{color:#6da2b8;opacity:.34}
+.nav-static-obstacle{fill:#688399a6;stroke:#9ab7c5;stroke-width:1.1}
+.nav-static-obstacle.faded{opacity:.62}
+.nav-original-ghost{fill:none;stroke:#ffa3ae;stroke-width:5;stroke-dasharray:4 8;stroke-linecap:round;stroke-linejoin:round;opacity:0}
+.nav-route-original{fill:none;stroke:#72e6eb;stroke-width:5.4;stroke-linecap:round;stroke-linejoin:round}
+.nav-route-original.has-blocked{stroke:#ff9fa9}
+.nav-route-recovery{fill:none;stroke:#9bf2b5;stroke-width:5.8;stroke-linecap:round;stroke-linejoin:round}
+.nav-hazard-halo{fill:#ec687441;stroke:#f895a6;stroke-width:1.5;stroke-dasharray:3 4}
+.nav-hazard-core{fill:#d15f72;stroke:#ffc6cc;stroke-width:1.6}
+.nav-hazard-cross{stroke:#fff1ee;stroke-width:2.4;stroke-linecap:round}
+.nav-waypoints circle{fill:#c1faf8;stroke:#13314c;stroke-width:2}
+.nav-start>circle:first-child{fill:#1f576a;stroke:#e5fcff;stroke-width:2}.nav-start>circle:last-child{fill:#e5fcff}
+.nav-goal circle:first-child{fill:#0c5648;stroke:#abffe1;stroke-width:2.3}.nav-goal circle:nth-child(2){fill:#b9ffd6}
+.nav-goal path{stroke:#a8ffea;stroke-width:1.5;stroke-linecap:round}
+.nav-bot{filter:drop-shadow(0 0 4px #b3fff08f)}
+.nav-bot-range{fill:#72dddf12;stroke:#8dece555;stroke-width:1.1;stroke-dasharray:3 4}
+.nav-bot-shell{fill:#1a5973;stroke:#a3faff;stroke-width:2.4}
+.nav-bot-direction{fill:#d6fffa}.nav-bot-core{fill:#e9ffff}
+.nav-legend-line{stroke:#6bced8;stroke-width:2}.nav-legend-old{fill:#8de6e9}.nav-legend-new{fill:#a1f1b3}
+.nav-coords{position:absolute;bottom:4px;left:8px;right:8px;display:flex;justify-content:space-between;align-items:center;font:700 8px/1.3 'DM Sans',sans-serif;letter-spacing:.065em;color:#9bbbd0;pointer-events:none}
+.nav-hud-footer{min-height:48px;display:flex;flex-direction:column;gap:4px;padding-top:4px}
+.nav-state-row{display:flex;align-items:center;justify-content:space-between;gap:10px;font:800 11px/1.3 'DM Sans',sans-serif}
+.nav-state-text{color:#e4f9ff}.nav-pct{color:#b9eff3;min-width:30px;text-align:right;font-variant-numeric:tabular-nums}
+.nav-progress-track{width:100%;height:5px;background:#5470836b;overflow:hidden;border-radius:8px;position:relative}
+.nav-progress-fill{display:block;background:linear-gradient(90deg,#83d6eb,#9df0b9);height:100%;width:0%;border-radius:8px}
+.nav-progress-ticks{position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent 0,transparent calc(20% - 1px),#0f2031b0 calc(20% - 1px),#0f2031b0 20%)}
+.nav-state-detail{margin:0;font:600 9px/1.3 'DM Sans',sans-serif;color:#a1bed1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+/* The old supplementary label is replaced by a legible HUD inside the map. */
+.hero-lens-overlay .hero-lens-orbit-label{display:none!important}
+@media(min-width:761px) and (max-width:1199px){.hero-nav-map{transform:translate(-50%,-50%) scale(.69)}}
+/* Mobile/touch: unclip into a card and expose two direction choices + scrub slider. */
+.nav-touch-controls{display:none}
+@media(hover:none),(pointer:coarse){
+  .hero-lens-overlay{position:relative!important;inset:auto!important;left:auto!important;right:auto!important;display:none;clip-path:none!important;opacity:1!important;margin:8px 0 5px;height:302px;width:100%;border-radius:17px;contain:layout paint;background:#101d30}
   .hero-lens-stage.is-revealing .hero-lens-overlay{display:block}
   .hero-lens-overlay .hero-lens-copy,.hero-lens-pattern{display:none!important}
-  .hero-lens-overlay .hero-nav-map{
-    left:50%!important;top:46%!important;
-    transform:translate(-50%,-50%) scale(1);
-  }
-  .hero-lens-overlay .hero-lens-orbit-label{
-    display:inline-flex!important;left:50%!important;top:auto!important;
-    bottom:12px;right:auto!important;transform:translateX(-50%);
-    font-size:10px;max-width:calc(100% - 24px);
-  }
-  .hero-lens-stage .hero-lens-touch-toggle{position:relative;z-index:4}
+  .hero-lens-overlay .hero-nav-map{left:50%!important;top:50%!important;transform:translate(-50%,-50%);width:min(100%,354px);height:100%;max-height:302px;box-shadow:none;border:none;background:transparent}
+  .hero-lens-stage.is-revealing .nav-touch-controls{display:grid}
+  .nav-touch-controls{position:relative;z-index:5;gap:8px;margin:10px 0 20px;padding:12px 14px 13px;background:var(--surface);border:1px solid var(--line);border-radius:14px;color:var(--ink)}
+  .nav-touch-top{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:12px;font-weight:800}
+  .nav-touch-top output{color:var(--accent);font-size:10px;text-align:right;max-width:55%}
+  .nav-touch-controls input[type=range]{display:block;width:100%;min-height:30px;accent-color:var(--accent);touch-action:pan-y;cursor:ew-resize}
+  .nav-touch-options{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+  .nav-touch-direction{min-height:37px;padding:6px 12px;border-radius:9px;background:var(--soft);border:1px solid var(--line);color:var(--muted);font-weight:800;font-size:11px}
+  .nav-touch-direction[aria-pressed=true]{background:var(--accent-soft);border-color:var(--accent);color:var(--accent)}
+  .nav-touch-hint{margin-left:auto;color:var(--muted);font-size:10px}
+  .hero-lens-stage .hero-lens-touch-toggle{margin-bottom:2px}
 }
-@media(max-width:430px){
-  .hero-lens-stage .hero-lens-overlay{height:205px}
-  .hero-lens-overlay .hero-nav-map{transform:translate(-50%,-50%) scale(.94)}
-}
-:root[data-theme="dark"] .hero-nav-grid{color:#53617c;opacity:.32}
-:root[data-theme="dark"] .hero-nav-block{fill:#ab566c}
-:root[data-theme="dark"] .hero-nav-route-original{stroke:#217785}
-:root[data-theme="dark"] .hero-nav-route-recovery{stroke:#248d72}
-:root[data-theme="dark"] .hero-nav-agent-outer{fill:#e2f9fb;stroke:#14697e}
-:root[data-theme="dark"] .hero-nav-agent-center{fill:#136981}
-:root[data-theme="dark"] .hero-nav-waypoint-label{fill:#20344e}
-:root[data-theme="dark"] .hero-nav-goal,:root[data-theme="dark"] .hero-nav-crosshair{stroke:#177b75}
-:root[data-theme="dark"] .hero-lens-overlay .hero-lens-orbit-label{background:#ecf5ffdc;color:#1b5269;border-color:#48758a55}
-:root[data-theme="dark"] .hero-lens-overlay .hero-lens-orbit-label::before{background:#247b76}
-@media(prefers-reduced-motion:reduce){.hero-nav-map{display:none!important}}
+@media(max-width:380px){.hero-lens-overlay .hero-nav-map{padding:10px}.nav-touch-hint{flex-basis:100%;margin-left:0}}
+:root[data-theme=dark] .hero-lens-overlay .hero-nav-map{background:#edf5ffe5;color:#183250;border-color:#b3bbd099}
+:root[data-theme=dark] .hero-lens-overlay .nav-map-frame{background:radial-gradient(circle at 50% 40%,#d4e6f9,#edf5ff 80%);border-color:#8bb4c966}
+:root[data-theme=dark] .hero-lens-overlay .nav-grid-ground{color:#7cabc2;opacity:.42}
+:root[data-theme=dark] .hero-lens-overlay .nav-hud-kicker,:root[data-theme=dark] .hero-lens-overlay .nav-state-text{color:#2e5279}
+:root[data-theme=dark] .hero-lens-overlay .nav-hud-kicker b{border-color:#6793b0;color:#315979}
+:root[data-theme=dark] .hero-lens-overlay .nav-state-detail,:root[data-theme=dark] .hero-lens-overlay .nav-coords{color:#607e98}
+:root[data-theme=dark] .hero-lens-overlay .nav-pct{color:#326686}
+:root[data-theme=dark] .hero-lens-overlay .nav-route-original{stroke:#177c91}
+:root[data-theme=dark] .hero-lens-overlay .nav-route-recovery{stroke:#29896e}
+:root[data-theme=dark] .hero-lens-overlay .nav-state-row{color:#253d5c}
+:root[data-theme=dark] .hero-lens-overlay .nav-hud-status{color:#247b76}
+:root[data-theme=dark] .hero-lens-overlay .nav-phase-blocked .nav-hud-status{color:#a63253}
+@media(prefers-reduced-motion:reduce){.hero-nav-map,.nav-touch-controls{display:none!important}}
