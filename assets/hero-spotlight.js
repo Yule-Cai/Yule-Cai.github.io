@@ -40,7 +40,19 @@
   const coarse = window.matchMedia('(hover: none), (pointer: coarse)');
   let tapButton = null;
 
+  function fitOverlay() {
+    // Keep the reveal canvas within the viewport to avoid horizontal scrolling.
+    if (window.matchMedia('(max-width: 760px)').matches) {
+      overlay.style.removeProperty('left');
+      overlay.style.removeProperty('right');
+      return;
+    }
+    const bounds = stage.getBoundingClientRect();
+    overlay.style.left = `-${Math.min(154, Math.max(0, bounds.left - 8))}px`;
+    overlay.style.right = `-${Math.min(154, Math.max(0, window.innerWidth - bounds.right - 8))}px`;
+  }
   function syncCopy() {
+    fitOverlay();
     copy.innerHTML = title.innerHTML;
     const a = title.getBoundingClientRect();
     const b = overlay.getBoundingClientRect();
@@ -61,6 +73,9 @@
     const done = Math.abs(targetX - x) < .35 && Math.abs(targetY - y) < .35 && Math.abs(targetR - r) < .35;
     if (done) { x=targetX; y=targetY; r=targetR; }
     overlay.style.clipPath = `circle(${Math.max(0,r).toFixed(2)}px at ${x.toFixed(2)}px ${y.toFixed(2)}px)`;
+    overlay.style.setProperty('--spotlight-x', `${x.toFixed(2)}px`);
+    overlay.style.setProperty('--spotlight-y', `${y.toFixed(2)}px`);
+    overlay.style.setProperty('--spotlight-label-offset', `${Math.round(Math.min(76, Math.max(43, radius() * .45)))}px`);
     if (!active && r < .4) stage.classList.remove('is-revealing');
     if (!done) frame = requestAnimationFrame(tick);
   }

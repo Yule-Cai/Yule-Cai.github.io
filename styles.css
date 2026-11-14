@@ -388,3 +388,12 @@ html[lang="en"] .intro-title em {
   display: block;
   margin-top: .015em;
 }
+
+
+/* v2.5: stronger research headline with deliberate desktop line lengths. */
+@media (min-width:1120px) {
+  html[lang="en"] .intro-title {
+    font-size:clamp(52px,4.45vw,64px);
+    line-height:1.105;
+  }
+}

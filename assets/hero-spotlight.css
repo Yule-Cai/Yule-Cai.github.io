@@ -74,3 +74,17 @@
 :root[data-theme="dark"] .hero-lens-overlay .hero-lens-copy em{color:#625eaf}
 :root[data-theme="dark"] .hero-lens-pattern{color:#16213d;opacity:.105}
 :root[data-theme="dark"] .hero-lens-orbit-label{color:#575c9d}
+
+/* v2.5: keep the subtle route caption entirely inside the following lens. */
+.hero-lens-overlay .hero-lens-orbit-label {
+  left:var(--spotlight-x,50%);
+  top:calc(var(--spotlight-y,50%) + var(--spotlight-label-offset,70px));
+  right:auto;
+  bottom:auto;
+  transform:translateX(-50%);
+  max-width:calc(100% - 20px);
+  white-space:nowrap;
+  font-size:10px;
+  letter-spacing:.17em;
+  opacity:.88;
+}
