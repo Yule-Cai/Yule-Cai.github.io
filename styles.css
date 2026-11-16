@@ -433,3 +433,9 @@ html[lang="en"] .intro-title em {
   .research-pillar-list .arc-step h4{font-size:15px;}
   .research-pillar-list .arc-step p{font-size:12px;}
 }
+
+/* Preserve the full original published diagram on a neutral white background. */
+.project-card--full-figure .project-media-link{height:215px;background:#fff;}
+.project-card--full-figure .project-art{display:block;width:100%;height:100%;object-fit:contain;object-position:center;background:#fff;padding:0;}
+.project-card--full-figure .project-media-link:hover .project-art{transform:none;}
+@media(max-width:460px){.project-card--full-figure .project-media-link{height:205px;}}
