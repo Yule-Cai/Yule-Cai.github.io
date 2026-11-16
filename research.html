@@ -16,6 +16,7 @@
   <section class="doc-section" id="decision-reliability">
     <h2>02 · Reliable Robot Decision-Making</h2>
     <p><strong>Published:</strong> A decoupled RL–LLM navigation architecture combines low-level reinforcement-learning control with event-triggered high-level guidance under partial observability. <a href="/papers/edge.html">Read the published navigation study ↗</a></p>
+    <p><strong>Public prototype · LLM Task Recovery:</strong> A research codebase for anomaly-triggered recovery in grid-world navigation. PPO and LSTM-PPO agents carry out pick-and-deliver, patrol and search-and-retrieve tasks; a local LLM proposes replacement waypoints when paths are obstructed, objects are displaced or goals become invalid. A task arbiter coordinates recovery with the base policy. <a href="https://github.com/Yule-Cai/llm_task_recovery" target="_blank" rel="noopener noreferrer">View source code and experiments ↗</a></p>
     <p><strong>Further investigations:</strong> Graph-grounded route auditing, instruction-faithful task recovery and language-grounded safety specifications ask whether seemingly plausible actions remain faithful to task intent and execution constraints. Work under review is not presented here as accepted research.</p>
   </section>
   <section class="doc-section" id="multi-robot">
@@ -43,6 +44,7 @@
   </section>
   <section class="doc-section" id="evidence">
     <h2>Public Materials &amp; Reproducibility</h2>
+    <div class="doc-list-item"><strong>LLM Task Recovery</strong><p>Public recovery framework with Gymnasium task environments, PPO/LSTM-PPO training and evaluation, local LLM waypoint planning, anomaly experiments, figures and model checkpoints. This is a research prototype; the repository's figures are not described as new peer-reviewed results.</p><a href="https://github.com/Yule-Cai/llm_task_recovery" target="_blank" rel="noopener noreferrer">Public research repository ↗</a> · <a href="https://github.com/Yule-Cai/llm_task_recovery/blob/main/figures/fig_map_viz_recovery.png" target="_blank" rel="noopener noreferrer">Recovery figure ↗</a></div>
     <div class="doc-list-item"><strong>Decoupled Dual-Brain Navigation</strong><p>Peer-reviewed RL–LLM navigation research and public benchmark materials.</p><a href="https://github.com/Yule-Cai/Decoupled-Dual-Brain-Nav" target="_blank" rel="noopener noreferrer">Public research repository ↗</a></div>
     <div class="doc-list-item"><strong>Kinematic-Aware IHO</strong><p>Public code and path-planning results associated with the Sensors paper.</p><a href="https://github.com/Yule-Cai/Kinematic-Aware-IHO" target="_blank" rel="noopener noreferrer">Public research repository ↗</a></div>
     <p>Some active studies and manuscripts are private or under review. Their internal logs, unpublished metrics and restricted repositories are intentionally not shared here.</p>
