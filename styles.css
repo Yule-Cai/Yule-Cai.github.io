@@ -433,3 +433,7 @@ html[lang="en"] .intro-title em {
   .research-pillar-list .arc-step h4{font-size:15px;}
   .research-pillar-list .arc-step p{font-size:12px;}
 }
+
+/* Show complete figures in project thumbnails without trimming chart labels. */
+.project-art--contain{object-fit:contain;background:#fff;padding:6px}
+@media(max-width:430px){.project-art--contain{padding:4px}}
