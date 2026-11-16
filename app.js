@@ -85,7 +85,7 @@
   const renderResearch=()=>{
     $('projects-list').innerHTML=D.projects.map(p=>{
       const available = p.public !== false;
-      const picture = `<img src="${escape(img(p.cover))}" data-remote="${escape(img(p.remoteCover||p.cover))}" data-fallback="${escape(img(p.fallbackCover))}" class="project-art" alt="${escape(lang.current==='zh'?p.evidenceZh:p.evidenceEn)}" loading="lazy" decoding="async" />`;
+      const picture = `<img src="${escape(img(p.cover))}" data-remote="${escape(img(p.remoteCover||p.cover))}" data-fallback="${escape(img(p.fallbackCover))}" class="project-art${p.figureFit==='contain'?' project-art--contain':''}" alt="${escape(lang.current==='zh'?p.evidenceZh:p.evidenceEn)}" loading="lazy" decoding="async" />`;
       const label = escape(lang.current==='zh'?(available?'在 GitHub 中查看实验原图：':'项目概念示意：'):(available?'View the original research figure on GitHub: ':'Concept illustration for '))+escape(p.name);
       const chip = `<span class="project-evidence-chip">${available?(lang.current==='zh'?'项目原始结果':'Original project figure'):(lang.current==='zh'?'研究方向示意':'Concept illustration')}</span>`;
       const media = available ? `<a class="project-media-link" href="${escape(p.evidence||p.url)}" target="_blank" rel="noopener noreferrer" aria-label="${label}">${picture}${chip}</a>` : `<div class="project-media-link" aria-label="${label}">${picture}${chip}</div>`;
