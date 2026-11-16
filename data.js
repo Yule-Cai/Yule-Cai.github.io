@@ -44,7 +44,7 @@ window.YULE_DATA = {
     {num:'03',state:{en:'ONGOING',zh:'探索阶段'},status:'exploring',title:{en:'Multi-Robot Learning & Coordination',zh:'多机器人学习与协作'},detail:{en:'Hierarchical reinforcement learning and execution feedback for team coordination, adaptation and task recovery.',zh:'探索分层强化学习和执行反馈如何支持团队协同、适应与任务恢复。'},link:'research.html#multi-robot',linkLabel:{en:'Multi-robot learning ↗',zh:'多机器人协同学习 ↗'}}
   ],
   ongoing: [
-    {num:'01',stage:{en:'IN EXPERIMENT',zh:'实验中'},title:{en:'Runtime Spatial Constraints',zh:'运行时空间约束'},text:{en:'RuleSync studies authorization, revocation and renewed admission as spatial constraints change during execution.',zh:'RuleSync 研究空间规则动态变化时的运动授权、撤销及重新准入。'}},
+    {num:'01',stage:{en:'SUBMITTED TO JSA',zh:'已投稿 JSA'},title:{en:'Runtime Spatial Constraints',zh:'运行时空间约束'},text:{en:'RuleSync studies durable authorization, revocation and renewed admission under changing spatial rules. The manuscript has been submitted to the Journal of Systems Architecture.',zh:'RuleSync 研究动态空间规则下的持久化授权、撤销与重新准入；相关论文已投稿 Journal of Systems Architecture。'}},
     {num:'02',stage:{en:'UNDER REVIEW / STUDY',zh:'在审与研究中'},title:{en:'Auditable Route Decisions',zh:'可审计的路径决策'},text:{en:'Can language-grounded route decisions be verified against task intent and safety constraints?',zh:'能否验证语言接地的路径决策是否忠于任务意图和安全约束？'}},
     {num:'03',stage:{en:'IN DEVELOPMENT',zh:'开发验证中'},title:{en:'Feedback-Driven Team Learning',zh:'反馈驱动的团队学习'},text:{en:'When should execution feedback update high-level coordination rather than only low-level robot actions?',zh:'什么样的执行反馈应当改变高层团队协作，而非仅修正底层动作？'}}
   ],
