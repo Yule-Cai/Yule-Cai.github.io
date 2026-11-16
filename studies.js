@@ -95,6 +95,8 @@ window.YULE_STUDIES = {
       {name:{en:'Smoothness with constraints',zh:'考虑运动约束的平滑'},detail:{en:'The objective and ironing stage favor feasible trajectories over merely short geometric curves.',zh:'目标函数与后期平滑阶段优先考虑真实可执行轨迹，而非仅追求几何最短路。'}}
     ],
     limitations:{en:'The 3,000-candidate initialization adds considerable computation. Fixed waypoint count and static-map testing limit straightforward use in larger, rapidly changing scenes.',zh:'需评估约 3,000 条初始候选路径，计算开销较大。固定航点数和静态地图实验也限制其直接用于更大、更动态的场景。'},
-    figures:[]
+    figures:[
+      {number:'Fig. 2',label:{en:'Multidimensional benchmark evaluation framework',zh:'多维基准评估框架'},url:'https://raw.githubusercontent.com/Yule-Cai/Kinematic-Aware-IHO/main/assets/Evaluation_Framework.png',caption:{en:'Original multidimensional benchmark framework: five maps, six comparison algorithms, unified settings and path-planning performance analysis.',zh:'论文原始多维基准评估框架图：五张测试地图、六种对比算法、统一实验设置和路径规划性能分析。'}}
+    ]
   }
 };
