@@ -9,8 +9,8 @@ window.YULE_DATA = {
     email: 'caiyule0911@163.com',
     scholar: 'https://scholar.google.com/citations?hl=en&user=W8lwxUYAAAAJ',
     github: 'https://github.com/Yule-Cai',
-    portrait: 'https://avatars.githubusercontent.com/u/239518976?v=4&s=1200',
-    portraitSources: ['https://avatars.githubusercontent.com/u/239518976?v=4&s=1200','https://avatars.githubusercontent.com/u/239518976?v=4&s=800'],
+    portrait: 'assets/portrait-hd-900.webp',
+    portraitSources: ['assets/portrait-hd-900.webp','https://avatars.githubusercontent.com/u/239518976?v=4&s=800'],
     orcid: 'https://orcid.org/0009-0007-2692-0031',
     lines: ['Motion Planning & Runtime Assurance','Reliable Robot Decision-Making','Multi-Robot Reinforcement Learning'],
     linesZh: ['运动规划与运行时约束','可靠机器人决策','多机器人强化学习']
